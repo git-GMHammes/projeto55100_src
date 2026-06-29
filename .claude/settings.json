@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C \"c:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\" diff HEAD -- \"src/public/frontend/Projeto55100App/src/components/ui/MapaRJ/MapaRJ.tsx\")",
+      "Bash(git -C \"c:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\" status --short)",
+      "Bash(git -C \"c:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\" diff HEAD src/public/frontend/Projeto55100App/src/components/ui/MapaRJ/MapaRJ.tsx)",
+      "Bash(git -C \"c:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\" diff -- \"src/public/frontend/Projeto55100App/src/components/ui/MapaRJ/MapaRJ.tsx\")",
+      "Bash(git -C \"c:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\" log --oneline -5)",
+      "Bash(git -C \"c:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\\\\src\" diff HEAD -- \"public/frontend/Projeto55100App/src/components/ui/MapaRJ/MapaRJ.tsx\")",
+      "Bash(git -C \"c:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\\\\src\" log --oneline -5)",
+      "Bash(dir \"c:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\\\\src\\\\public\" /b)",
+      "Bash(git -C \"c:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\\\\src\" show 84b26a2:public/frontend/Projeto55100App/src/components/ui/MapaRJ/MapaRJ.tsx)",
+      "Bash(git -C \"c:\\\\laragon\\\\www\\\\php\\\\habilidade\\\\projeto55100\\\\src\" show b6be9f8:public/frontend/Projeto55100App/src/components/ui/MapaRJ/MapaRJ.tsx)"
+    ]
+  }
+}
