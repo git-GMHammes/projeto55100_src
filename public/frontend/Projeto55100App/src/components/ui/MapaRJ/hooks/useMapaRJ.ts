@@ -57,8 +57,8 @@ export function useMapaRJ({ dataUrl, shapefileBaseUrl, width, height, highlighte
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const features = (geo.features as any[]).filter((f: any) => f.properties.CD_UF === '33')
         if (!cancelado) setFetchedData({ dados, features })
-      } catch {
-        if (!cancelado) setErro('Erro ao carregar o mapa. Verifique os arquivos em public/maparj/.')
+      } catch (err) {
+        if (!cancelado) setErro(String(err))
       }
     }
 
