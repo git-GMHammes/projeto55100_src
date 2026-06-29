@@ -5,7 +5,8 @@ import { getActiveTheme } from '../../../themes/global'
 import type { MapaRJProps } from './MapaRJ.types'
 import styles from './MapaRJ.module.css'
 
-const STATIC_BASE      = import.meta.env.PROD ? '/projeto55100/public/' : '/'
+const isLocal          = ['localhost', '127.0.0.1'].includes(window.location.hostname)
+const STATIC_BASE      = isLocal ? '/' : '/projeto55100/public/'
 const DEFAULT_DATA_URL = `${STATIC_BASE}maparj/municipios_rj.json`
 const DEFAULT_SHP_URL  = `${STATIC_BASE}maparj/BR_Municipios_2024`
 const DEFAULT_HEIGHT   = 700

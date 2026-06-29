@@ -3,3 +3,5 @@ _env
 system/HotReloader/Puipuia.php
 system/ThirdParty/Jugwoko.php
 public/frontend/dist_2026*
+writable/debugbar/*
+writable/debugbar/debugbar_1781816368.455581.json
