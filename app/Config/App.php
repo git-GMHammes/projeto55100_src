@@ -206,7 +206,7 @@ class App extends BaseConfig
         $http_host = isset($_SERVER['HTTP_HOST']) ? ($_SERVER['HTTP_HOST']) : 'localhost:55100';
         $server_port = isset($_SERVER['SERVER_PORT']) ? ($_SERVER['SERVER_PORT']) : '80';
 
-        $base_path = ($http_host === 'habilidade.com') ? '/projeto55100/src/public/' : '/';
+        $base_path = ($http_host === 'habilidade.com') ? '/projeto55100/public/' : '/';
         $this->baseURL = $request_scheme . '://' . $http_host . ($server_port != '80' ? ':' . $server_port : '') . $base_path;
         // exit($this->baseURL);
     }
