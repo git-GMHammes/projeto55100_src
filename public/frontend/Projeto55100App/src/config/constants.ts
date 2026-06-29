@@ -5,10 +5,10 @@ export const APP_VERSION = 'V1'
 export const ENVIRONMENT = 'production'
 // export const ENVIRONMENT = 'test'
 
-// Em produção/test: backend em habilidade.com/projeto55100/src/public
+// Em produção/test: backend em habilidade.com/projeto55100/public
 // Em development: backend em porta separada do Vite dev server
 export const APP_BASE_HOST = ((ENVIRONMENT as string) === 'production' || (ENVIRONMENT as string) === 'test')
-    ? 'https://habilidade.com/projeto55100/src/public'
+    ? 'https://habilidade.com/projeto55100/public'
     : 'http://localhost:55100'
 // export const THEME = 'Purple'
 // export const THEME = 'Dark'
