@@ -6,7 +6,7 @@ import type { MapaRJProps } from './MapaRJ.types'
 import styles from './MapaRJ.module.css'
 
 const isLocal          = ['localhost', '127.0.0.1'].includes(window.location.hostname)
-const STATIC_BASE      = isLocal ? '/maparj/' : '../maparj/'
+const STATIC_BASE      = isLocal ? '/maparj/' : '../../maparj/'
 const DEFAULT_DATA_URL = `${STATIC_BASE}municipios_rj.json`
 const DEFAULT_SHP_URL  = `${STATIC_BASE}BR_Municipios_2024`
 const DEFAULT_HEIGHT   = 700
