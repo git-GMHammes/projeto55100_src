@@ -1,0 +1,72 @@
+ERROR - 2026-06-18 17:24:53 --> Table 'codeigniter55100_db.view_auth_user' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT *
+FROM `view_auth_user`
+WHERE `um_user` = \'admin\'
+AND `ut_user_saas_tenants_id` = 1
+AND `um_is_active` = 1
+AND deleted_at IS NULL', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `view_auth_user`
+WHERE `um_user` = \'admin\'
+AND `ut_user_saas_tenants_id` = 1
+AND `um_is_active` = 1
+AND deleted_at IS NULL')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `view_auth_user`
+WHERE `um_user` = \'admin\'
+AND `ut_user_saas_tenants_id` = 1
+AND `um_is_active` = 1
+AND deleted_at IS NULL')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `view_auth_user`
+WHERE `um_user` = :um_user:
+AND `ut_user_saas_tenants_id` = :ut_user_saas_tenants_id:
+AND `um_is_active` = :um_is_active:
+AND deleted_at IS NULL', [...], false)
+ 5 APPPATH/Models/V1/User/AuthUser/SqlViewModel.php(102): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Services/V1/User/AuthUser/Processor.php(74): App\Models\V1\User\AuthUser\SqlViewModel->findByUserAndTenant('admin', 1)
+ 7 APPPATH/Controllers/Api/V1/User/AuthUser/ResourceViewController.php(67): App\Services\V1\User\AuthUser\Processor->authenticate('admin', 'ADMIN', 1)
+ 8 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\User\AuthUser\ResourceViewController->login()
+ 9 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\User\AuthUser\ResourceViewController))
+10 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-06-18 17:24:53 --> [API 500] Table 'codeigniter55100_db.view_auth_user' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-06-18 17:25:35 --> Table 'codeigniter55100_db.view_auth_user' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT *
+FROM `view_auth_user`
+WHERE `um_user` = \'admin\'
+AND `ut_user_saas_tenants_id` = 1
+AND `um_is_active` = 1
+AND deleted_at IS NULL', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `view_auth_user`
+WHERE `um_user` = \'admin\'
+AND `ut_user_saas_tenants_id` = 1
+AND `um_is_active` = 1
+AND deleted_at IS NULL')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `view_auth_user`
+WHERE `um_user` = \'admin\'
+AND `ut_user_saas_tenants_id` = 1
+AND `um_is_active` = 1
+AND deleted_at IS NULL')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `view_auth_user`
+WHERE `um_user` = :um_user:
+AND `ut_user_saas_tenants_id` = :ut_user_saas_tenants_id:
+AND `um_is_active` = :um_is_active:
+AND deleted_at IS NULL', [...], false)
+ 5 APPPATH/Models/V1/User/AuthUser/SqlViewModel.php(102): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Services/V1/User/AuthUser/Processor.php(74): App\Models\V1\User\AuthUser\SqlViewModel->findByUserAndTenant('admin', 1)
+ 7 APPPATH/Controllers/Api/V1/User/AuthUser/ResourceViewController.php(67): App\Services\V1\User\AuthUser\Processor->authenticate('admin', 'ADMIN', 1)
+ 8 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\User\AuthUser\ResourceViewController->login()
+ 9 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\User\AuthUser\ResourceViewController))
+10 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-06-18 17:25:35 --> [API 500] Table 'codeigniter55100_db.view_auth_user' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863

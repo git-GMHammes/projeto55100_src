@@ -1,0 +1,196 @@
+WARNING - 2026-06-10 15:54:15 --> [DEPRECATED] Creation of dynamic property Config\Database::$banco1 is deprecated in APPPATH/Config/Database.php on line 197.
+ 1 SYSTEMPATH/Config/Factories.php(236): Config\Database->__construct()
+ 2 SYSTEMPATH/Config/Factories.php(170): CodeIgniter\Config\Factories::createInstance('config', 'Config\\Database', [])
+ 3 SYSTEMPATH/Config/Factories.php(189): CodeIgniter\Config\Factories::__callStatic('config', [])
+ 4 SYSTEMPATH/Common.php(212): CodeIgniter\Config\Factories::get('config', 'Config\\Database')
+ 5 SYSTEMPATH/Database/Config.php(61): config('Config\\Database')
+ 6 SYSTEMPATH/Model.php(152): CodeIgniter\Database\Config::connect('banco1')
+ 7 APPPATH/Services/V1/Eleicao/VotacaoCandidatoMunzona2022RJ/Processor.php(24): CodeIgniter\Model->__construct()
+ 8 APPPATH/Controllers/Api/V1/Eleicao/VotacaoCandidatoMunzona2022RJ/ResourceViewController.php(29): App\Services\V1\Eleicao\VotacaoCandidatoMunzona2022RJ\Processor->__construct()
+ 9 SYSTEMPATH/CodeIgniter.php(945): App\Controllers\Api\V1\Eleicao\VotacaoCandidatoMunzona2022RJ\ResourceViewController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+10 SYSTEMPATH/CodeIgniter.php(511): CodeIgniter\CodeIgniter->createController()
+11 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-06-10 15:54:17 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'habilida02_add3'@'%' to database 'habilidade' in /var/www/html/system/Database/MySQLi/Connection.php:201
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(201): mysqli->real_connect('mysql02-farm1.k...', 'habilida02_add3', Object(SensitiveParameterValue), 'habilidade', 3306, '', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 /var/www/html/system/Database/BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/system/Database/BaseBuilder.php(1731): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#4 /var/www/html/app/Models/V1/BaseViewModel.php(50): CodeIgniter\Database\BaseBuilder->countAllResults(false)
+#5 /var/www/html/app/Models/V1/BaseViewModel.php(88): App\Models\V1\BaseViewModel->paginateBuilder(Object(CodeIgniter\Database\MySQLi\Builder), 1, 20, 'id', 'desc')
+#6 /var/www/html/app/Services/V1/BaseViewService.php(167): App\Models\V1\BaseViewModel->findPaginatedView(Array, 1, 20, 'id', 'desc')
+#7 /var/www/html/app/Controllers/Api/V1/BaseResourceViewController.php(63): App\Services\V1\BaseViewService->findView(Array, Array)
+#8 /var/www/html/system/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceViewController->find()
+#9 /var/www/html/system/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\VotacaoCandidatoMunzona2022RJ\ResourceViewController))
+#10 /var/www/html/system/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 /var/www/html/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 /var/www/html/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 /var/www/html/public/index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'%' to database 'habilidade' in /var/www/html/system/Database/MySQLi/Connection.php:231
+Stack trace:
+#0 /var/www/html/system/Database/BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 /var/www/html/system/Database/BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/system/Database/BaseBuilder.php(1731): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', Array, false)
+#3 /var/www/html/app/Models/V1/BaseViewModel.php(50): CodeIgniter\Database\BaseBuilder->countAllResults(false)
+#4 /var/www/html/app/Models/V1/BaseViewModel.php(88): App\Models\V1\BaseViewModel->paginateBuilder(Object(CodeIgniter\Database\MySQLi\Builder), 1, 20, 'id', 'desc')
+#5 /var/www/html/app/Services/V1/BaseViewService.php(167): App\Models\V1\BaseViewModel->findPaginatedView(Array, 1, 20, 'id', 'desc')
+#6 /var/www/html/app/Controllers/Api/V1/BaseResourceViewController.php(63): App\Services\V1\BaseViewService->findView(Array, Array)
+#7 /var/www/html/system/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceViewController->find()
+#8 /var/www/html/system/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\VotacaoCandidatoMunzona2022RJ\ResourceViewController))
+#9 /var/www/html/system/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 /var/www/html/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 /var/www/html/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 /var/www/html/public/index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+ERROR - 2026-06-10 15:54:17 --> [API 500] Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'%' to database 'habilidade' em /var/www/html/system/Database/BaseConnection.php:606
+ERROR - 2026-06-10 17:08:44 --> Unknown column 'filters' in 'where clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT COUNT(*) AS `numrows`
+FROM `view_votacao_candidato_munzona_2022_RJ_group`
+WHERE `filters` = (\'RIO DE JANEIRO\')
+AND `page` = 1
+AND `per_page` = 10', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*) AS `numrows`
+FROM `view_votacao_candidato_munzona_2022_RJ_group`
+WHERE `filters` = (\'RIO DE JANEIRO\')
+AND `page` = 1
+AND `per_page` = 10')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS `numrows`
+FROM `view_votacao_candidato_munzona_2022_RJ_group`
+WHERE `filters` = (\'RIO DE JANEIRO\')
+AND `page` = 1
+AND `per_page` = 10')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1731): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `view_votacao_candidato_munzona_2022_RJ_group`
+WHERE `filters` = :filters:
+AND `page` = :page:
+AND `per_page` = :per_page:', [...], false)
+ 5 APPPATH/Models/V1/BaseViewModel.php(50): CodeIgniter\Database\BaseBuilder->countAllResults(false)
+ 6 APPPATH/Models/V1/BaseViewModel.php(88): App\Models\V1\BaseViewModel->paginateBuilder(Object(CodeIgniter\Database\MySQLi\Builder), 1, 20, 'id', 'desc')
+ 7 APPPATH/Services/V1/BaseViewService.php(167): App\Models\V1\BaseViewModel->findPaginatedView([...], 1, 20, 'id', 'desc')
+ 8 APPPATH/Controllers/Api/V1/BaseResourceViewController.php(63): App\Services\V1\BaseViewService->findView([...], [...])
+ 9 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceViewController->find()
+10 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\VotacaoCandidatoMunzona2022RJ\ResourceViewController))
+11 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-06-10 17:08:44 --> [API 500] Unknown column 'filters' in 'where clause' em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-06-10 17:09:34 --> Unknown column 'filters' in 'where clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT COUNT(*) AS `numrows`
+FROM `view_votacao_candidato_munzona_2022_RJ_group`
+WHERE `filters` = (\'RIO DE JANEIRO\')
+AND `page` = 1
+AND `per_page` = 10', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*) AS `numrows`
+FROM `view_votacao_candidato_munzona_2022_RJ_group`
+WHERE `filters` = (\'RIO DE JANEIRO\')
+AND `page` = 1
+AND `per_page` = 10')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS `numrows`
+FROM `view_votacao_candidato_munzona_2022_RJ_group`
+WHERE `filters` = (\'RIO DE JANEIRO\')
+AND `page` = 1
+AND `per_page` = 10')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1731): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `view_votacao_candidato_munzona_2022_RJ_group`
+WHERE `filters` = :filters:
+AND `page` = :page:
+AND `per_page` = :per_page:', [...], false)
+ 5 APPPATH/Models/V1/BaseViewModel.php(50): CodeIgniter\Database\BaseBuilder->countAllResults(false)
+ 6 APPPATH/Models/V1/BaseViewModel.php(88): App\Models\V1\BaseViewModel->paginateBuilder(Object(CodeIgniter\Database\MySQLi\Builder), 1, 20, 'id', 'desc')
+ 7 APPPATH/Services/V1/BaseViewService.php(167): App\Models\V1\BaseViewModel->findPaginatedView([...], 1, 20, 'id', 'desc')
+ 8 APPPATH/Controllers/Api/V1/BaseResourceViewController.php(63): App\Services\V1\BaseViewService->findView([...], [...])
+ 9 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceViewController->find()
+10 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\VotacaoCandidatoMunzona2022RJ\ResourceViewController))
+11 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-06-10 17:09:34 --> [API 500] Unknown column 'filters' in 'where clause' em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-06-10 17:19:38 --> Unknown column 'nm_municipio' in 'where clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT COUNT(*) AS `numrows`
+FROM `view_votacao_candidato_munzona_2022_RJ_group`
+WHERE `nm_municipio` = \'RIO DE JANEIRO\'', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*) AS `numrows`
+FROM `view_votacao_candidato_munzona_2022_RJ_group`
+WHERE `nm_municipio` = \'RIO DE JANEIRO\'')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS `numrows`
+FROM `view_votacao_candidato_munzona_2022_RJ_group`
+WHERE `nm_municipio` = \'RIO DE JANEIRO\'')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1731): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `view_votacao_candidato_munzona_2022_RJ_group`
+WHERE `nm_municipio` = :nm_municipio:', [...], false)
+ 5 APPPATH/Models/V1/BaseViewModel.php(50): CodeIgniter\Database\BaseBuilder->countAllResults(false)
+ 6 APPPATH/Models/V1/BaseViewModel.php(88): App\Models\V1\BaseViewModel->paginateBuilder(Object(CodeIgniter\Database\MySQLi\Builder), 1, 20, 'id', 'desc')
+ 7 APPPATH/Services/V1/BaseViewService.php(167): App\Models\V1\BaseViewModel->findPaginatedView([...], 1, 20, 'id', 'desc')
+ 8 APPPATH/Controllers/Api/V1/BaseResourceViewController.php(63): App\Services\V1\BaseViewService->findView([...], [...])
+ 9 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceViewController->find()
+10 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\VotacaoCandidatoMunzona2022RJ\ResourceViewController))
+11 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-06-10 17:19:39 --> [API 500] Unknown column 'nm_municipio' in 'where clause' em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-06-10 17:25:26 --> Unknown column 'nm_municipio' in 'where clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT COUNT(*) AS `numrows`
+FROM `view_votacao_candidato_munzona_2022_RJ_group`
+WHERE `nm_municipio` = \'RIO DE JANEIRO\'', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*) AS `numrows`
+FROM `view_votacao_candidato_munzona_2022_RJ_group`
+WHERE `nm_municipio` = \'RIO DE JANEIRO\'')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS `numrows`
+FROM `view_votacao_candidato_munzona_2022_RJ_group`
+WHERE `nm_municipio` = \'RIO DE JANEIRO\'')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1731): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `view_votacao_candidato_munzona_2022_RJ_group`
+WHERE `nm_municipio` = :nm_municipio:', [...], false)
+ 5 APPPATH/Models/V1/BaseViewModel.php(50): CodeIgniter\Database\BaseBuilder->countAllResults(false)
+ 6 APPPATH/Models/V1/BaseViewModel.php(88): App\Models\V1\BaseViewModel->paginateBuilder(Object(CodeIgniter\Database\MySQLi\Builder), 1, 20, 'id', 'desc')
+ 7 APPPATH/Services/V1/BaseViewService.php(167): App\Models\V1\BaseViewModel->findPaginatedView([...], 1, 20, 'id', 'desc')
+ 8 APPPATH/Controllers/Api/V1/BaseResourceViewController.php(63): App\Services\V1\BaseViewService->findView([...], [...])
+ 9 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceViewController->find()
+10 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\VotacaoCandidatoMunzona2022RJ\ResourceViewController))
+11 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-06-10 17:25:26 --> [API 500] Unknown column 'nm_municipio' in 'where clause' em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-06-10 17:40:09 --> Unknown column 'ids' in 'where clause'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT COUNT(*) AS `numrows`
+FROM `view_votacao_candidato_munzona_2022_RJ_group`
+WHERE `ids` IN (1,2,3)', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*) AS `numrows`
+FROM `view_votacao_candidato_munzona_2022_RJ_group`
+WHERE `ids` IN (1,2,3)')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS `numrows`
+FROM `view_votacao_candidato_munzona_2022_RJ_group`
+WHERE `ids` IN (1,2,3)')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1731): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `view_votacao_candidato_munzona_2022_RJ_group`
+WHERE `ids` IN :ids:', [...], false)
+ 5 APPPATH/Models/V1/BaseViewModel.php(50): CodeIgniter\Database\BaseBuilder->countAllResults(false)
+ 6 APPPATH/Models/V1/BaseViewModel.php(104): App\Models\V1\BaseViewModel->paginateBuilder(Object(CodeIgniter\Database\MySQLi\Builder), 1, 20, 'id', 'desc')
+ 7 APPPATH/Services/V1/BaseViewService.php(186): App\Models\V1\BaseViewModel->findGroupedView([...], 1, 20, 'id', 'desc')
+ 8 APPPATH/Controllers/Api/V1/BaseResourceViewController.php(102): App\Services\V1\BaseViewService->getGroupedView([...], [...])
+ 9 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceViewController->getGrouped()
+10 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\VotacaoCandidatoMunzona2022RJ\ResourceViewController))
+11 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-06-10 17:40:09 --> [API 500] Unknown column 'ids' in 'where clause' em /var/www/html/system/Database/BaseConnection.php:863
+CRITICAL - 2026-06-10 18:37:17 --> ErrorException: Allowed memory size of 134217728 bytes exhausted (tried to allocate 20480 bytes)
+[Method: GET, Route: api/v1/votacao-candidato-munzona-2022-rj-view/get-no-pagination]
+in SYSTEMPATH/Database/MySQLi/Result.php on line 140.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
