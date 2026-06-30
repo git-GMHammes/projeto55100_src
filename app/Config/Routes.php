@@ -55,6 +55,26 @@ $routes->group('api/v1', function ($routes) {
         require __DIR__ . '/Routes/Api/v1/User/UserTenants/EndPointView.php';
     });
 
+    $routes->group('user-action-logs', function ($routes) {
+        require __DIR__ . '/Routes/Api/v1/User/UserActionLogs/EndpointTable.php';
+    });
+
+    $routes->group('user-password-reset-tokens', function ($routes) {
+        require __DIR__ . '/Routes/Api/v1/User/UserPasswordResetTokens/EndpointTable.php';
+    });
+
+    $routes->group('user-profiles', function ($routes) {
+        require __DIR__ . '/Routes/Api/v1/User/UserProfiles/EndpointTable.php';
+    });
+
+    $routes->group('user-users', function ($routes) {
+        require __DIR__ . '/Routes/Api/v1/User/UserUsers/EndpointTable.php';
+    });
+
+    $routes->group('user-user-data', function ($routes) {
+        require __DIR__ . '/Routes/Api/v1/User/UserUserData/EndpointTable.php';
+    });
+
     // =========================================================================
     // /Eleicao — Módulo de dados eleitorais RJ
     // =========================================================================
