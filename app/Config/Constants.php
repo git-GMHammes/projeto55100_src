@@ -61,6 +61,7 @@ defined('DECADE') || define('DECADE', 315_360_000);
  | leaving room for others to be defined in future versions and user
  | applications.
  |
+ |
  | The three main conventions used for determining exit status codes
  | are as follows:
  |
