@@ -74,6 +74,7 @@ function MunicipioRJList() {
       }
     } catch {
       setError('Erro de conexão com o servidor')
+      console.error('Erro ao carregar municípios', q)
     } finally {
       setLoading(false)
     }
