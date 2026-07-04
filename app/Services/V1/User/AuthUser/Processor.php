@@ -4,7 +4,7 @@ namespace App\Services\V1\User\AuthUser;
 
 use App\Libraries\JwtHelper;
 use App\Models\V1\User\AuthUser\SqlViewModel;
-use App\Models\V1\User\UserManagement\SqlTableModel as UserManagementModel;
+use App\Models\V1\User\UserUsers\SqlTableModel as UserUsersModel;
 use App\Models\V1\User\UserPasswordResets\SqlTableModel as PasswordResetsModel;
 use App\Models\V1\User\UserRefreshTokens\SqlTableModel as RefreshTokensModel;
 use App\Services\V1\BaseViewService;
@@ -13,7 +13,7 @@ use App\Services\V1\BaseViewService;
  * Service de autenticação do módulo AuthUser.
  *
  * Contém todas as regras de negócio de autenticação:
- *   - Consulta do usuário via Model
+ *   - Consulta do usuário via view_auth_user
  *   - Verificação de senha com password_verify
  *   - Geração e revogação de token JWT
  *   - Fluxo completo de reset de senha (emissão, validação e aplicação)
@@ -34,15 +34,15 @@ class Processor extends BaseViewService
     /** View do template de e-mail de recuperação de senha. */
     private const EMAIL_VIEW_RECOVERY = 'emails/recovery_password';
 
-    protected SqlViewModel        $viewModel;
-    protected UserManagementModel  $userModel;
-    protected PasswordResetsModel  $resetModel;
-    protected RefreshTokensModel   $refreshModel;
+    protected SqlViewModel       $viewModel;
+    protected UserUsersModel     $userModel;
+    protected PasswordResetsModel $resetModel;
+    protected RefreshTokensModel  $refreshModel;
 
     public function __construct()
     {
         $this->viewModel    = new SqlViewModel();
-        $this->userModel    = new UserManagementModel();
+        $this->userModel    = new UserUsersModel();
         $this->resetModel   = new PasswordResetsModel();
         $this->refreshModel = new RefreshTokensModel();
     }
@@ -52,26 +52,26 @@ class Processor extends BaseViewService
     // -------------------------------------------------------------------------
 
     /**
-     * Autentica o usuário pelo campo user, password e tenant.
+     * Autentica o usuário pelo username e password.
      *
      * Fluxo:
      *   1. Sanitizar entrada
-     *   2. Buscar usuário ativo com vínculo ao tenant informado
-     *   3. Verificar senha com password_verify
+     *   2. Buscar usuário ativo na view_auth_user
+     *   3. Verificar senha com password_verify (campo um_password = password_hash)
      *   4. Gerar token JWT com payload (sub, cpf, iat, exp)
-     *   5. Retornar token e dados do usuário (sem senha)
+     *   5. Persistir refresh token
+     *   6. Retornar token e dados do usuário (sem senha)
      *
-     * @param  string $user     Identificador do usuário (campo um_user)
+     * @param  string $user     Nome de usuário (campo um_user)
      * @param  string $password Senha em texto plano para verificação
-     * @param  int    $tenantId ID do tenant (campo ut_tenant_id)
      * @return array            Dados de autenticação (token, token_type, expires_in, user)
      *
-     * @throws \InvalidArgumentException Se usuário não encontrado, sem vínculo ao tenant ou senha inválida
+     * @throws \InvalidArgumentException Se usuário não encontrado ou senha inválida
      */
-    public function authenticate(string $user, string $password, int $tenantId): array
+    public function authenticate(string $user, string $password): array
     {
         $user   = $this->sanitizeString($user);
-        $record = $this->viewModel->findByUserAndTenant($user, $tenantId);
+        $record = $this->viewModel->findByUser($user);
 
         if ($record === null || !password_verify($password, $record['um_password'])) {
             throw new \InvalidArgumentException('Credenciais inválidas');
@@ -91,12 +91,11 @@ class Processor extends BaseViewService
         $refreshExpiresAt  = date('Y-m-d H:i:s', time() + self::REFRESH_TOKEN_TTL);
 
         $this->refreshModel->insert([
-            'user_management_id'   => (int) ($record['uc_user_id'] ?? 0),
-            'user_saas_tenants_id' => $tenantId,
-            'token_hash'           => $refreshTokenHash,
-            'expires_at'           => $refreshExpiresAt,
-            'ip_address'           => substr(service('request')->getIPAddress(), 0, 45),
-            'user_agent'           => substr((string) service('request')->getUserAgent()->getAgentString(), 0, 255),
+            'user_id'    => (int) ($record['uc_user_id'] ?? 0),
+            'token_hash' => $refreshTokenHash,
+            'expires_at' => $refreshExpiresAt,
+            'ip_address' => substr(service('request')->getIPAddress(), 0, 45),
+            'user_agent' => substr((string) service('request')->getUserAgent()->getAgentString(), 0, 255),
         ]);
 
         return [
@@ -116,15 +115,7 @@ class Processor extends BaseViewService
     /**
      * Verifica se o e-mail existe, gera token seguro, persiste e envia e-mail.
      *
-     * Fluxo:
-     *   1. Buscar usuário ativo pelo campo uc_mail na view
-     *   2. Invalidar tokens pendentes anteriores (evitar tokens órfãos)
-     *   3. Gerar token criptograficamente seguro (plain) + hash SHA-256
-     *   4. Persistir na tabela user_006_password_resets
-     *   5. Renderizar template HTML com o token plain no link
-     *   6. Enviar via SMTP
-     *
-     * @param  string $mail E-mail informado pelo usuário (campo uc_mail)
+     * @param  string $mail E-mail informado pelo usuário (campo uc_mail na view)
      * @return array        Confirmação do envio com dados do destinatário e expiração
      *
      * @throws \InvalidArgumentException Se o e-mail não existir na base
@@ -149,11 +140,10 @@ class Processor extends BaseViewService
         $expiresAt = date('Y-m-d H:i:s', time() + self::RESET_TOKEN_TTL);
 
         $resetId = $this->resetModel->insert([
-            'user_management_id' => $userId,
+            'user_id'    => $userId,
             'token_hash' => $tokenHash,
+            'email'      => $mail,
             'expires_at' => $expiresAt,
-            'ip_address' => substr(service('request')->getIPAddress(), 0, 45),
-            'user_agent' => substr((string) service('request')->getUserAgent()->getAgentString(), 0, 255),
         ]);
 
         if (!$resetId) {
@@ -181,7 +171,7 @@ class Processor extends BaseViewService
     // -------------------------------------------------------------------------
 
     /**
-     * Valida se o token de reset é ativo: não utilizado, não expirado e não excluído.
+     * Valida se o token de reset é ativo: não utilizado e não expirado.
      *
      * @param  string $token Token plain de 64 chars recebido pelo usuário via link do e-mail
      * @return array         Dados do registro de reset (id, user_id, expires_at)
@@ -198,9 +188,9 @@ class Processor extends BaseViewService
         }
 
         return [
-            'id'                 => (int) $record['id'],
-            'user_management_id' => (int) $record['user_management_id'],
-            'expires_at'         => $record['expires_at'],
+            'id'       => (int) $record['id'],
+            'user_id'  => (int) $record['user_id'],
+            'expires_at' => $record['expires_at'],
         ];
     }
 
@@ -227,7 +217,7 @@ class Processor extends BaseViewService
             throw new \InvalidArgumentException('Token inválido, expirado ou já utilizado');
         }
 
-        $userId  = (int) $record['user_management_id'];
+        $userId  = (int) $record['user_id'];
         $resetId = (int) $record['id'];
 
         if ($this->userModel->find($userId) === null) {
@@ -235,13 +225,13 @@ class Processor extends BaseViewService
         }
 
         $this->userModel->update($userId, [
-            'password' => password_hash($password, PASSWORD_BCRYPT),
+            'password_hash' => password_hash($password, PASSWORD_BCRYPT),
         ]);
 
         $this->resetModel->markAsUsed($resetId);
 
         return [
-            'user_management_id' => $userId,
+            'user_id' => $userId,
         ];
     }
 
@@ -276,7 +266,7 @@ class Processor extends BaseViewService
             $this->refreshModel->revokeByUserId((int) $userId);
         }
 
-        return ['user_management_id' => $userId];
+        return ['user_id' => $userId];
     }
 
     // -------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filters\V1\UserManagement;
+namespace App\Filters\V1\Auth;
 
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;

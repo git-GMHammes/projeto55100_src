@@ -39,12 +39,11 @@ class RefreshProcessor extends BaseViewService
             throw new \InvalidArgumentException('Refresh token inválido, expirado ou já utilizado');
         }
 
-        $userId   = (int) $record['user_management_id'];
-        $tenantId = (int) $record['user_saas_tenants_id'];
+        $userId = (int) $record['user_id'];
 
         $this->refreshModel->markAsUsed((int) $record['id']);
 
-        $userRecord = $this->viewModel->findByIdAndTenant($userId, $tenantId);
+        $userRecord = $this->viewModel->findById($userId);
         if ($userRecord === null) {
             throw new \InvalidArgumentException('Usuário vinculado ao refresh token não encontrado ou inativo');
         }
@@ -57,12 +56,11 @@ class RefreshProcessor extends BaseViewService
         $newExpiresAt    = date('Y-m-d H:i:s', time() + self::REFRESH_TOKEN_TTL);
 
         $this->refreshModel->insert([
-            'user_management_id'   => $userId,
-            'user_saas_tenants_id' => $tenantId,
-            'token_hash'           => $newRefreshHash,
-            'expires_at'           => $newExpiresAt,
-            'ip_address'           => substr(service('request')->getIPAddress(), 0, 45),
-            'user_agent'           => substr((string) service('request')->getUserAgent()->getAgentString(), 0, 255),
+            'user_id'    => $userId,
+            'token_hash' => $newRefreshHash,
+            'expires_at' => $newExpiresAt,
+            'ip_address' => substr(service('request')->getIPAddress(), 0, 45),
+            'user_agent' => substr((string) service('request')->getUserAgent()->getAgentString(), 0, 255),
         ]);
 
         return [

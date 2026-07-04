@@ -8,9 +8,14 @@ use App\Models\V1\BaseViewModel;
  * Model de leitura para a view view_auth_user.
  *
  * Responsável exclusivamente por consultas (read-only).
- * A view une user_002_customer (uc) com user_001_management (um).
+ * A view une user_users (uu) com user_user_data (uud) e user_profiles (up).
  *
- * O campo deleted_at reflete user_001_management.deleted_at.
+ * Prefixos na view:
+ *   um_ = user_users (username, password_hash, status)
+ *   uc_ = user_user_data (full_name, cpf, phone, address, etc.)
+ *   up_ = user_profiles (name)
+ *
+ * O campo deleted_at reflete user_users.deleted_at.
  *
  * Todos os métodos de leitura genéricos estão disponíveis via BaseViewModel.
  * Este model expõe apenas os métodos específicos de autenticação.
@@ -83,41 +88,15 @@ class SqlViewModel extends BaseViewModel
     }
 
     /**
-     * Busca um usuário ativo na view filtrando por um_user e ut_tenant_id.
+     * Busca um usuário ativo na view pelo ID.
      *
-     * Garante que o usuário possui vínculo ativo com o tenant informado
-     * (ut_deleted_at IS NULL já está garantido pela própria view).
-     *
-     * @param  string $user     Valor do campo um_user
-     * @param  int    $tenantId ID do tenant (ut_tenant_id)
-     * @return array|null       Registro completo da view ou null se não encontrado
+     * @param  int $userId ID do usuário
+     * @return array|null  Registro completo da view ou null se não encontrado
      */
-    public function findByUserAndTenant(string $user, int $tenantId): ?array
-    {
-        $result = $this->db->table($this->table)
-            ->where('um_user', $user)
-            ->where('ut_user_saas_tenants_id', $tenantId)
-            ->where('um_is_active', 1)
-            ->where('deleted_at IS NULL', null, false)
-            ->get()
-            ->getRowArray();
-
-        return $result ?: null;
-    }
-
-    /**
-     * Busca um usuário ativo na view pelo ID (uc_user_id) e tenant.
-     * Usado pelo RefreshProcessor para validar se o usuário ainda está ativo.
-     *
-     * @param  int $userId   ID do usuário (campo id / uc_user_id)
-     * @param  int $tenantId ID do tenant (campo ut_user_saas_tenants_id)
-     * @return array|null    Registro completo da view ou null se não encontrado
-     */
-    public function findByIdAndTenant(int $userId, int $tenantId): ?array
+    public function findById(int $userId): ?array
     {
         $result = $this->db->table($this->table)
             ->where('id', $userId)
-            ->where('ut_user_saas_tenants_id', $tenantId)
             ->where('um_is_active', 1)
             ->where('deleted_at IS NULL', null, false)
             ->get()

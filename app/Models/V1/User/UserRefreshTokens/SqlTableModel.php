@@ -7,15 +7,14 @@ use App\Models\V1\BaseTableModel;
 class SqlTableModel extends BaseTableModel
 {
     protected $DBGroup        = DB_GROUP_001;
-    protected $table          = 'user_007_refresh_tokens';
+    protected $table          = 'user_refresh_tokens';
     protected $primaryKey     = 'id';
     protected $returnType     = 'array';
-    protected $useSoftDeletes = true;
+    protected $useSoftDeletes = false;
     protected $useTimestamps  = true;
 
     protected $allowedFields = [
-        'user_management_id',
-        'user_saas_tenants_id',
+        'user_id',
         'token_hash',
         'expires_at',
         'used_at',
@@ -32,7 +31,6 @@ class SqlTableModel extends BaseTableModel
         return $this->where('token_hash', $hash)
                     ->where('used_at', null)
                     ->where('expires_at >', date('Y-m-d H:i:s'))
-                    ->where('deleted_at', null)
                     ->first();
     }
 
@@ -43,7 +41,7 @@ class SqlTableModel extends BaseTableModel
 
     public function revokeByUserId(int $userId): void
     {
-        $this->where('user_management_id', $userId)
+        $this->where('user_id', $userId)
              ->where('used_at', null)
              ->set(['used_at' => date('Y-m-d H:i:s')])
              ->update();

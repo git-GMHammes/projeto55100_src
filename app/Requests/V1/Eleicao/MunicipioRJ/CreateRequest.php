@@ -11,7 +11,7 @@ class CreateRequest
             'cd_tse'                       => 'permit_empty|string|max_length[10]',
             'nome_cidade'                  => 'permit_empty|string|max_length[200]',
             'aniversario_cidade'           => 'permit_empty|valid_date[Y-m-d]',
-            'prefeito_candidato_RJ_id'     => 'permit_empty|is_natural_no_zero',
+            'prefeito_mandatario_RJ_id'    => 'permit_empty|is_natural_no_zero',
             'vice_prefeito'                => 'permit_empty|string|max_length[200]',
             'vice_dt_nascimento'           => 'permit_empty|valid_date[Y-m-d]',
             'primeira_dama'                => 'permit_empty|string|max_length[200]',
@@ -63,8 +63,8 @@ class CreateRequest
     public function messages(): array
     {
         return [
-            'prefeito_candidato_RJ_id' => [
-                'is_natural_no_zero' => 'O prefeito_candidato_RJ_id deve ser um inteiro positivo',
+            'prefeito_mandatario_RJ_id' => [
+                'is_natural_no_zero' => 'O prefeito_mandatario_RJ_id deve ser um inteiro positivo',
             ],
             'risco_enchente' => [
                 'in_list' => 'O campo risco_enchente aceita apenas 0 ou 1',

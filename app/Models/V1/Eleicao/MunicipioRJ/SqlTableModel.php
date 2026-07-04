@@ -18,7 +18,7 @@ class SqlTableModel extends BaseTableModel
         'cd_tse',
         'nome_cidade',
         'aniversario_cidade',
-        'prefeito_candidato_RJ_id',
+        'prefeito_mandatario_RJ_id',
         'vice_prefeito',
         'vice_dt_nascimento',
         'primeira_dama',
@@ -99,7 +99,7 @@ class SqlTableModel extends BaseTableModel
 
     public function existsByPrefeitoId(int $prefeitoId): bool
     {
-        return $this->db->table('candidato_RJ')
+        return $this->db->table('mandatario_RJ')
             ->where('id', $prefeitoId)
             ->countAllResults() > 0;
     }

@@ -66,8 +66,7 @@ class ResourceViewController extends BaseResourceViewController
 
             $result = $this->processor->authenticate(
                 (string) ($body['um_user'] ?? ''),
-                (string) ($body['um_password'] ?? ''),
-                (int) ($body['ut_user_saas_tenants_id'] ?? 0)
+                (string) ($body['um_password'] ?? '')
             );
 
             return $this->respondSuccess($result, 'Autenticacao realizada com sucesso');

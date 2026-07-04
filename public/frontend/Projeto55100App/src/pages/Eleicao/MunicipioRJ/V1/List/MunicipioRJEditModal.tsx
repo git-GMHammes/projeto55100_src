@@ -2,10 +2,14 @@ import React from 'react'
 import FormGrid, { type FormGridSchema } from '../../../../../components/ui/FormGrid/Input'
 import type { MunicipioRJTable } from '../../../../../services/modules/V1/municipioRJService'
 import type { UseMunicipioRJEditReturn } from './useMunicipioRJEdit'
+import { getToken } from '../../../../../services/modules/V1/authService/session'
+import { APP_BASE_HOST, APP_VERSION } from '../../../../../config/constants'
 
 // ─── Schema do formulário de edição ──────────────────────────────────────────
 
-function buildEditSchema(data: MunicipioRJTable | null): FormGridSchema {
+const v = APP_VERSION.toLowerCase()
+
+function buildEditSchema(data: MunicipioRJTable | null, authToken?: string): FormGridSchema {
   const s = (v: string | number | null | undefined) =>
     v !== null && v !== undefined ? String(v) : ''
 
@@ -31,7 +35,18 @@ function buildEditSchema(data: MunicipioRJTable | null): FormGridSchema {
       {
         sectionTitle: 'Prefeito / Mandato',
         fields: [
-          { col: 12, label: 'Prefeito', id: 'prefeito_mandatario_RJ_id', name: 'prefeito_mandatario_RJ_id', value: s(data?.prefeito_mandatario_RJ_id), inputMode: 'numeric' as const },
+          {
+            type: 'select' as const,
+            col: 12,
+            label: 'Prefeito',
+            id: 'prefeito_mandatario_RJ_id',
+            name: 'prefeito_mandatario_RJ_id',
+            value: s(data?.prefeito_mandatario_RJ_id),
+            src: `${APP_BASE_HOST}/api/${v}/mandatario-rj-view/get-no-pagination`,
+            valueKey: 'id',
+            labelKey: 'nome_politico',
+            authToken,
+          },
         ],
       },
       {
@@ -171,7 +186,8 @@ function MunicipioRJEditModal({
   handleSave,
   theme,
 }: MunicipioRJEditModalProps) {
-  const editSchema = buildEditSchema(editData)
+  const authToken = getToken() ?? undefined
+  const editSchema = buildEditSchema(editData, authToken)
 
   return (
     <div

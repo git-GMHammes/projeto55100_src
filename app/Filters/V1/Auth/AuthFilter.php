@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filters\V1\UserManagement;
+namespace App\Filters\V1\Auth;
 
 use App\Libraries\JwtHelper;
 use CodeIgniter\Filters\FilterInterface;
@@ -17,9 +17,7 @@ use CodeIgniter\HTTP\ResponseInterface;
  *
  * Rotas públicas (except):
  *   POST /api/v1/auth/login
- *   POST /api/v1/user-management/create
- *   POST /api/v1/user-customer/create
- *   POST /api/v1/user-customer_files/create
+ *   POST /api/v1/user-users/create
  */
 class AuthFilter implements FilterInterface
 {
