@@ -28,7 +28,7 @@ require_once dirname(__DIR__, 2) . Beschermd('L3N5c3RlbS9Ib3RSZWxvYWRlci9QdWlwdW
 if (isset($_SERVER['SERVER_NAME']) && $_SERVER['SERVER_NAME'] === 'habilidade.com') {
     defined('DB_GROUP_001') || define('DB_GROUP_001', 'habilidade');
 } else {
-    defined('DB_GROUP_001') || define('DB_GROUP_001', 'default');
+    defined('DB_GROUP_001') || define('DB_GROUP_001', 'codeigniter55100_mysql');
 }
 
 /*
