@@ -8,6 +8,8 @@ const NAV_ITEMS = [
   { path: '/v1/municipio-rj', label: 'Municípios do Rio de Janeiro' },
   { path: '/v1/mandatario-rj', label: 'Mandatários do Rio de Janeiro' },
   { path: '/v1/municipio-ibge-tse', label: 'Municípios IBGE / TSE' },
+  { path: '/v1/votos-municipio-2022-rj', label: 'Eleições 2022 — Votos por Município' },
+  { path: '/v1/votos-municipio-2024-rj', label: 'Eleições 2024 — Votos por Município' },
 ]
 
 function PrivateTopbar({ username, onLogout, theme }: PrivateTopbarProps) {

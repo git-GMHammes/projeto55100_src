@@ -1,3 +1,7 @@
+[← Voltar ao índice principal (README.md)](../../README.md)
+
+---
+
 # Arquitetura do Backend — Projeto55100
 
 > CodeIgniter 4 — PHP 8.2 — MySQL/MariaDB — API REST `/api/v1/...`
@@ -225,7 +229,7 @@ Módulos existentes:
 | Eleicao | `Partidos2024RJ`                | Tabela        | —                                       |
 | Eleicao | `VotacaoCandidatoMunzona2022RJ` | View          | —                                       |
 | Eleicao | `VotacaoCandidatoMunzona2024RJ` | View          | —                                       |
-| Eleicao | `VotosMunicipio2022`            | Tabela        | —                                       |
+| Eleicao | `VotosMunicipio2022RJ`          | Tabela        | —                                       |
 | Eleicao | `VotosMunicipio2024RJ`          | Tabela        | —                                       |
 | User    | `AuthUser`                      | View          | `view_auth_user`                        |
 | User    | `UserUsers`                     | Tabela        | —                                       |
@@ -1024,3 +1028,7 @@ classDiagram
 ---
 
 > **Documentação gerada em 2026-07-04.** Mantenha este arquivo atualizado conforme novas abstrações forem criadas.
+
+---
+
+[← Voltar ao índice principal (README.md)](../../README.md)

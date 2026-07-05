@@ -1,3 +1,7 @@
+[← Voltar ao índice principal (README.md)](../../README.md)
+
+---
+
 # README — CORS com CodeIgniter 4 + Nginx (SPA React / Vite)
 
 **Data:** 2026-06-16
@@ -154,3 +158,7 @@ curl -s -D - -o /dev/null "http://localhost:55100/api/v1/MODULO/get-all?page=1&l
 | `docker/nginx/default.conf`  | Configuração Nginx com CORS para OPTIONS e PATH_INFO |
 | `src/app/Config/Filters.php` | Filter CORS em before + after                        |
 | `src/app/Config/Cors.php`    | Origens, métodos e headers permitidos                |
+
+---
+
+[← Voltar ao índice principal (README.md)](../../README.md)

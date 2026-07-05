@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Controllers\Api\V1\Eleicao\VotosMunicipio2022;
+namespace App\Controllers\Api\V1\Eleicao\VotosMunicipio2022RJ;
 
 use App\Controllers\Api\V1\BaseResourceViewController;
-use App\Services\V1\Eleicao\VotosMunicipio2022\Processor;
+use App\Services\V1\Eleicao\VotosMunicipio2022RJ\Processor;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Controller de recurso para consultas na view view_votos_municipio_2022.
+ * Controller de recurso para consultas na view view_votos_municipio_2022_RJ.
  *
  * Endpoints disponíveis (somente leitura):
  *   find, getGrouped, search, get, getAll, getNoPagination,

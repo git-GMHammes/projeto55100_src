@@ -1,3 +1,7 @@
+[← Voltar ao índice principal (README.md)](../../README.md)
+
+---
+
 # ROADMAP — podman compose: diagnóstico e solução com podman-compose nativo
 
 **Data:** 2026-06-10
@@ -592,3 +596,7 @@ passara a encontra-lo como provider preferencial e a delegacao para o
 | podman-compose | 1.6.0             |
 | python-dotenv  | 1.2.2             |
 | pyyaml         | 6.0.3             |
+
+---
+
+[← Voltar ao índice principal (README.md)](../../README.md)

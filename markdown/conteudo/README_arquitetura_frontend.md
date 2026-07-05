@@ -1,3 +1,7 @@
+[← Voltar ao índice principal (README.md)](../../README.md)
+
+---
+
 # Arquitetura do Frontend — Projeto55100
 
 > React 19 + Vite 8 + TypeScript 6 — Bootstrap 5.3 — SPA desacoplada
@@ -875,3 +879,7 @@ Para adicionar uma nova feature completa (ex.: `MinhaFeature`):
 ---
 
 > **Documentação gerada em 2026-07-04.** Mantenha este arquivo atualizado conforme novas abstrações forem criadas.
+
+---
+
+[← Voltar ao índice principal (README.md)](../../README.md)

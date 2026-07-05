@@ -1,3 +1,7 @@
+[← Voltar ao índice principal (README.md)](../../README.md)
+
+---
+
 # ROADMAP — Construção de API para Qualquer Tabela ou View
 
 > Referência para criar um novo módulo REST do zero.
@@ -923,3 +927,7 @@ Para adicionar novos campos com máscara, editar a constante `MASKED_FIELDS` em 
 | Upload em endpoint genérico herdável              | Declarar `$moduleSlug` no controller e adicionar rota para `uploadAttachments()` herdado |
 
 O `BaseResourceTableController::handleInlineUpload()` é chamado automaticamente após `create()` e `update()` — por padrão retorna `null` (sem upload). Sobrescrever apenas nos módulos que precisam.
+
+---
+
+[← Voltar ao índice principal (README.md)](../../README.md)

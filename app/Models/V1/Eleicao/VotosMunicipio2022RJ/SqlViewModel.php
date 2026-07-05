@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\V1\Eleicao\VotosMunicipio2022;
+namespace App\Models\V1\Eleicao\VotosMunicipio2022RJ;
 
 use App\Models\V1\BaseViewModel;
 
 /**
- * Model de leitura para a view view_votos_municipio_2022.
+ * Model de leitura para a view view_votos_municipio_2022_RJ.
  *
  * Campos disponíveis na view:
  *   ID, CD_MUNICIPIO, NM_MUNICIPIO, DS_CARGO, SG_PARTIDO, NM_PARTIDO,
@@ -17,7 +17,7 @@ use App\Models\V1\BaseViewModel;
 class SqlViewModel extends BaseViewModel
 {
     protected $DBGroup = DB_GROUP_001;
-    protected $table = 'view_votos_municipio_2022';
+    protected $table = 'view_votos_municipio_2022_RJ';
     protected $primaryKey = 'ID';
 
     /** Campos de texto que usam LIKE %valor% no findPaginatedView. */

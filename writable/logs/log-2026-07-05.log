@@ -603,3 +603,123 @@ WHERE `nome_cidade` LIKE :nome_cidade: ESCAPE \'!\'', [...], false)
 13 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
 14 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
 ERROR - 2026-07-05 06:26:17 --> [API 500] Table 'codeigniter55100_db.municipio_RJ' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+DEBUG - 2026-07-05 17:51:04 --> Failed to set mode on cache file: ErrorException: chmod(): Operation not permitted in /var/www/html/system/Cache/Handlers/FileHandler.php:99
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'chmod(): Operat...', '/var/www/html/s...', 99)
+#1 /var/www/html/system/Cache/Handlers/FileHandler.php(99): chmod('/var/www/html/w...', 416)
+#2 /var/www/html/system/Throttle/Throttler.php(111): CodeIgniter\Cache\Handlers\FileHandler->save('throttler_login...', 9, 60)
+#3 /var/www/html/app/Filters/V1/Auth/LoginRateLimitFilter.php(26): CodeIgniter\Throttle\Throttler->check('login_attempts_...', 10, 60)
+#4 /var/www/html/system/Filters/Filters.php(241): App\Filters\V1\Auth\LoginRateLimitFilter->before(Object(CodeIgniter\HTTP\IncomingRequest), NULL)
+#5 /var/www/html/system/Filters/Filters.php(221): CodeIgniter\Filters\Filters->runBefore(Array)
+#6 /var/www/html/system/CodeIgniter.php(488): CodeIgniter\Filters\Filters->run('api/v1/auth/log...', 'before')
+#7 /var/www/html/system/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 /var/www/html/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 /var/www/html/public/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+DEBUG - 2026-07-05 17:51:04 --> Failed to set mode on cache file: ErrorException: chmod(): Operation not permitted in /var/www/html/system/Cache/Handlers/FileHandler.php:99
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'chmod(): Operat...', '/var/www/html/s...', 99)
+#1 /var/www/html/system/Cache/Handlers/FileHandler.php(99): chmod('/var/www/html/w...', 416)
+#2 /var/www/html/system/Throttle/Throttler.php(112): CodeIgniter\Cache\Handlers\FileHandler->save('throttler_login...', 1783273864, 60)
+#3 /var/www/html/app/Filters/V1/Auth/LoginRateLimitFilter.php(26): CodeIgniter\Throttle\Throttler->check('login_attempts_...', 10, 60)
+#4 /var/www/html/system/Filters/Filters.php(241): App\Filters\V1\Auth\LoginRateLimitFilter->before(Object(CodeIgniter\HTTP\IncomingRequest), NULL)
+#5 /var/www/html/system/Filters/Filters.php(221): CodeIgniter\Filters\Filters->runBefore(Array)
+#6 /var/www/html/system/CodeIgniter.php(488): CodeIgniter\Filters\Filters->run('api/v1/auth/log...', 'before')
+#7 /var/www/html/system/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 /var/www/html/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 /var/www/html/public/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+DEBUG - 2026-07-05 17:51:18 --> [AuthFilter] called. URI=/index.php/api/v1/mandatario-rj-view/get-no-pagination | REQUEST_URI=/api/v1/mandatario-rj-view/get-no-pagination
+DEBUG - 2026-07-05 17:51:18 --> [AuthFilter] called. URI=/index.php/api/v1/municipio-rj-view/get-all | REQUEST_URI=/api/v1/municipio-rj-view/get-all?page=1&limit=200&sort=mn_nome_cidade&order=asc
+DEBUG - 2026-07-05 17:51:19 --> [AuthFilter] called. URI=/index.php/api/v1/mandatario-rj-view/get-no-pagination | REQUEST_URI=/api/v1/mandatario-rj-view/get-no-pagination
+DEBUG - 2026-07-05 18:59:45 --> [AuthFilter] called. URI=/index.php/api/v1/votos-municipio-2022-rj-view/get-all | REQUEST_URI=/api/v1/votos-municipio-2022-rj-view/get-all?page=1&limit=200&sort=NM_MUNICIPIO&order=asc
+ERROR - 2026-07-05 18:59:45 --> Table 'codeigniter55100_db.view_votos_municipio_2022' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT COUNT(*) AS `numrows`
+FROM `view_votos_municipio_2022`', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*) AS `numrows`
+FROM `view_votos_municipio_2022`')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS `numrows`
+FROM `view_votos_municipio_2022`')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1731): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `view_votos_municipio_2022`', [], false)
+ 5 APPPATH/Models/V1/BaseViewModel.php(50): CodeIgniter\Database\BaseBuilder->countAllResults(false)
+ 6 APPPATH/Models/V1/BaseViewModel.php(88): App\Models\V1\BaseViewModel->paginateBuilder(Object(CodeIgniter\Database\MySQLi\Builder), 1, 200, 'NM_MUNICIPIO', 'asc')
+ 7 APPPATH/Services/V1/BaseViewService.php(226): App\Models\V1\BaseViewModel->findPaginatedView([], 1, 200, 'NM_MUNICIPIO', 'asc')
+ 8 APPPATH/Controllers/Api/V1/BaseResourceViewController.php(155): App\Services\V1\BaseViewService->getAllView([...])
+ 9 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceViewController->getAll()
+10 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\VotosMunicipio2022RJ\ResourceViewController))
+11 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 18:59:45 --> [API 500] Table 'codeigniter55100_db.view_votos_municipio_2022' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+DEBUG - 2026-07-05 19:05:08 --> [AuthFilter] called. URI=/index.php/api/v1/votos-municipio-2022-rj-view/get-all | REQUEST_URI=/api/v1/votos-municipio-2022-rj-view/get-all?page=1&limit=200&sort=NM_MUNICIPIO&order=asc
+ERROR - 2026-07-05 19:05:08 --> Table 'codeigniter55100_db.view_votos_municipio_2022' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT COUNT(*) AS `numrows`
+FROM `view_votos_municipio_2022`', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*) AS `numrows`
+FROM `view_votos_municipio_2022`')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS `numrows`
+FROM `view_votos_municipio_2022`')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1731): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `view_votos_municipio_2022`', [], false)
+ 5 APPPATH/Models/V1/BaseViewModel.php(50): CodeIgniter\Database\BaseBuilder->countAllResults(false)
+ 6 APPPATH/Models/V1/BaseViewModel.php(88): App\Models\V1\BaseViewModel->paginateBuilder(Object(CodeIgniter\Database\MySQLi\Builder), 1, 200, 'NM_MUNICIPIO', 'asc')
+ 7 APPPATH/Services/V1/BaseViewService.php(226): App\Models\V1\BaseViewModel->findPaginatedView([], 1, 200, 'NM_MUNICIPIO', 'asc')
+ 8 APPPATH/Controllers/Api/V1/BaseResourceViewController.php(155): App\Services\V1\BaseViewService->getAllView([...])
+ 9 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceViewController->getAll()
+10 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\VotosMunicipio2022RJ\ResourceViewController))
+11 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 19:05:08 --> [API 500] Table 'codeigniter55100_db.view_votos_municipio_2022' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+DEBUG - 2026-07-05 19:07:14 --> [AuthFilter] called. URI=/index.php/api/v1/votos-municipio-2022-rj-view/get-all | REQUEST_URI=/api/v1/votos-municipio-2022-rj-view/get-all?page=1&limit=5
+DEBUG - 2026-07-05 19:08:19 --> Failed to set mode on cache file: ErrorException: chmod(): Operation not permitted in /var/www/html/system/Cache/Handlers/FileHandler.php:99
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'chmod(): Operat...', '/var/www/html/s...', 99)
+#1 /var/www/html/system/Cache/Handlers/FileHandler.php(99): chmod('/var/www/html/w...', 416)
+#2 /var/www/html/system/Throttle/Throttler.php(111): CodeIgniter\Cache\Handlers\FileHandler->save('throttler_login...', 9, 60)
+#3 /var/www/html/app/Filters/V1/Auth/LoginRateLimitFilter.php(26): CodeIgniter\Throttle\Throttler->check('login_attempts_...', 10, 60)
+#4 /var/www/html/system/Filters/Filters.php(241): App\Filters\V1\Auth\LoginRateLimitFilter->before(Object(CodeIgniter\HTTP\IncomingRequest), NULL)
+#5 /var/www/html/system/Filters/Filters.php(221): CodeIgniter\Filters\Filters->runBefore(Array)
+#6 /var/www/html/system/CodeIgniter.php(488): CodeIgniter\Filters\Filters->run('api/v1/auth/log...', 'before')
+#7 /var/www/html/system/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 /var/www/html/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 /var/www/html/public/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+DEBUG - 2026-07-05 19:08:19 --> Failed to set mode on cache file: ErrorException: chmod(): Operation not permitted in /var/www/html/system/Cache/Handlers/FileHandler.php:99
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'chmod(): Operat...', '/var/www/html/s...', 99)
+#1 /var/www/html/system/Cache/Handlers/FileHandler.php(99): chmod('/var/www/html/w...', 416)
+#2 /var/www/html/system/Throttle/Throttler.php(112): CodeIgniter\Cache\Handlers\FileHandler->save('throttler_login...', 1783278499, 60)
+#3 /var/www/html/app/Filters/V1/Auth/LoginRateLimitFilter.php(26): CodeIgniter\Throttle\Throttler->check('login_attempts_...', 10, 60)
+#4 /var/www/html/system/Filters/Filters.php(241): App\Filters\V1\Auth\LoginRateLimitFilter->before(Object(CodeIgniter\HTTP\IncomingRequest), NULL)
+#5 /var/www/html/system/Filters/Filters.php(221): CodeIgniter\Filters\Filters->runBefore(Array)
+#6 /var/www/html/system/CodeIgniter.php(488): CodeIgniter\Filters\Filters->run('api/v1/auth/log...', 'before')
+#7 /var/www/html/system/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 /var/www/html/system/Boot.php(417): CodeIgniter\CodeIgniter->run()
+#9 /var/www/html/system/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 /var/www/html/public/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+DEBUG - 2026-07-05 19:08:32 --> [AuthFilter] called. URI=/index.php/api/v1/votos-municipio-2022-rj-view/get-all | REQUEST_URI=/api/v1/votos-municipio-2022-rj-view/get-all?page=1&limit=200&sort=NM_MUNICIPIO&order=asc
+DEBUG - 2026-07-05 19:09:12 --> [AuthFilter] called. URI=/index.php/api/v1/votos-municipio-2022-rj-view/get-all | REQUEST_URI=/api/v1/votos-municipio-2022-rj-view/get-all?page=1&limit=200&sort=NM_MUNICIPIO&order=asc
+DEBUG - 2026-07-05 19:13:49 --> [AuthFilter] called. URI=/index.php/api/v1/votos-municipio-2022-rj-view/get-all | REQUEST_URI=/api/v1/votos-municipio-2022-rj-view/get-all?page=1&limit=50&sort=NM_MUNICIPIO&order=asc
+DEBUG - 2026-07-05 19:14:04 --> [AuthFilter] called. URI=/index.php/api/v1/votos-municipio-2022-rj-view/get-all | REQUEST_URI=/api/v1/votos-municipio-2022-rj-view/get-all?page=1&limit=50&sort=NM_MUNICIPIO&order=asc
+DEBUG - 2026-07-05 19:16:07 --> [AuthFilter] called. URI=/index.php/api/v1/votos-municipio-2022-rj-view/get-all | REQUEST_URI=/api/v1/votos-municipio-2022-rj-view/get-all?page=1&limit=50&sort=NM_MUNICIPIO&order=asc
+DEBUG - 2026-07-05 19:16:24 --> [AuthFilter] called. URI=/index.php/api/v1/votos-municipio-2022-rj-view/get-all | REQUEST_URI=/api/v1/votos-municipio-2022-rj-view/get-all?page=2&limit=50&sort=NM_MUNICIPIO&order=asc
+DEBUG - 2026-07-05 19:16:41 --> [AuthFilter] called. URI=/index.php/api/v1/votos-municipio-2022-rj-view/get-all | REQUEST_URI=/api/v1/votos-municipio-2022-rj-view/get-all?page=3&limit=50&sort=NM_MUNICIPIO&order=asc
+DEBUG - 2026-07-05 19:17:03 --> [AuthFilter] called. URI=/index.php/api/v1/votos-municipio-2022-rj-view/get-all | REQUEST_URI=/api/v1/votos-municipio-2022-rj-view/get-all?page=4&limit=50&sort=NM_MUNICIPIO&order=asc
+DEBUG - 2026-07-05 19:37:31 --> [AuthFilter] called. URI=/index.php/api/v1/votos-municipio-2022-rj-view/get-all | REQUEST_URI=/api/v1/votos-municipio-2022-rj-view/get-all?page=1&limit=50&sort=NM_MUNICIPIO&order=asc
+DEBUG - 2026-07-05 19:37:47 --> [AuthFilter] called. URI=/index.php/api/v1/votos-municipio-2024-rj-view/get-all | REQUEST_URI=/api/v1/votos-municipio-2024-rj-view/get-all?page=1&limit=50&sort=NM_MUNICIPIO&order=asc
+DEBUG - 2026-07-05 19:38:13 --> [AuthFilter] called. URI=/index.php/api/v1/votos-municipio-2024-rj-view/get-all | REQUEST_URI=/api/v1/votos-municipio-2024-rj-view/get-all?page=1&limit=50&sort=NM_MUNICIPIO&order=asc
+DEBUG - 2026-07-05 19:38:39 --> [AuthFilter] called. URI=/index.php/api/v1/votos-municipio-2024-rj-view/get-all | REQUEST_URI=/api/v1/votos-municipio-2024-rj-view/get-all?page=1&limit=50&sort=NM_MUNICIPIO&order=asc
+DEBUG - 2026-07-05 19:38:55 --> [AuthFilter] called. URI=/index.php/api/v1/votos-municipio-2022-rj-view/get-all | REQUEST_URI=/api/v1/votos-municipio-2022-rj-view/get-all?page=1&limit=50&sort=NM_MUNICIPIO&order=asc
+DEBUG - 2026-07-05 19:39:42 --> [AuthFilter] called. URI=/index.php/api/v1/votos-municipio-2024-rj-view/get-all | REQUEST_URI=/api/v1/votos-municipio-2024-rj-view/get-all?page=1&limit=50&sort=NM_MUNICIPIO&order=asc
+DEBUG - 2026-07-05 20:05:13 --> [AuthFilter] called. URI=/index.php/api/v1/votos-municipio-2022-rj-view/get-all | REQUEST_URI=/api/v1/votos-municipio-2022-rj-view/get-all?page=1&limit=50&sort=NM_MUNICIPIO&order=asc
+DEBUG - 2026-07-05 20:05:14 --> [AuthFilter] called. URI=/index.php/api/v1/votos-municipio-2024-rj-view/get-all | REQUEST_URI=/api/v1/votos-municipio-2024-rj-view/get-all?page=1&limit=50&sort=NM_MUNICIPIO&order=asc

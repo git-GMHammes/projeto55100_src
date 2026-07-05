@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Services\V1\Eleicao\VotosMunicipio2022;
+namespace App\Services\V1\Eleicao\VotosMunicipio2022RJ;
 
-use App\Models\V1\Eleicao\VotosMunicipio2022\SqlViewModel;
+use App\Models\V1\Eleicao\VotosMunicipio2022RJ\SqlViewModel;
 use App\Services\V1\BaseViewService;
 
 /**
- * Service de leitura para o módulo VotosMunicipio2022.
+ * Service de leitura para o módulo VotosMunicipio2022RJ.
  *
  * Toda a lógica genérica de leitura está em BaseViewService.
  * Este Processor não possui hooks de escrita — módulo somente leitura.
