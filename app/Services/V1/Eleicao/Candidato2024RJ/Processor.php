@@ -2,25 +2,24 @@
 
 namespace App\Services\V1\Eleicao\Candidato2024RJ;
 
+use App\Models\V1\Eleicao\Candidato2024RJ\SqlTableModel;
 use App\Models\V1\Eleicao\Candidato2024RJ\SqlViewModel;
-use App\Services\V1\BaseViewService;
+use App\Services\V1\BaseTableService;
 
 /**
- * Service de leitura para o módulo Candidato2024RJ.
+ * Service de leitura/escrita para o módulo Candidato2024RJ.
  *
- * Toda a lógica genérica de leitura está em BaseViewService.
- * Este Processor não possui hooks de escrita — módulo somente leitura.
- *
- * Métodos de view: findView, getGroupedView, searchView, getView,
- *                  getAllView, getNoPaginationView, getDeletedView,
- *                  getDeletedAllView, getAllWithDeletedView
+ * Toda a lógica genérica de tabela e view está em BaseTableService/BaseViewService.
+ * Sem hooks de validação adicionais — id é fornecido pelo cliente (PK não auto-increment).
  */
-class Processor extends BaseViewService
+class Processor extends BaseTableService
 {
+    protected SqlTableModel $tableModel;
     protected SqlViewModel $viewModel;
 
     public function __construct()
     {
-        $this->viewModel = new SqlViewModel();
+        $this->tableModel = new SqlTableModel();
+        $this->viewModel  = new SqlViewModel();
     }
 }

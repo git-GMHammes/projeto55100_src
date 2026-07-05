@@ -1,24 +1,23 @@
 import { APP_BASE_HOST, APP_VERSION } from '../../../config/constants'
 import type { ApiEnvelope } from './authService'
 
-const BASE_MANAGEMENT = `${APP_BASE_HOST}/api/${APP_VERSION.toLowerCase()}/user-management`
-const BASE_CUSTOMER = `${APP_BASE_HOST}/api/${APP_VERSION.toLowerCase()}/user-customer`
+const BASE_USERS = `${APP_BASE_HOST}/api/${APP_VERSION.toLowerCase()}/user-users`
+const BASE_USER_DATA = `${APP_BASE_HOST}/api/${APP_VERSION.toLowerCase()}/user-user-data`
 
-export interface CreateUserManagementPayload {
-  user: string
-  password: string
+export interface CreateUserUsersPayload {
+  username: string
+  email: string
+  password_hash: string
 }
 
-export interface CreateUserCustomerPayload {
-  user_management_id: string
-  name: string
-  mail: string
-  cpf: string
-  whatsapp: string
+export interface CreateUserUserDataPayload {
+  user_id: string
+  full_name: string
+  cpf?: string
   phone?: string
-  date_birth?: string
-  zip_code?: string
-  address?: string
+  birth_date?: string
+  address_zipcode?: string
+  address_street?: string
 }
 
 async function postPublic<T>(url: string, body: unknown): Promise<ApiEnvelope<T>> {
@@ -30,14 +29,14 @@ async function postPublic<T>(url: string, body: unknown): Promise<ApiEnvelope<T>
   return response.json() as Promise<ApiEnvelope<T>>
 }
 
-export async function createUserManagement(
-  payload: CreateUserManagementPayload,
+export async function createUserUsers(
+  payload: CreateUserUsersPayload,
 ): Promise<ApiEnvelope<{ id: string }>> {
-  return postPublic(`${BASE_MANAGEMENT}/create`, payload)
+  return postPublic(`${BASE_USERS}/create`, payload)
 }
 
-export async function createUserCustomer(
-  payload: CreateUserCustomerPayload,
+export async function createUserUserData(
+  payload: CreateUserUserDataPayload,
 ): Promise<ApiEnvelope<{ id: string }>> {
-  return postPublic(`${BASE_CUSTOMER}/create`, payload)
+  return postPublic(`${BASE_USER_DATA}/create`, payload)
 }

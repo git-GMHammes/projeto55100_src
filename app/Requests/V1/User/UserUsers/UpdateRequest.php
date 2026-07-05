@@ -7,6 +7,10 @@ namespace App\Requests\V1\User\UserUsers;
  *
  * password_hash não é mutável por este endpoint —
  * a troca de senha é tratada por fluxo dedicado.
+ *
+ * status É mutável por este endpoint (active/inactive/blocked) — a restrição
+ * de "todo novo usuário nasce inactive" se aplica apenas ao CREATE
+ * (ver Requests\V1\User\UserUsers\CreateRequest).
  */
 class UpdateRequest
 {

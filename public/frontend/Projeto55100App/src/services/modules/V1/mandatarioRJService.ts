@@ -10,8 +10,8 @@ const BASE_TABLE = `${APP_BASE_HOST}/api/${v}/mandatario-rj`
 
 export interface MandatarioRJTable {
   id: number
-  candidato_2022_RJ_id: number | null
-  candidato_2024_RJ_id: number | null
+  candidato_2022_RJ_id: string | null
+  candidato_2024_RJ_id: string | null
   cargo_politico: string | null
   suplente_candidato_RJ_id: number | null
   ocupa_instituicao: string | null
@@ -25,7 +25,8 @@ export interface MandatarioRJTable {
   facebook: string | null
   instagram: string | null
   email: string | null
-  qtd_votos: number | null
+  qtd_votos_2022: number | null
+  qtd_votos_2024: number | null
   created_at: string
   updated_at: string | null
   deleted_at: string | null

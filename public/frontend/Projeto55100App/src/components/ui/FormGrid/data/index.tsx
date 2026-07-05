@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // ─── Interface ────────────────────────────────────────────────────────────────
 
@@ -85,9 +85,18 @@ export function DataField({ field }: DataFieldProps) {
   const isControlled = field.value !== undefined && field.onChange !== undefined
 
   const [internalRaw, setInternalRaw] = useState(() =>
-    isoParaDigitos(field.defaultValue ?? '')
+    isoParaDigitos(field.value ?? field.defaultValue ?? '')
   )
   const [erro, setErro] = useState<string | null>(null)
+
+  // Modo não-controlado com `value` vindo de carga assíncrona (ex.: modal de
+  // edição): ressincroniza o estado interno quando o valor externo muda.
+  useEffect(() => {
+    if (!isControlled && field.value !== undefined) {
+      setInternalRaw(isoParaDigitos(field.value))
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [field.value])
 
   const raw = isControlled ? isoParaDigitos(field.value ?? '') : internalRaw
   const displayValue = aplicarMascara(raw)

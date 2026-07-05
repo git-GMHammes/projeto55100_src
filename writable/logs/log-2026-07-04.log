@@ -1,0 +1,176 @@
+ERROR - 2026-07-04 19:03:27 --> Unknown column 'qtd_votos' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('INSERT INTO `mandatario_RJ` (`nome_politico`, `cargo_politico`, `partido_politico`, `dt_nascimento`, `municipio_mandato`, `qtd_votos`) VALUES (\'Cláudio Ferreti\', \'Prefeito\', \'MDB\', \'1960-09-27\', \'Angra dos Reis\', 40681)', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `mandatario_RJ` (`nome_politico`, `cargo_politico`, `partido_politico`, `dt_nascimento`, `municipio_mandato`, `qtd_votos`) VALUES (\'Cláudio Ferreti\', \'Prefeito\', \'MDB\', \'1960-09-27\', \'Angra dos Reis\', 40681)')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `mandatario_RJ` (`nome_politico`, `cargo_politico`, `partido_politico`, `dt_nascimento`, `municipio_mandato`, `qtd_votos`) VALUES (\'Cláudio Ferreti\', \'Prefeito\', \'MDB\', \'1960-09-27\', \'Angra dos Reis\', 40681)')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(2343): CodeIgniter\Database\BaseConnection->query('INSERT INTO `mandatario_RJ` (`nome_politico`, `cargo_politico`, `partido_politico`, `dt_nascimento`, `municipio_mandato`, `qtd_votos`) VALUES (:nome_politico:, :cargo_politico:, :partido_politico:, :dt_nascimento:, :municipio_mandato:, :qtd_votos:)', [...], false)
+ 5 SYSTEMPATH/Model.php(357): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH/BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH/Model.php(670): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH/Services/V1/BaseTableService.php(191): CodeIgniter\Model->insert([...])
+ 9 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(309): App\Services\V1\BaseTableService->create([...])
+10 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->create()
+11 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\MandatarioRJ\ResourceTableController))
+12 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-04 19:03:27 --> [App\Services\V1\Eleicao\MandatarioRJ\Processor::create] DatabaseException: Unknown column 'qtd_votos' in 'field list'
+ERROR - 2026-07-04 19:46:16 --> Table 'codeigniter55100_db.user_001_management' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT COUNT(*) AS `numrows`
+FROM `user_001_management`
+WHERE `user` = \'gmhammes\'
+AND deleted_at IS NULL', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*) AS `numrows`
+FROM `user_001_management`
+WHERE `user` = \'gmhammes\'
+AND deleted_at IS NULL')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS `numrows`
+FROM `user_001_management`
+WHERE `user` = \'gmhammes\'
+AND deleted_at IS NULL')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1731): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `user_001_management`
+WHERE `user` = :user:
+AND deleted_at IS NULL', [...], false)
+ 5 APPPATH/Models/V1/BaseTableModel.php(288): CodeIgniter\Database\BaseBuilder->countAllResults()
+ 6 APPPATH/Models/V1/User/UserManagement/SqlTableModel.php(71): App\Models\V1\BaseTableModel->existsByField('user', 'gmhammes', null)
+ 7 APPPATH/Services/V1/User/UserManagement/Processor.php(37): App\Models\V1\User\UserManagement\SqlTableModel->existsByUser('gmhammes')
+ 8 APPPATH/Services/V1/BaseTableService.php(183): App\Services\V1\User\UserManagement\Processor->validateOnCreate([...])
+ 9 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(309): App\Services\V1\BaseTableService->create([...])
+10 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->create()
+11 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\User\UserManagement\ResourceTableController))
+12 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-04 19:46:16 --> [API 500] Table 'codeigniter55100_db.user_001_management' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-07-04 19:56:30 --> Table 'codeigniter55100_db.user_001_management' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT COUNT(*) AS `numrows`
+FROM `user_001_management`
+WHERE `user` = \'gmhammes\'
+AND deleted_at IS NULL', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*) AS `numrows`
+FROM `user_001_management`
+WHERE `user` = \'gmhammes\'
+AND deleted_at IS NULL')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS `numrows`
+FROM `user_001_management`
+WHERE `user` = \'gmhammes\'
+AND deleted_at IS NULL')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1731): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `user_001_management`
+WHERE `user` = :user:
+AND deleted_at IS NULL', [...], false)
+ 5 APPPATH/Models/V1/BaseTableModel.php(288): CodeIgniter\Database\BaseBuilder->countAllResults()
+ 6 APPPATH/Models/V1/User/UserManagement/SqlTableModel.php(71): App\Models\V1\BaseTableModel->existsByField('user', 'gmhammes', null)
+ 7 APPPATH/Services/V1/User/UserManagement/Processor.php(37): App\Models\V1\User\UserManagement\SqlTableModel->existsByUser('gmhammes')
+ 8 APPPATH/Services/V1/BaseTableService.php(183): App\Services\V1\User\UserManagement\Processor->validateOnCreate([...])
+ 9 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(309): App\Services\V1\BaseTableService->create([...])
+10 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->create()
+11 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\User\UserManagement\ResourceTableController))
+12 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-04 19:56:30 --> [API 500] Table 'codeigniter55100_db.user_001_management' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-07-04 19:56:55 --> Table 'codeigniter55100_db.view_auth_user' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT *
+FROM `view_auth_user`
+WHERE `um_user` = \'gmhammes\'
+AND `ut_user_saas_tenants_id` = 1
+AND `um_is_active` = 1
+AND deleted_at IS NULL', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `view_auth_user`
+WHERE `um_user` = \'gmhammes\'
+AND `ut_user_saas_tenants_id` = 1
+AND `um_is_active` = 1
+AND deleted_at IS NULL')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `view_auth_user`
+WHERE `um_user` = \'gmhammes\'
+AND `ut_user_saas_tenants_id` = 1
+AND `um_is_active` = 1
+AND deleted_at IS NULL')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `view_auth_user`
+WHERE `um_user` = :um_user:
+AND `ut_user_saas_tenants_id` = :ut_user_saas_tenants_id:
+AND `um_is_active` = :um_is_active:
+AND deleted_at IS NULL', [...], false)
+ 5 APPPATH/Models/V1/User/AuthUser/SqlViewModel.php(102): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Services/V1/User/AuthUser/Processor.php(74): App\Models\V1\User\AuthUser\SqlViewModel->findByUserAndTenant('gmhammes', 1)
+ 7 APPPATH/Controllers/Api/V1/User/AuthUser/ResourceViewController.php(67): App\Services\V1\User\AuthUser\Processor->authenticate('gmhammes', 'C0ruj@2022', 1)
+ 8 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\User\AuthUser\ResourceViewController->login()
+ 9 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\User\AuthUser\ResourceViewController))
+10 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-04 19:56:55 --> [API 500] Table 'codeigniter55100_db.view_auth_user' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-07-04 19:57:20 --> Table 'codeigniter55100_db.user_001_management' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT COUNT(*) AS `numrows`
+FROM `user_001_management`
+WHERE `user` = \'gmhammes\'
+AND deleted_at IS NULL', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*) AS `numrows`
+FROM `user_001_management`
+WHERE `user` = \'gmhammes\'
+AND deleted_at IS NULL')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS `numrows`
+FROM `user_001_management`
+WHERE `user` = \'gmhammes\'
+AND deleted_at IS NULL')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1731): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `user_001_management`
+WHERE `user` = :user:
+AND deleted_at IS NULL', [...], false)
+ 5 APPPATH/Models/V1/BaseTableModel.php(288): CodeIgniter\Database\BaseBuilder->countAllResults()
+ 6 APPPATH/Models/V1/User/UserManagement/SqlTableModel.php(71): App\Models\V1\BaseTableModel->existsByField('user', 'gmhammes', null)
+ 7 APPPATH/Services/V1/User/UserManagement/Processor.php(37): App\Models\V1\User\UserManagement\SqlTableModel->existsByUser('gmhammes')
+ 8 APPPATH/Services/V1/BaseTableService.php(183): App\Services\V1\User\UserManagement\Processor->validateOnCreate([...])
+ 9 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(309): App\Services\V1\BaseTableService->create([...])
+10 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->create()
+11 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\User\UserManagement\ResourceTableController))
+12 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-04 19:57:20 --> [API 500] Table 'codeigniter55100_db.user_001_management' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-07-04 20:12:37 --> [API 500] Call to undefined function App\Services\V1\User\UserManagement\uuid() em /var/www/html/app/Services/V1/User/UserManagement/Processor.php:70
+ERROR - 2026-07-04 20:17:55 --> Table 'codeigniter55100_db.user_002_customer' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT COUNT(*) AS `numrows`
+FROM `user_002_customer`
+WHERE `cpf` = \'07633959789\'
+AND deleted_at IS NULL', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*) AS `numrows`
+FROM `user_002_customer`
+WHERE `cpf` = \'07633959789\'
+AND deleted_at IS NULL')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS `numrows`
+FROM `user_002_customer`
+WHERE `cpf` = \'07633959789\'
+AND deleted_at IS NULL')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1731): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `user_002_customer`
+WHERE `cpf` = :cpf:
+AND deleted_at IS NULL', [...], false)
+ 5 APPPATH/Models/V1/BaseTableModel.php(288): CodeIgniter\Database\BaseBuilder->countAllResults()
+ 6 APPPATH/Models/V1/User/UserCustomer/SqlTableModel.php(98): App\Models\V1\BaseTableModel->existsByField('cpf', '07633959789', null)
+ 7 APPPATH/Services/V1/User/UserCustomer/Processor.php(49): App\Models\V1\User\UserCustomer\SqlTableModel->existsByCpf('07633959789')
+ 8 APPPATH/Services/V1/BaseTableService.php(183): App\Services\V1\User\UserCustomer\Processor->validateOnCreate([...])
+ 9 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(309): App\Services\V1\BaseTableService->create([...])
+10 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->create()
+11 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\User\UserCustomer\ResourceTableController))
+12 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-04 20:17:55 --> [API 500] Table 'codeigniter55100_db.user_002_customer' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-07-04 20:23:44 --> [API 500] Failed to parse JSON string. Error: Syntax error em /var/www/html/system/HTTP/IncomingRequest.php:406

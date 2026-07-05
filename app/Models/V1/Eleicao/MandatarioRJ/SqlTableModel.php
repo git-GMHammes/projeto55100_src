@@ -29,7 +29,8 @@ class SqlTableModel extends BaseTableModel
         'facebook',
         'instagram',
         'email',
-        'qtd_votos',
+        'qtd_votos_2022',
+        'qtd_votos_2024',
     ];
 
     protected array $likeFields = [
@@ -49,7 +50,8 @@ class SqlTableModel extends BaseTableModel
         'partido_politico',
         'municipio_mandato',
         'dt_nascimento',
-        'qtd_votos',
+        'qtd_votos_2022',
+        'qtd_votos_2024',
     ];
 
     public array $searchFields = [

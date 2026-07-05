@@ -64,6 +64,10 @@ class Processor extends BaseTableService
             $data['password_hash'] = password_hash($data['password_hash'], PASSWORD_BCRYPT);
         }
 
+        // status nunca é definido pelo cliente — o DEFAULT da coluna no banco
+        // ('inactive') decide o status de todo novo usuário.
+        unset($data['status']);
+
         return $data;
     }
 

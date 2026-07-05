@@ -23,7 +23,7 @@ function PrivateHome() {
       }}
     >
       <PrivateTopbar
-        username={user?.um_user ?? 'admin'}
+        username={user?.um_user ?? 'Usuário'}
         onLogout={handleLogout}
         theme={theme}
       />

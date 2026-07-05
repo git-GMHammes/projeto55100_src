@@ -5,68 +5,50 @@ namespace App\Models\V1\User\UserPasswordResets;
 use App\Models\V1\BaseTableModel;
 
 /**
- * Model de escrita para a tabela user_006_password_resets.
+ * Model de escrita para a tabela user_password_reset_tokens.
  *
  * Responsável por todas as operações CRUD diretas na tabela física.
  *
- * Tabela: user_006_password_resets
- * DDL: id, user_id, token_hash, expires_at, used_at, ip_address,
- *      user_agent, created_at, updated_at, deleted_at
+ * Tabela: user_password_reset_tokens
+ * DDL: id, user_id, token_hash, email, expires_at, used_at, created_at
  */
 class SqlTableModel extends BaseTableModel
 {
     protected $DBGroup = DB_GROUP_001;
-    protected $table = 'user_006_password_resets';
+    protected $table = 'user_password_reset_tokens';
     protected $primaryKey = 'id';
-    protected $useSoftDeletes = true;
-    protected $useTimestamps = true;
+    protected $useSoftDeletes = false;
+    protected $useTimestamps = false;
 
     /**
      * Campos que podem ser inseridos/atualizados via Model.
-     * Exclui: id (PK), created_at/updated_at/deleted_at (timestamps).
      */
     protected $allowedFields = [
-        'user_management_id',
+        'user_id',
         'token_hash',
+        'email',
         'expires_at',
         'used_at',
-        'ip_address',
-        'user_agent',
     ];
 
-    /**
-     * Campos de texto que usam LIKE %valor% no find.
-     * Exclui: user_id (FK int), token_hash (hash SHA-256 — busca exata), datas.
-     */
-    protected array $likeFields = [
-        'ip_address',
-        'user_agent',
-    ];
+    protected array $likeFields = [];
 
-    /** Campos válidos para ordenação */
     protected array $sortableFields = [
         'id',
-        'user_management_id',
+        'user_id',
         'expires_at',
         'used_at',
         'created_at',
-        'updated_at',
     ];
 
-    /** Campos utilizados na busca textual (GET /search) */
-    public array $searchFields = [
-        'ip_address',
-        'user_agent',
-    ];
+    public array $searchFields = [];
 
     // -------------------------------------------------------------------------
     // Métodos específicos do fluxo de reset de senha
     // -------------------------------------------------------------------------
 
     /**
-     * Busca um token ativo: não utilizado, não expirado e não soft-deleted.
-     *
-     * @param string $hash SHA-256 do token plain recebido pelo usuário
+     * Busca um token ativo: não utilizado e não expirado.
      */
     public function findActiveByTokenHash(string $hash): ?array
     {
@@ -77,25 +59,19 @@ class SqlTableModel extends BaseTableModel
     }
 
     /**
-     * Invalida (soft-delete) todos os tokens pendentes de um usuário.
-     * Chamado antes de emitir um novo token para evitar tokens órfãos ativos.
-     *
-     * @param int $userId ID do usuário em user_001_management
+     * Invalida (marca como usado) todos os tokens pendentes de um usuário.
      */
     public function softDeleteActiveByUserId(int $userId): void
     {
         $this->db->table($this->table)
-                 ->where('user_management_id', $userId)
+                 ->where('user_id', $userId)
                  ->where('used_at IS NULL', null, false)
                  ->where('expires_at >', date('Y-m-d H:i:s'))
-                 ->where('deleted_at IS NULL', null, false)
-                 ->update(['deleted_at' => date('Y-m-d H:i:s')]);
+                 ->update(['used_at' => date('Y-m-d H:i:s')]);
     }
 
     /**
      * Marca o token como utilizado, impedindo reuso.
-     *
-     * @param int $id PK do registro em user_006_password_resets
      */
     public function markAsUsed(int $id): void
     {

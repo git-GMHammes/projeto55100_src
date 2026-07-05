@@ -1,3 +1,7 @@
+[← Voltar ao índice principal (README.md)](../../README.md)
+
+---
+
 # ROADMAP — Correção do Podman Desktop travado em STARTING
 
 **Data:** 2026-06-10
@@ -294,3 +298,7 @@ wsl --status
 # Inspecionar detalhes da máquina Podman (JSON)
 podman machine inspect podman-machine-default
 ```
+
+---
+
+[← Voltar ao índice principal (README.md)](../../README.md)

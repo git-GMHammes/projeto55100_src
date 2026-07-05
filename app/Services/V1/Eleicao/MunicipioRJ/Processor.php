@@ -19,8 +19,8 @@ class Processor extends BaseTableService
 
     protected function validateOnCreate(array $data): ?array
     {
-        if (!empty($data['prefeito_candidato_RJ_id']) && !$this->tableModel->existsByPrefeitoId((int) $data['prefeito_candidato_RJ_id'])) {
-            return ['success' => false, 'message' => 'Prefeito candidato não encontrado em candidato_RJ', 'code' => 422];
+        if (!empty($data['prefeito_mandatario_RJ_id']) && !$this->tableModel->existsByPrefeitoId((int) $data['prefeito_mandatario_RJ_id'])) {
+            return ['success' => false, 'message' => 'Prefeito mandatário não encontrado em mandatario_RJ', 'code' => 422];
         }
 
         return null;
@@ -28,8 +28,8 @@ class Processor extends BaseTableService
 
     protected function validateOnUpdate(int $id, array $data): ?array
     {
-        if (!empty($data['prefeito_candidato_RJ_id']) && !$this->tableModel->existsByPrefeitoId((int) $data['prefeito_candidato_RJ_id'])) {
-            return ['success' => false, 'message' => 'Prefeito candidato não encontrado em candidato_RJ', 'code' => 422];
+        if (!empty($data['prefeito_mandatario_RJ_id']) && !$this->tableModel->existsByPrefeitoId((int) $data['prefeito_mandatario_RJ_id'])) {
+            return ['success' => false, 'message' => 'Prefeito mandatário não encontrado em mandatario_RJ', 'code' => 422];
         }
 
         return null;

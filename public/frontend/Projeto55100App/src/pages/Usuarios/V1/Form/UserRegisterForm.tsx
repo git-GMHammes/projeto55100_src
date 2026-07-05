@@ -4,7 +4,7 @@ import FormGrid, { FormGridSchema } from '../../../../components/ui/FormGrid/Inp
 import notDefinedImg from '../../../../assets/images/not_defined.png'
 import { getActiveTheme } from '../../../../themes/global'
 import { ENVIRONMENT } from '../../../../config/constants'
-import { createUserManagement, createUserCustomer } from '../../../../services/modules/V1/userService'
+import { createUserUsers, createUserUserData } from '../../../../services/modules/V1/userService'
 
 // ─── Schema da Etapa 2 — Dados Pessoais ──────────────────────────────────────
 
@@ -15,22 +15,12 @@ const schemaStep2: FormGridSchema = {
                 {
                     col: 12,
                     label: 'Nome Completo',
-                    id: 'name',
-                    name: 'name',
+                    id: 'full_name',
+                    name: 'full_name',
                     required: true,
                     noNumbers: true,
                     placeholder: 'Seu nome completo',
                     autoComplete: 'name',
-                },
-                {
-                    col: 12,
-                    label: 'E-mail',
-                    id: 'mail',
-                    name: 'mail',
-                    required: true,
-                    placeholder: 'seu@email.com',
-                    inputMode: 'email',
-                    autoComplete: 'email',
                 },
                 {
                     col: 6,
@@ -42,38 +32,31 @@ const schemaStep2: FormGridSchema = {
                 },
                 {
                     col: 6,
-                    label: 'WhatsApp',
-                    id: 'whatsapp',
-                    name: 'whatsapp',
+                    label: 'Telefone / WhatsApp',
+                    id: 'phone',
+                    name: 'phone',
                     type: 'phone',
                     required: true,
                 },
                 {
                     col: 6,
-                    label: 'Telefone',
-                    id: 'phone',
-                    name: 'phone',
-                    type: 'phone',
-                },
-                {
-                    col: 6,
                     label: 'Data de Nascimento',
-                    id: 'date_birth',
-                    name: 'date_birth',
+                    id: 'birth_date',
+                    name: 'birth_date',
                     type: 'data',
                 },
                 {
-                    col: 4,
+                    col: 6,
                     label: 'CEP',
-                    id: 'zip_code',
-                    name: 'zip_code',
+                    id: 'address_zipcode',
+                    name: 'address_zipcode',
                     type: 'cep',
                 },
                 {
-                    col: 8,
-                    label: 'Endereço',
-                    id: 'address',
-                    name: 'address',
+                    col: 12,
+                    label: 'Endereço (Rua, nº, bairro)',
+                    id: 'address_street',
+                    name: 'address_street',
                     placeholder: 'Rua, número, bairro',
                     autoComplete: 'street-address',
                 },
@@ -151,7 +134,8 @@ function UserRegisterForm() {
     async function handleStep1(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
         const data = new FormData(e.currentTarget)
-        const user = (data.get('user') as string).trim()
+        const username = (data.get('username') as string).trim()
+        const email = (data.get('email') as string).trim()
         const pass = data.get('password') as string
         const confirm = data.get('confirm_password') as string
 
@@ -162,7 +146,7 @@ function UserRegisterForm() {
         setError(null)
 
         try {
-            const res = await createUserManagement({ user, password: pass })
+            const res = await createUserUsers({ username, email, password_hash: pass })
             if (isDev) setDebugData(res)
             if (res.success && res.data?.id) {
                 setUserId(res.data.id)
@@ -186,16 +170,14 @@ function UserRegisterForm() {
         const data = new FormData(e.currentTarget)
 
         try {
-            const res = await createUserCustomer({
-                user_management_id: userId!,
-                name: data.get('name') as string,
-                mail: data.get('mail') as string,
-                cpf: data.get('cpf') as string,
-                whatsapp: data.get('whatsapp') as string,
+            const res = await createUserUserData({
+                user_id: userId!,
+                full_name: data.get('full_name') as string,
+                cpf: (data.get('cpf') as string) || undefined,
                 phone: (data.get('phone') as string) || undefined,
-                date_birth: (data.get('date_birth') as string) || undefined,
-                zip_code: (data.get('zip_code') as string) || undefined,
-                address: (data.get('address') as string) || undefined,
+                birth_date: (data.get('birth_date') as string) || undefined,
+                address_zipcode: (data.get('address_zipcode') as string) || undefined,
+                address_street: (data.get('address_street') as string) || undefined,
             })
             if (isDev) setDebugData(res)
             if (res.success) {
@@ -319,18 +301,33 @@ function UserRegisterForm() {
                         {step === 1 && (
                             <form onSubmit={handleStep1} noValidate autoComplete="off">
                                 <div className="mb-3">
-                                    <label htmlFor="user" className="form-label">
+                                    <label htmlFor="username" className="form-label">
                                         Usuário <span className="text-danger">*</span>
                                     </label>
                                     <input
                                         type="text"
-                                        id="user"
-                                        name="user"
+                                        id="username"
+                                        name="username"
                                         className="form-control"
                                         placeholder="Escolha um nome de usuário"
                                         required
                                         autoComplete="username"
                                         autoFocus
+                                    />
+                                </div>
+
+                                <div className="mb-3">
+                                    <label htmlFor="email" className="form-label">
+                                        E-mail <span className="text-danger">*</span>
+                                    </label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        className="form-control"
+                                        placeholder="seu@email.com"
+                                        required
+                                        autoComplete="email"
                                     />
                                 </div>
 

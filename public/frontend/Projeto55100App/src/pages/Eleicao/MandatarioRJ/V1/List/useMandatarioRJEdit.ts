@@ -17,6 +17,8 @@ export interface UseMandatarioRJEditReturn {
   saving: boolean
   saveError: string | null
   saveSuccess: boolean
+  /** JSON bruto da última resposta de create/update — usado apenas pelo botão de Debug (dev). */
+  saveDebug: unknown
   modalRef: React.RefObject<HTMLDivElement>
   handleNew: () => void
   handleEdit: (id: number) => Promise<void>
@@ -31,6 +33,7 @@ export function useMandatarioRJEdit(onReloadList: () => void): UseMandatarioRJEd
   const [saving, setSaving] = useState(false)
   const [saveError, setSaveError] = useState<string | null>(null)
   const [saveSuccess, setSaveSuccess] = useState(false)
+  const [saveDebug, setSaveDebug] = useState<unknown>(null)
 
   const modalRef = useRef<HTMLDivElement>(null)
 
@@ -49,6 +52,7 @@ export function useMandatarioRJEdit(onReloadList: () => void): UseMandatarioRJEd
     setEditData(null)
     setSaveError(null)
     setSaveSuccess(false)
+    setSaveDebug(null)
     openModal()
   }
 
@@ -58,6 +62,7 @@ export function useMandatarioRJEdit(onReloadList: () => void): UseMandatarioRJEd
     setEditData(null)
     setSaveError(null)
     setSaveSuccess(false)
+    setSaveDebug(null)
     setLoadingEdit(true)
     openModal()
 
@@ -80,6 +85,7 @@ export function useMandatarioRJEdit(onReloadList: () => void): UseMandatarioRJEd
     setSaving(true)
     setSaveError(null)
     setSaveSuccess(false)
+    setSaveDebug(null)
 
     const fd = new FormData(e.currentTarget)
     const payload: Record<string, unknown> = {}
@@ -90,14 +96,17 @@ export function useMandatarioRJEdit(onReloadList: () => void): UseMandatarioRJEd
         ? await createTable(payload)
         : await updateTable(editId!, payload)
 
+      setSaveDebug(res)
+
       if (res.success) {
         setSaveSuccess(true)
         onReloadList()
       } else {
         setSaveError(res.message ?? 'Erro ao salvar')
       }
-    } catch {
+    } catch (err) {
       setSaveError('Erro de conexão ao salvar')
+      setSaveDebug({ networkError: String(err) })
     } finally {
       setSaving(false)
     }
@@ -111,6 +120,7 @@ export function useMandatarioRJEdit(onReloadList: () => void): UseMandatarioRJEd
     saving,
     saveError,
     saveSuccess,
+    saveDebug,
     modalRef,
     handleNew,
     handleEdit,

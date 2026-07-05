@@ -23,7 +23,7 @@ const schema: FormGridSchema = {
                     autoComplete: 'username',
                 },
                 {
-                    type: 'password',
+                    type: 'senha',
                     col: 12,
                     label: 'Senha',
                     id: 'um_password',

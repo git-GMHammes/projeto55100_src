@@ -2,6 +2,8 @@
 
 namespace Config;
 
+use App\Filters\V1\Auth\AuthFilter;
+use App\Filters\V1\Auth\LoginRateLimitFilter;
 use CodeIgniter\Config\Filters as BaseFilters;
 use CodeIgniter\Filters\Cors;
 use CodeIgniter\Filters\CSRF;
@@ -34,6 +36,8 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
+        'jwtAuth'       => AuthFilter::class,
+        'loginRateLimit' => LoginRateLimitFilter::class,
     ];
 
     /**
@@ -76,6 +80,15 @@ class Filters extends BaseFilters
             // 'csrf',
             // 'invalidchars',
             'cors',
+            'jwtAuth' => ['except' => [
+                'api/v1/auth/login',
+                'api/v1/auth/refresh',
+                'api/v1/auth/recover-password',
+                'api/v1/auth/reset-password',
+                'api/v1/auth/reset-password/*',
+                'api/v1/user-users/create',
+                'api/v1/user-user-data/create',
+            ]],
         ],
         'after' => [
             // 'honeypot',
@@ -108,5 +121,7 @@ class Filters extends BaseFilters
      *
      * @var array<string, array<string, list<string>>>
      */
-    public array $filters = [];
+    public array $filters = [
+        'loginRateLimit' => ['before' => ['api/v1/auth/login']],
+    ];
 }

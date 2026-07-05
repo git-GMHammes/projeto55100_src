@@ -15,30 +15,6 @@ $routes->group('api/v1', function ($routes) {
         require __DIR__ . '/Routes/Api/v1/User/AuthUser/EndPointView.php';
     });
 
-    $routes->group('user-management', function ($routes) {
-        require __DIR__ . '/Routes/Api/v1/User/UserManagement/EndpointTable.php';
-    });
-
-    $routes->group('user-customer', function ($routes) {
-        require __DIR__ . '/Routes/Api/v1/User/UserCustomer/EndpointTable.php';
-    });
-
-    $routes->group('user-customer-view', function ($routes) {
-        require __DIR__ . '/Routes/Api/v1/User/UserCustomer/EndPointView.php';
-    });
-
-    $routes->group('user-customer-file', function ($routes) {
-        require __DIR__ . '/Routes/Api/v1/User/UserCustomer/EndpointFile.php';
-    });
-
-    $routes->group('user-customer-files', function ($routes) {
-        require __DIR__ . '/Routes/Api/v1/User/UserCustomerFiles/EndpointTable.php';
-    });
-
-    $routes->group('user-customer-files-view', function ($routes) {
-        require __DIR__ . '/Routes/Api/v1/User/UserCustomerFiles/EndPointView.php';
-    });
-
     $routes->group('user-password-resets', function ($routes) {
         require __DIR__ . '/Routes/Api/v1/User/UserPasswordResets/EndpointTable.php';
     });
@@ -75,12 +51,28 @@ $routes->group('api/v1', function ($routes) {
         require __DIR__ . '/Routes/Api/v1/User/UserUserData/EndpointTable.php';
     });
 
+    $routes->group('user-refresh-tokens', function ($routes) {
+        require __DIR__ . '/Routes/Api/v1/User/UserRefreshTokens/EndpointTable.php';
+    });
+
     // =========================================================================
     // /Eleicao — Módulo de dados eleitorais RJ
     // =========================================================================
 
     $routes->group('votacao-candidato-munzona-2022-rj-view', function ($routes) {
         require __DIR__ . '/Routes/Api/v1/Eleicao/VotacaoCandidatoMunzona2022RJ/EndPointView.php';
+    });
+
+    $routes->group('votacao-candidato-munzona-2024-rj-view', function ($routes) {
+        require __DIR__ . '/Routes/Api/v1/Eleicao/VotacaoCandidatoMunzona2024RJ/EndPointView.php';
+    });
+
+    $routes->group('votos-municipio-2022-rj-view', function ($routes) {
+        require __DIR__ . '/Routes/Api/v1/Eleicao/VotosMunicipio2022RJ/EndPointView.php';
+    });
+
+    $routes->group('votos-municipio-2024-rj-view', function ($routes) {
+        require __DIR__ . '/Routes/Api/v1/Eleicao/VotosMunicipio2024RJ/EndPointView.php';
     });
 
     $routes->group('municipio-rj', function ($routes) {
@@ -97,6 +89,22 @@ $routes->group('api/v1', function ($routes) {
 
     $routes->group('mandatario-rj-view', function ($routes) {
         require __DIR__ . '/Routes/Api/v1/Eleicao/MandatarioRJ/EndPointView.php';
+    });
+
+    $routes->group('candidato-2022-rj', function ($routes) {
+        require __DIR__ . '/Routes/Api/v1/Eleicao/Candidato2022RJ/EndpointTable.php';
+    });
+
+    $routes->group('candidato-2022-rj-view', function ($routes) {
+        require __DIR__ . '/Routes/Api/v1/Eleicao/Candidato2022RJ/EndPointView.php';
+    });
+
+    $routes->group('candidato-2024-rj', function ($routes) {
+        require __DIR__ . '/Routes/Api/v1/Eleicao/Candidato2024RJ/EndpointTable.php';
+    });
+
+    $routes->group('candidato-2024-rj-view', function ($routes) {
+        require __DIR__ . '/Routes/Api/v1/Eleicao/Candidato2024RJ/EndPointView.php';
     });
 
     $routes->group('municipio-ibge-tse', function ($routes) {
