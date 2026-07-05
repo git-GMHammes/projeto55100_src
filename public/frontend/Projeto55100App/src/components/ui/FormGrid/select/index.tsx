@@ -118,7 +118,10 @@ export function SelectField({ field }: SelectFieldProps) {
       .finally(() => setIsLoading(false))
   }, [field.src])
 
-  // Sincroniza label quando allData ou value mudam — com fallback getSrc quando valor não está no cache
+  // Sincroniza label quando allData ou value mudam — com fallback getSrc (GET /id) ou,
+  // na ausência dele, findSrc (POST exato pelo valueKey) quando valor não está no cache.
+  // findSrc é o fallback necessário para PKs compostas (ex.: "2024.58017.15.4078"),
+  // incompatíveis com rotas GET /get/{id} baseadas em (:num).
   useEffect(() => {
     if (!effectiveValue) { setSelectedLabel(''); return }
     const found = allData.find(item => getValue(item, field) === effectiveValue)
@@ -126,56 +129,87 @@ export function SelectField({ field }: SelectFieldProps) {
       setSelectedLabel(getLabel(found, field))
       return
     }
-    if (!field.getSrc) return
-    fetch(`${field.getSrc}/${encodeURIComponent(effectiveValue)}`, {
-      headers: buildAuthHeaders(field.authToken),
-    })
-      .then(r => r.json())
-      .then((json: unknown) => {
-        const raw = json as Record<string, unknown>
-        const item = (raw['data'] as SelectOptionItem | undefined) ?? null
-        if (!item) return
-        setAllData(prev => {
-          const val = getValue(item, field)
-          if (prev.some(d => getValue(d, field) === val)) return prev
-          return [...prev, item]
-        })
-        setSelectedLabel(getLabel(item, field))
+
+    function applyFetchedItem(item: SelectOptionItem | null) {
+      if (!item) return
+      setAllData(prev => {
+        const val = getValue(item, field)
+        if (prev.some(d => getValue(d, field) === val)) return prev
+        return [...prev, item]
       })
-      .catch(e => console.warn('[SelectField] getSrc falhou:', field.getSrc, e))
+      setSelectedLabel(getLabel(item, field))
+    }
+
+    if (field.getSrc) {
+      fetch(`${field.getSrc}/${encodeURIComponent(effectiveValue)}`, {
+        headers: buildAuthHeaders(field.authToken),
+      })
+        .then(r => r.json())
+        .then((json: unknown) => {
+          const raw = json as Record<string, unknown>
+          applyFetchedItem((raw['data'] as SelectOptionItem | undefined) ?? null)
+        })
+        .catch(e => console.warn('[SelectField] getSrc falhou:', field.getSrc, e))
+      return
+    }
+
+    if (field.findSrc) {
+      fetch(field.findSrc, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', ...buildAuthHeaders(field.authToken) },
+        body: JSON.stringify({ [field.valueKey ?? 'id']: effectiveValue }),
+      })
+        .then(r => r.json())
+        .then((json: unknown) => {
+          const raw = json as Record<string, unknown>
+          const items: SelectOptionItem[] = Array.isArray(json)
+            ? json
+            : ((raw['data'] as SelectOptionItem[] | undefined) ?? [])
+          applyFetchedItem(items[0] ?? null)
+        })
+        .catch(e => console.warn('[SelectField] findSrc (rehidratação) falhou:', field.findSrc, e))
+    }
   }, [effectiveValue, allData])
 
-  // POST fallback findSrc quando filtro local retorna vazio
+  // POST findSrc a cada busca (com debounce) — o cache local (allData) é limitado
+  // por maxVisible/src para não estourar memória, então não pode ser a única fonte:
+  // sempre consulta o banco, mesmo quando o filtro local já encontrou algum item,
+  // pois pode haver candidatos fora do recorte inicial (ex.: fora dos mais votados).
   useEffect(() => {
-    if (!searchText.trim() || !field.findSrc || !field.findColumn) return
+    const query = searchText.trim()
+    if (query.length < 2 || !field.findSrc || !field.findColumn) return
     if (effectiveValue) return
-    if (filterData(allData, searchText, field).length > 0) return
 
-    fetch(field.findSrc, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', ...buildAuthHeaders(field.authToken) },
-      body: JSON.stringify({ [field.findColumn]: searchText.trim() }),
-    })
-      .then(r => r.json())
-      .then((json: unknown) => {
-        const raw = json as Record<string, unknown>
-        const items: SelectOptionItem[] = Array.isArray(json)
-          ? json
-          : ((raw['data'] as SelectOptionItem[] | undefined) ??
-             (raw['items'] as SelectOptionItem[] | undefined) ??
-             [])
-        if (items.length === 0) return
-        setAllData(prev => {
-          const next = [...prev]
-          for (const item of items) {
-            const val = getValue(item, field)
-            if (!next.some(d => getValue(d, field) === val)) next.push(item)
-          }
-          return next
-        })
+    const findColumn = field.findColumn
+    const timer = setTimeout(() => {
+      fetch(field.findSrc as string, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', ...buildAuthHeaders(field.authToken) },
+        body: JSON.stringify({ [findColumn]: query }),
       })
-      .catch(e => console.warn('[SelectField] findSrc falhou:', field.findSrc, e))
-  }, [searchText]) // allData intencional fora das deps: usamos o snapshot do momento do disparo
+        .then(r => r.json())
+        .then((json: unknown) => {
+          const raw = json as Record<string, unknown>
+          const items: SelectOptionItem[] = Array.isArray(json)
+            ? json
+            : ((raw['data'] as SelectOptionItem[] | undefined) ??
+               (raw['items'] as SelectOptionItem[] | undefined) ??
+               [])
+          if (items.length === 0) return
+          setAllData(prev => {
+            const next = [...prev]
+            for (const item of items) {
+              const val = getValue(item, field)
+              if (!next.some(d => getValue(d, field) === val)) next.push(item)
+            }
+            return next
+          })
+        })
+        .catch(e => console.warn('[SelectField] findSrc falhou:', field.findSrc, e))
+    }, 300)
+
+    return () => clearTimeout(timer)
+  }, [searchText, field.findSrc, field.findColumn, effectiveValue, field.authToken])
 
   const validarRequired = useCallback((val: string) => {
     if (field.required && !val) {
@@ -221,7 +255,11 @@ export function SelectField({ field }: SelectFieldProps) {
   }
 
   function handleSearchFocus() {
-    if (!field.disabled) setIsOpen(true)
+    if (field.disabled) return
+    // Ao reabrir um campo já preenchido, o texto exibido é o label do item selecionado;
+    // limpa para não filtrar a lista só por ele — mostra o restante das opções abaixo.
+    if (effectiveValue) setSearchText('')
+    setIsOpen(true)
   }
 
   function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -246,7 +284,15 @@ export function SelectField({ field }: SelectFieldProps) {
   const maxVisible = field.maxVisible ?? 150
   const rows = field.rows ?? 8
   const filtered = filterData(allData, searchText, field)
-  const visible = filtered.slice(0, maxVisible)
+  // Mantém o item selecionado no topo (como está), com o restante da lista logo abaixo.
+  const ordered = effectiveValue
+    ? [...filtered].sort((a, b) => {
+        const aSel = getValue(a, field) === effectiveValue
+        const bSel = getValue(b, field) === effectiveValue
+        return aSel === bSel ? 0 : aSel ? -1 : 1
+      })
+    : filtered
+  const visible = ordered.slice(0, maxVisible)
   const inputClass = ['form-control field-select-search', erro ? 'is-invalid' : '', field.className ?? '']
     .filter(Boolean).join(' ')
 

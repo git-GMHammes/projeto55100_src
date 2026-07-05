@@ -44,7 +44,8 @@ function MandatarioRJDataTable({ items, query, onEdit, onView, onDelete }: Manda
             <th>Partido</th>
             <th>Município</th>
             <th>Dt Nasc.</th>
-            <th className="text-end">Votos</th>
+            <th className="text-end">Votos 2022</th>
+            <th className="text-end">Votos 2024</th>
             <th>WhatsApp</th>
             <th>E-mail</th>
             <th style={{ width: 70 }}>Ver</th>
@@ -54,7 +55,7 @@ function MandatarioRJDataTable({ items, query, onEdit, onView, onDelete }: Manda
         <tbody>
           {items.length === 0 ? (
             <tr>
-              <td colSpan={11} className="text-center text-muted py-3">
+              <td colSpan={12} className="text-center text-muted py-3">
                 {query ? 'Nenhum resultado encontrado.' : 'Nenhum candidato cadastrado.'}
               </td>
             </tr>
@@ -83,7 +84,8 @@ function MandatarioRJDataTable({ items, query, onEdit, onView, onDelete }: Manda
                 <td>{fmt(item.partido_politico)}</td>
                 <td>{fmt(item.municipio_mandato)}</td>
                 <td>{fmtDate(item.dt_nascimento)}</td>
-                <td className="text-end">{fmtNum(item.qtd_votos)}</td>
+                <td className="text-end">{fmtNum(item.qtd_votos_2022)}</td>
+                <td className="text-end">{fmtNum(item.qtd_votos_2024)}</td>
                 <td>{fmt(item.whatsapp)}</td>
                 <td>{fmt(item.email)}</td>
 

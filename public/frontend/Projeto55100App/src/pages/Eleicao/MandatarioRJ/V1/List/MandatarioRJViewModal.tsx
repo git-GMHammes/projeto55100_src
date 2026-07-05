@@ -99,7 +99,8 @@ function MandatarioRJViewModal({
                 <Row label="Cargo Político" value={fmt(viewData.cargo_politico)} />
                 <Row label="Partido Político" value={fmt(viewData.partido_politico)} />
                 <Row label="Município do Mandato" value={fmt(viewData.municipio_mandato)} />
-                <Row label="Quantidade de Votos" value={fmtNum(viewData.qtd_votos)} />
+                <Row label="Qtd. Votos 2022" value={fmtNum(viewData.qtd_votos_2022)} />
+                <Row label="Qtd. Votos 2024" value={fmtNum(viewData.qtd_votos_2024)} />
 
                 <div className="col-12 mb-3 mt-3">
                   <h6 className="text-muted text-uppercase small fw-bold border-bottom pb-1">Instituição</h6>

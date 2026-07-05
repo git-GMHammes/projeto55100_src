@@ -1,5 +1,5 @@
-import React from 'react'
-import FormGrid, { type FormGridSchema } from '../../../../../components/ui/FormGrid/Input'
+import React, { useEffect, useState } from 'react'
+import FormGrid, { type FormGridSchema, type FormRowSchema } from '../../../../../components/ui/FormGrid/Input'
 import type { MunicipioRJTable } from '../../../../../services/modules/V1/municipioRJService'
 import type { UseMunicipioRJEditReturn } from './useMunicipioRJEdit'
 import { getToken } from '../../../../../services/modules/V1/authService/session'
@@ -9,9 +9,90 @@ import { APP_BASE_HOST, APP_VERSION } from '../../../../../config/constants'
 
 const v = APP_VERSION.toLowerCase()
 
-function buildEditSchema(data: MunicipioRJTable | null, authToken?: string): FormGridSchema {
+function buildEditSchema(
+  data: MunicipioRJTable | null,
+  authToken: string | undefined,
+  mandatoExtra: boolean,
+  onToggleMandatoExtra: (checked: boolean) => void
+): FormGridSchema {
   const s = (v: string | number | null | undefined) =>
     v !== null && v !== undefined ? String(v) : ''
+
+  const checkboxMandatoExtra = {
+    type: 'checkbox' as const,
+    col: 3 as const,
+    label: 'Mandato Extra',
+    id: 'ui_mandato_extra',
+    name: 'ui_mandato_extra',
+    options: [{ id: 'ui_mandato_extra_opt', value: '1', label: 'Sim' }],
+    value: mandatoExtra ? ['1'] : [],
+    onChange: (values: string[]) => onToggleMandatoExtra(values.includes('1')),
+  }
+
+  // Titulo: Prefeito / mandato — alterna entre Prefeito/Vice/Primeira Dama e Mandatário Extra
+  const prefeitoMandatoRows: FormRowSchema[] = mandatoExtra
+    ? [
+        {
+          sectionTitle: 'Prefeito / Mandato',
+          fields: [
+            {
+              col: 9,
+              label: 'Mandatário Extra',
+              id: 'mandatario_extra',
+              name: 'mandatario_extra',
+              value: s(data?.mandatario_extra),
+              maxLength: 200,
+              required: true,
+              noNumbers: true,
+            },
+            checkboxMandatoExtra,
+          ],
+        },
+        {
+          fields: [
+            {
+              type: 'textarea' as const,
+              col: 12,
+              label: 'Observação do Mandato',
+              id: 'observacao_mandato',
+              name: 'observacao_mandato',
+              value: s(data?.observacao_mandato),
+            },
+          ],
+        },
+      ]
+    : [
+        {
+          sectionTitle: 'Prefeito / Mandato',
+          fields: [
+            {
+              type: 'select' as const,
+              col: 9,
+              label: 'Prefeito',
+              id: 'prefeito_mandatario_RJ_id',
+              name: 'prefeito_mandatario_RJ_id',
+              value: s(data?.prefeito_mandatario_RJ_id),
+              src: `${APP_BASE_HOST}/api/${v}/mandatario-rj-view/get-no-pagination`,
+              valueKey: 'id',
+              labelKey: 'nome_politico',
+              authToken,
+            },
+            checkboxMandatoExtra,
+          ],
+        },
+        {
+          fields: [
+            { col: 9, label: 'Vice-Prefeito', id: 'vice_prefeito', name: 'vice_prefeito', value: s(data?.vice_prefeito), noNumbers: true },
+            { col: 3, label: 'Aniversário', id: 'vice_dt_nascimento', name: 'vice_dt_nascimento', type: 'data' as const, value: s(data?.vice_dt_nascimento) },
+          ],
+        },
+        {
+          fields: [
+            { col: 9, label: 'Primeira Dama', id: 'primeira_dama', name: 'primeira_dama', value: s(data?.primeira_dama), noNumbers: true },
+            { col: 3, label: 'Nasc. Primeira Dama', id: 'primeira_dama_dt_nascimento', name: 'primeira_dama_dt_nascimento', type: 'data' as const, value: s(data?.primeira_dama_dt_nascimento) },
+          ],
+        },
+      ]
 
   return {
     rows: [
@@ -31,36 +112,7 @@ function buildEditSchema(data: MunicipioRJTable | null, authToken?: string): For
           { col: 4, label: 'Área Territorial (km²)', id: 'area_territorial', name: 'area_territorial', value: s(data?.area_territorial), inputMode: 'decimal' as const },
         ],
       },
-      // Titulo: Prefeito / mandato
-      {
-        sectionTitle: 'Prefeito / Mandato',
-        fields: [
-          {
-            type: 'select' as const,
-            col: 12,
-            label: 'Prefeito',
-            id: 'prefeito_mandatario_RJ_id',
-            name: 'prefeito_mandatario_RJ_id',
-            value: s(data?.prefeito_mandatario_RJ_id),
-            src: `${APP_BASE_HOST}/api/${v}/mandatario-rj-view/get-no-pagination`,
-            valueKey: 'id',
-            labelKey: 'nome_politico',
-            authToken,
-          },
-        ],
-      },
-      {
-        fields: [
-          { col: 9, label: 'Vice-Prefeito', id: 'vice_prefeito', name: 'vice_prefeito', value: s(data?.vice_prefeito), noNumbers: true },
-          { col: 3, label: 'Aniversário', id: 'vice_dt_nascimento', name: 'vice_dt_nascimento', type: 'data' as const, value: s(data?.vice_dt_nascimento) },
-        ],
-      },
-      {
-        fields: [
-          { col: 9, label: 'Primeira Dama', id: 'primeira_dama', name: 'primeira_dama', value: s(data?.primeira_dama), noNumbers: true },
-          { col: 3, label: 'Nasc. Primeira Dama', id: 'primeira_dama_dt_nascimento', name: 'primeira_dama_dt_nascimento', type: 'data' as const, value: s(data?.primeira_dama_dt_nascimento) },
-        ],
-      },
+      ...prefeitoMandatoRows,
       {
         fields: [
           { col: 9, label: 'Festa Popular', id: 'festa_popular', name: 'festa_popular', value: s(data?.festa_popular) },
@@ -187,7 +239,13 @@ function MunicipioRJEditModal({
   theme,
 }: MunicipioRJEditModalProps) {
   const authToken = getToken() ?? undefined
-  const editSchema = buildEditSchema(editData, authToken)
+  const [mandatoExtra, setMandatoExtra] = useState(false)
+
+  useEffect(() => {
+    setMandatoExtra(Boolean(editData?.mandatario_extra))
+  }, [editData])
+
+  const editSchema = buildEditSchema(editData, authToken, mandatoExtra, setMandatoExtra)
 
   return (
     <div

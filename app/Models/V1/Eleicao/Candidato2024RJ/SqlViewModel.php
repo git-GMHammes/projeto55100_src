@@ -8,7 +8,7 @@ use App\Models\V1\BaseViewModel;
  * Model de leitura para a view view_candidato_2024_RJ.
  *
  * Campos disponíveis na view:
- *   ID, CD_MUNICIPIO, NM_MUNICIPIO, NR_VOTAVEL, NM_VOTAVEL,
+ *   ID, CD_MUNICIPIO, NM_MUNICIPIO, NR_VOTAVEL, NM_VOTAVEL, DS_CARGO,
  *   SG_PARTIDO, NM_PARTIDO, QT_VOTOS_NOMINAIS_VALIDOS
  *
  * Todos os métodos de leitura estão disponíveis via BaseViewModel.

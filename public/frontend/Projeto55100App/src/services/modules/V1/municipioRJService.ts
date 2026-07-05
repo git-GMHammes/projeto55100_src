@@ -135,6 +135,8 @@ export interface MunicipioRJTable {
   risco_enchente: number | null
   data_emancipacao: string | null
   area_territorial: number | null
+  mandatario_extra: string | null
+  observacao_mandato: string | null
   created_at: string
   updated_at: string | null
   deleted_at: string | null

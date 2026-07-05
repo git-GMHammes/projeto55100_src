@@ -7,13 +7,13 @@ class CreateRequest
     public function rules(): array
     {
         return [
-            'candidato_2022_RJ_id'     => 'permit_empty|is_natural_no_zero',
-            'candidato_2024_RJ_id'     => 'permit_empty|is_natural_no_zero',
+            'candidato_2022_RJ_id'     => 'permit_empty|string|max_length[50]',
+            'candidato_2024_RJ_id'     => 'permit_empty|string|max_length[50]',
             'cargo_politico'           => 'permit_empty|string|max_length[50]',
             'suplente_candidato_RJ_id' => 'permit_empty|is_natural_no_zero',
             'ocupa_instituicao'        => 'permit_empty|string|max_length[200]',
             'cargo_instituicao'        => 'permit_empty|string|max_length[200]',
-            'partido_politico'         => 'permit_empty|string|max_length[10]',
+            'partido_politico'         => 'permit_empty|string|max_length[20]',
             'nome_politico'            => 'permit_empty|string|max_length[200]',
             'dt_nascimento'            => 'permit_empty|valid_date[Y-m-d]',
             'municipio_mandato'        => 'permit_empty|string|max_length[200]',
@@ -22,7 +22,8 @@ class CreateRequest
             'facebook'                 => 'permit_empty|string|max_length[200]',
             'instagram'                => 'permit_empty|string|max_length[200]',
             'email'                    => 'permit_empty|valid_email|max_length[200]',
-            'qtd_votos'                => 'permit_empty|integer',
+            'qtd_votos_2022'           => 'permit_empty|integer',
+            'qtd_votos_2024'           => 'permit_empty|integer',
         ];
     }
 

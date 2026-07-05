@@ -1,0 +1,605 @@
+ERROR - 2026-07-05 00:02:10 --> Cannot add or update a child row: a foreign key constraint fails (`codeigniter55100_db`.`user_refresh_tokens`, CONSTRAINT `fk_urt_user` FOREIGN KEY (`user_id`) REFERENCES `user_users` (`id`) ON DELETE SET NULL ON UPDATE SET NULL)
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('INSERT INTO `user_refresh_tokens` (`user_id`, `token_hash`, `expires_at`, `ip_address`, `user_agent`, `created_at`, `updated_at`) VALUES (1, \'test_hash_abc123\', \'2026-12-31 23:59:59\', \'127.0.0.1\', \'TestAgent\', \'2026-07-05 00:02:10\', \'2026-07-05 00:02:10\')', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `user_refresh_tokens` (`user_id`, `token_hash`, `expires_at`, `ip_address`, `user_agent`, `created_at`, `updated_at`) VALUES (1, \'test_hash_abc123\', \'2026-12-31 23:59:59\', \'127.0.0.1\', \'TestAgent\', \'2026-07-05 00:02:10\', \'2026-07-05 00:02:10\')')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `user_refresh_tokens` (`user_id`, `token_hash`, `expires_at`, `ip_address`, `user_agent`, `created_at`, `updated_at`) VALUES (1, \'test_hash_abc123\', \'2026-12-31 23:59:59\', \'127.0.0.1\', \'TestAgent\', \'2026-07-05 00:02:10\', \'2026-07-05 00:02:10\')')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(2343): CodeIgniter\Database\BaseConnection->query('INSERT INTO `user_refresh_tokens` (`user_id`, `token_hash`, `expires_at`, `ip_address`, `user_agent`, `created_at`, `updated_at`) VALUES (:user_id:, :token_hash:, :expires_at:, :ip_address:, :user_agent:, :created_at:, :updated_at:)', [...], false)
+ 5 SYSTEMPATH/Model.php(357): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH/BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH/Model.php(670): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH/Services/V1/BaseTableService.php(191): CodeIgniter\Model->insert([...])
+ 9 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(309): App\Services\V1\BaseTableService->create([...])
+10 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->create()
+11 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\User\UserRefreshTokens\ResourceTableController))
+12 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 00:02:10 --> [App\Services\V1\User\UserRefreshTokens\Processor::create] DatabaseException: Cannot add or update a child row: a foreign key constraint fails (`codeigniter55100_db`.`user_refresh_tokens`, CONSTRAINT `fk_urt_user` FOREIGN KEY (`user_id`) REFERENCES `user_users` (`id`) ON DELETE SET NULL ON UPDATE SET NULL)
+ERROR - 2026-07-05 00:12:20 --> [API 500] Failed to parse JSON string. Error: Syntax error em /var/www/html/system/HTTP/IncomingRequest.php:406
+ERROR - 2026-07-05 00:12:48 --> [API 500] Failed to parse JSON string. Error: Syntax error em /var/www/html/system/HTTP/IncomingRequest.php:406
+CRITICAL - 2026-07-05 02:29:00 --> ErrorException: Allowed memory size of 134217728 bytes exhausted (tried to allocate 20480 bytes)
+[Method: GET, Route: api/v1/candidato-2022-rj-view/get-no-pagination]
+in SYSTEMPATH/Database/MySQLi/Result.php on line 140.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2026-07-05 03:46:45 --> [API 500] Failed to parse JSON string. Error: Malformed UTF-8 characters, possibly incorrectly encoded em /var/www/html/system/HTTP/IncomingRequest.php:406
+ERROR - 2026-07-05 03:58:46 --> Unknown column 'qtd_votos' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('UPDATE `mandatario_RJ` SET `nome_politico` = \'Cláudio Ferreti\', `dt_nascimento` = \'1960-09-27\', `cargo_politico` = \'Prefeito\', `partido_politico` = \'MDB\', `municipio_mandato` = \'58017\', `ocupa_instituicao` = \'Prefeitura de Angra\', `cargo_instituicao` = \'Prefeito\', `candidato_2024_RJ_id` = \'58017.15.11\', `qtd_votos` = \'40681\'
+WHERE `mandatario_RJ`.`id` IN (1)', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `mandatario_RJ` SET `nome_politico` = \'Cláudio Ferreti\', `dt_nascimento` = \'1960-09-27\', `cargo_politico` = \'Prefeito\', `partido_politico` = \'MDB\', `municipio_mandato` = \'58017\', `ocupa_instituicao` = \'Prefeitura de Angra\', `cargo_instituicao` = \'Prefeito\', `candidato_2024_RJ_id` = \'58017.15.11\', `qtd_votos` = \'40681\'
+WHERE `mandatario_RJ`.`id` IN (1)')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `mandatario_RJ` SET `nome_politico` = \'Cláudio Ferreti\', `dt_nascimento` = \'1960-09-27\', `cargo_politico` = \'Prefeito\', `partido_politico` = \'MDB\', `municipio_mandato` = \'58017\', `ocupa_instituicao` = \'Prefeitura de Angra\', `cargo_instituicao` = \'Prefeito\', `candidato_2024_RJ_id` = \'58017.15.11\', `qtd_votos` = \'40681\'
+WHERE `mandatario_RJ`.`id` IN (1)')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(2519): CodeIgniter\Database\BaseConnection->query('UPDATE `mandatario_RJ` SET `nome_politico` = :nome_politico:, `dt_nascimento` = :dt_nascimento:, `cargo_politico` = :cargo_politico:, `partido_politico` = :partido_politico:, `municipio_mandato` = :municipio_mandato:, `ocupa_instituicao` = :ocupa_instituicao:, `cargo_instituicao` = :cargo_instituicao:, `candidato_2024_RJ_id` = :candidato_2024_RJ_id:, `qtd_votos` = :qtd_votos:
+WHERE `mandatario_RJ`.`id` IN :mandatario_RJ.id:', [...], false)
+ 5 SYSTEMPATH/Model.php(408): CodeIgniter\Database\BaseBuilder->update()
+ 6 SYSTEMPATH/BaseModel.php(1074): CodeIgniter\Model->doUpdate([...], [...])
+ 7 SYSTEMPATH/Model.php(711): CodeIgniter\BaseModel->update([...], [...])
+ 8 APPPATH/Services/V1/BaseTableService.php(227): CodeIgniter\Model->update(1, [...])
+ 9 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(339): App\Services\V1\BaseTableService->update(1, [...])
+10 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->update(1)
+11 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\MandatarioRJ\ResourceTableController))
+12 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 03:58:46 --> [App\Services\V1\Eleicao\MandatarioRJ\Processor::update] DatabaseException: Unknown column 'qtd_votos' in 'field list'
+ERROR - 2026-07-05 04:04:44 --> Unknown column 'qtd_votos' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('UPDATE `mandatario_RJ` SET `nome_politico` = \'Cláudio Ferreti\', `dt_nascimento` = \'1960-09-27\', `cargo_politico` = \'Prefeito\', `partido_politico` = \'MDB\', `municipio_mandato` = \'58017\', `ocupa_instituicao` = \'Prefeitura de Angra\', `cargo_instituicao` = \'Prefeito\', `candidato_2024_RJ_id` = \'58017.15.11\', `qtd_votos` = \'40681\'
+WHERE `mandatario_RJ`.`id` IN (1)', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `mandatario_RJ` SET `nome_politico` = \'Cláudio Ferreti\', `dt_nascimento` = \'1960-09-27\', `cargo_politico` = \'Prefeito\', `partido_politico` = \'MDB\', `municipio_mandato` = \'58017\', `ocupa_instituicao` = \'Prefeitura de Angra\', `cargo_instituicao` = \'Prefeito\', `candidato_2024_RJ_id` = \'58017.15.11\', `qtd_votos` = \'40681\'
+WHERE `mandatario_RJ`.`id` IN (1)')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `mandatario_RJ` SET `nome_politico` = \'Cláudio Ferreti\', `dt_nascimento` = \'1960-09-27\', `cargo_politico` = \'Prefeito\', `partido_politico` = \'MDB\', `municipio_mandato` = \'58017\', `ocupa_instituicao` = \'Prefeitura de Angra\', `cargo_instituicao` = \'Prefeito\', `candidato_2024_RJ_id` = \'58017.15.11\', `qtd_votos` = \'40681\'
+WHERE `mandatario_RJ`.`id` IN (1)')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(2519): CodeIgniter\Database\BaseConnection->query('UPDATE `mandatario_RJ` SET `nome_politico` = :nome_politico:, `dt_nascimento` = :dt_nascimento:, `cargo_politico` = :cargo_politico:, `partido_politico` = :partido_politico:, `municipio_mandato` = :municipio_mandato:, `ocupa_instituicao` = :ocupa_instituicao:, `cargo_instituicao` = :cargo_instituicao:, `candidato_2024_RJ_id` = :candidato_2024_RJ_id:, `qtd_votos` = :qtd_votos:
+WHERE `mandatario_RJ`.`id` IN :mandatario_RJ.id:', [...], false)
+ 5 SYSTEMPATH/Model.php(408): CodeIgniter\Database\BaseBuilder->update()
+ 6 SYSTEMPATH/BaseModel.php(1074): CodeIgniter\Model->doUpdate([...], [...])
+ 7 SYSTEMPATH/Model.php(711): CodeIgniter\BaseModel->update([...], [...])
+ 8 APPPATH/Services/V1/BaseTableService.php(227): CodeIgniter\Model->update(1, [...])
+ 9 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(339): App\Services\V1\BaseTableService->update(1, [...])
+10 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->update(1)
+11 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\MandatarioRJ\ResourceTableController))
+12 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 04:04:44 --> [App\Services\V1\Eleicao\MandatarioRJ\Processor::update] DatabaseException: Unknown column 'qtd_votos' in 'field list'
+ERROR - 2026-07-05 04:05:47 --> Unknown column 'qtd_votos' in 'field list'
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('UPDATE `mandatario_RJ` SET `nome_politico` = \'Cláudio Ferreti\', `dt_nascimento` = \'1960-09-27\', `cargo_politico` = \'Prefeito\', `partido_politico` = \'MDB\', `municipio_mandato` = \'58017\', `ocupa_instituicao` = \'Prefeitura de Angra\', `cargo_instituicao` = \'Prefeito\', `candidato_2024_RJ_id` = \'58017.15.11\', `qtd_votos` = \'40681\'
+WHERE `mandatario_RJ`.`id` IN (1)', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `mandatario_RJ` SET `nome_politico` = \'Cláudio Ferreti\', `dt_nascimento` = \'1960-09-27\', `cargo_politico` = \'Prefeito\', `partido_politico` = \'MDB\', `municipio_mandato` = \'58017\', `ocupa_instituicao` = \'Prefeitura de Angra\', `cargo_instituicao` = \'Prefeito\', `candidato_2024_RJ_id` = \'58017.15.11\', `qtd_votos` = \'40681\'
+WHERE `mandatario_RJ`.`id` IN (1)')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `mandatario_RJ` SET `nome_politico` = \'Cláudio Ferreti\', `dt_nascimento` = \'1960-09-27\', `cargo_politico` = \'Prefeito\', `partido_politico` = \'MDB\', `municipio_mandato` = \'58017\', `ocupa_instituicao` = \'Prefeitura de Angra\', `cargo_instituicao` = \'Prefeito\', `candidato_2024_RJ_id` = \'58017.15.11\', `qtd_votos` = \'40681\'
+WHERE `mandatario_RJ`.`id` IN (1)')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(2519): CodeIgniter\Database\BaseConnection->query('UPDATE `mandatario_RJ` SET `nome_politico` = :nome_politico:, `dt_nascimento` = :dt_nascimento:, `cargo_politico` = :cargo_politico:, `partido_politico` = :partido_politico:, `municipio_mandato` = :municipio_mandato:, `ocupa_instituicao` = :ocupa_instituicao:, `cargo_instituicao` = :cargo_instituicao:, `candidato_2024_RJ_id` = :candidato_2024_RJ_id:, `qtd_votos` = :qtd_votos:
+WHERE `mandatario_RJ`.`id` IN :mandatario_RJ.id:', [...], false)
+ 5 SYSTEMPATH/Model.php(408): CodeIgniter\Database\BaseBuilder->update()
+ 6 SYSTEMPATH/BaseModel.php(1074): CodeIgniter\Model->doUpdate([...], [...])
+ 7 SYSTEMPATH/Model.php(711): CodeIgniter\BaseModel->update([...], [...])
+ 8 APPPATH/Services/V1/BaseTableService.php(227): CodeIgniter\Model->update(1, [...])
+ 9 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(339): App\Services\V1\BaseTableService->update(1, [...])
+10 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->update(1)
+11 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\MandatarioRJ\ResourceTableController))
+12 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 04:05:47 --> [App\Services\V1\Eleicao\MandatarioRJ\Processor::update] DatabaseException: Unknown column 'qtd_votos' in 'field list'
+ERROR - 2026-07-05 04:58:00 --> [API 500] Failed to parse JSON string. Error: Malformed UTF-8 characters, possibly incorrectly encoded em /var/www/html/system/HTTP/IncomingRequest.php:406
+ERROR - 2026-07-05 06:02:13 --> Table 'codeigniter55100_db.municipio_RJ' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC', [], false)
+ 5 APPPATH/Models/V1/BaseTableModel.php(196): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Services/V1/BaseTableService.php(114): App\Models\V1\BaseTableModel->getOrdered('nome_cidade', 'asc', null)
+ 7 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(197): App\Services\V1\BaseTableService->getNoPagination('nome_cidade', 'asc', null)
+ 8 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->getNoPagination()
+ 9 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\MunicipioRJ\ResourceTableController))
+10 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 06:02:13 --> [API 500] Table 'codeigniter55100_db.municipio_RJ' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-07-05 06:02:14 --> Table 'codeigniter55100_db.municipio_RJ' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC', [], false)
+ 5 APPPATH/Models/V1/BaseTableModel.php(196): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Services/V1/BaseTableService.php(114): App\Models\V1\BaseTableModel->getOrdered('nome_cidade', 'asc', null)
+ 7 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(197): App\Services\V1\BaseTableService->getNoPagination('nome_cidade', 'asc', null)
+ 8 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->getNoPagination()
+ 9 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\MunicipioRJ\ResourceTableController))
+10 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 06:02:14 --> [API 500] Table 'codeigniter55100_db.municipio_RJ' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-07-05 06:05:24 --> Table 'codeigniter55100_db.municipio_RJ' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC', [], false)
+ 5 APPPATH/Models/V1/BaseTableModel.php(196): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Services/V1/BaseTableService.php(114): App\Models\V1\BaseTableModel->getOrdered('nome_cidade', 'asc', null)
+ 7 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(197): App\Services\V1\BaseTableService->getNoPagination('nome_cidade', 'asc', null)
+ 8 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->getNoPagination()
+ 9 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\MunicipioRJ\ResourceTableController))
+10 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 06:05:25 --> [API 500] Table 'codeigniter55100_db.municipio_RJ' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-07-05 06:05:25 --> Table 'codeigniter55100_db.municipio_RJ' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC', [], false)
+ 5 APPPATH/Models/V1/BaseTableModel.php(196): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Services/V1/BaseTableService.php(114): App\Models\V1\BaseTableModel->getOrdered('nome_cidade', 'asc', null)
+ 7 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(197): App\Services\V1\BaseTableService->getNoPagination('nome_cidade', 'asc', null)
+ 8 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->getNoPagination()
+ 9 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\MunicipioRJ\ResourceTableController))
+10 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 06:05:25 --> [API 500] Table 'codeigniter55100_db.municipio_RJ' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-07-05 06:08:11 --> Table 'codeigniter55100_db.municipio_RJ' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC', [], false)
+ 5 APPPATH/Models/V1/BaseTableModel.php(196): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Services/V1/BaseTableService.php(114): App\Models\V1\BaseTableModel->getOrdered('nome_cidade', 'asc', null)
+ 7 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(197): App\Services\V1\BaseTableService->getNoPagination('nome_cidade', 'asc', null)
+ 8 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->getNoPagination()
+ 9 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\MunicipioRJ\ResourceTableController))
+10 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 06:08:11 --> [API 500] Table 'codeigniter55100_db.municipio_RJ' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-07-05 06:08:11 --> Table 'codeigniter55100_db.municipio_RJ' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC', [], false)
+ 5 APPPATH/Models/V1/BaseTableModel.php(196): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Services/V1/BaseTableService.php(114): App\Models\V1\BaseTableModel->getOrdered('nome_cidade', 'asc', null)
+ 7 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(197): App\Services\V1\BaseTableService->getNoPagination('nome_cidade', 'asc', null)
+ 8 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->getNoPagination()
+ 9 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\MunicipioRJ\ResourceTableController))
+10 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 06:08:11 --> [API 500] Table 'codeigniter55100_db.municipio_RJ' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-07-05 06:22:32 --> Table 'codeigniter55100_db.municipio_RJ' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC', [], false)
+ 5 APPPATH/Models/V1/BaseTableModel.php(196): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Services/V1/BaseTableService.php(114): App\Models\V1\BaseTableModel->getOrdered('nome_cidade', 'asc', null)
+ 7 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(197): App\Services\V1\BaseTableService->getNoPagination('nome_cidade', 'asc', null)
+ 8 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->getNoPagination()
+ 9 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\MunicipioRJ\ResourceTableController))
+10 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 06:22:32 --> [API 500] Table 'codeigniter55100_db.municipio_RJ' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-07-05 06:22:33 --> Table 'codeigniter55100_db.municipio_RJ' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT *
+FROM `municipio_RJ`
+WHERE `municipio_RJ`.`id` = 58190', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `municipio_RJ`
+WHERE `municipio_RJ`.`id` = 58190')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `municipio_RJ`
+WHERE `municipio_RJ`.`id` = 58190')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `municipio_RJ`
+WHERE `municipio_RJ`.`id` = :municipio_RJ.id:', [...], false)
+ 5 SYSTEMPATH/Model.php(194): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(615): CodeIgniter\Model->doFind(true, 58190)
+ 7 APPPATH/Services/V1/BaseTableService.php(89): CodeIgniter\BaseModel->find(58190)
+ 8 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(153): App\Services\V1\BaseTableService->get(58190)
+ 9 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->get(58190)
+10 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\MunicipioRJ\ResourceTableController))
+11 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 06:22:33 --> [API 500] Table 'codeigniter55100_db.municipio_RJ' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-07-05 06:22:33 --> Table 'codeigniter55100_db.municipio_RJ' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC', [], false)
+ 5 APPPATH/Models/V1/BaseTableModel.php(196): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Services/V1/BaseTableService.php(114): App\Models\V1\BaseTableModel->getOrdered('nome_cidade', 'asc', null)
+ 7 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(197): App\Services\V1\BaseTableService->getNoPagination('nome_cidade', 'asc', null)
+ 8 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->getNoPagination()
+ 9 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\MunicipioRJ\ResourceTableController))
+10 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 06:22:33 --> [API 500] Table 'codeigniter55100_db.municipio_RJ' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-07-05 06:22:34 --> Table 'codeigniter55100_db.municipio_RJ' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT *
+FROM `municipio_RJ`
+WHERE `municipio_RJ`.`id` = 58190', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `municipio_RJ`
+WHERE `municipio_RJ`.`id` = 58190')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `municipio_RJ`
+WHERE `municipio_RJ`.`id` = 58190')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `municipio_RJ`
+WHERE `municipio_RJ`.`id` = :municipio_RJ.id:', [...], false)
+ 5 SYSTEMPATH/Model.php(194): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(615): CodeIgniter\Model->doFind(true, 58190)
+ 7 APPPATH/Services/V1/BaseTableService.php(89): CodeIgniter\BaseModel->find(58190)
+ 8 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(153): App\Services\V1\BaseTableService->get(58190)
+ 9 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->get(58190)
+10 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\MunicipioRJ\ResourceTableController))
+11 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 06:22:34 --> [API 500] Table 'codeigniter55100_db.municipio_RJ' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-07-05 06:22:34 --> Table 'codeigniter55100_db.municipio_RJ' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT *
+FROM `municipio_RJ`
+WHERE `municipio_RJ`.`id` = 58190', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `municipio_RJ`
+WHERE `municipio_RJ`.`id` = 58190')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `municipio_RJ`
+WHERE `municipio_RJ`.`id` = 58190')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `municipio_RJ`
+WHERE `municipio_RJ`.`id` = :municipio_RJ.id:', [...], false)
+ 5 SYSTEMPATH/Model.php(194): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(615): CodeIgniter\Model->doFind(true, 58190)
+ 7 APPPATH/Services/V1/BaseTableService.php(89): CodeIgniter\BaseModel->find(58190)
+ 8 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(153): App\Services\V1\BaseTableService->get(58190)
+ 9 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->get(58190)
+10 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\MunicipioRJ\ResourceTableController))
+11 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 06:22:34 --> [API 500] Table 'codeigniter55100_db.municipio_RJ' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-07-05 06:26:00 --> Table 'codeigniter55100_db.municipio_RJ' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC', [], false)
+ 5 APPPATH/Models/V1/BaseTableModel.php(196): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Services/V1/BaseTableService.php(114): App\Models\V1\BaseTableModel->getOrdered('nome_cidade', 'asc', null)
+ 7 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(197): App\Services\V1\BaseTableService->getNoPagination('nome_cidade', 'asc', null)
+ 8 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->getNoPagination()
+ 9 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\MunicipioRJ\ResourceTableController))
+10 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 06:26:00 --> [API 500] Table 'codeigniter55100_db.municipio_RJ' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-07-05 06:26:01 --> Table 'codeigniter55100_db.municipio_RJ' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC', [], false)
+ 5 APPPATH/Models/V1/BaseTableModel.php(196): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Services/V1/BaseTableService.php(114): App\Models\V1\BaseTableModel->getOrdered('nome_cidade', 'asc', null)
+ 7 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(197): App\Services\V1\BaseTableService->getNoPagination('nome_cidade', 'asc', null)
+ 8 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->getNoPagination()
+ 9 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\MunicipioRJ\ResourceTableController))
+10 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 06:26:01 --> [API 500] Table 'codeigniter55100_db.municipio_RJ' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-07-05 06:26:09 --> Table 'codeigniter55100_db.municipio_RJ' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC', [], false)
+ 5 APPPATH/Models/V1/BaseTableModel.php(196): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Services/V1/BaseTableService.php(114): App\Models\V1\BaseTableModel->getOrdered('nome_cidade', 'asc', null)
+ 7 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(197): App\Services\V1\BaseTableService->getNoPagination('nome_cidade', 'asc', null)
+ 8 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->getNoPagination()
+ 9 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\MunicipioRJ\ResourceTableController))
+10 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 06:26:09 --> [API 500] Table 'codeigniter55100_db.municipio_RJ' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-07-05 06:26:10 --> Table 'codeigniter55100_db.municipio_RJ' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `municipio_RJ`
+ORDER BY `nome_cidade` ASC', [], false)
+ 5 APPPATH/Models/V1/BaseTableModel.php(196): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH/Services/V1/BaseTableService.php(114): App\Models\V1\BaseTableModel->getOrdered('nome_cidade', 'asc', null)
+ 7 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(197): App\Services\V1\BaseTableService->getNoPagination('nome_cidade', 'asc', null)
+ 8 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->getNoPagination()
+ 9 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\MunicipioRJ\ResourceTableController))
+10 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 06:26:10 --> [API 500] Table 'codeigniter55100_db.municipio_RJ' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-07-05 06:26:10 --> Table 'codeigniter55100_db.municipio_RJ' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT *
+FROM `municipio_RJ`
+WHERE `municipio_RJ`.`id` = 58190', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `municipio_RJ`
+WHERE `municipio_RJ`.`id` = 58190')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `municipio_RJ`
+WHERE `municipio_RJ`.`id` = 58190')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `municipio_RJ`
+WHERE `municipio_RJ`.`id` = :municipio_RJ.id:', [...], false)
+ 5 SYSTEMPATH/Model.php(194): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(615): CodeIgniter\Model->doFind(true, 58190)
+ 7 APPPATH/Services/V1/BaseTableService.php(89): CodeIgniter\BaseModel->find(58190)
+ 8 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(153): App\Services\V1\BaseTableService->get(58190)
+ 9 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->get(58190)
+10 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\MunicipioRJ\ResourceTableController))
+11 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 06:26:10 --> [API 500] Table 'codeigniter55100_db.municipio_RJ' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-07-05 06:26:10 --> Table 'codeigniter55100_db.municipio_RJ' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT *
+FROM `municipio_RJ`
+WHERE `municipio_RJ`.`id` = 58190', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `municipio_RJ`
+WHERE `municipio_RJ`.`id` = 58190')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `municipio_RJ`
+WHERE `municipio_RJ`.`id` = 58190')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `municipio_RJ`
+WHERE `municipio_RJ`.`id` = :municipio_RJ.id:', [...], false)
+ 5 SYSTEMPATH/Model.php(194): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(615): CodeIgniter\Model->doFind(true, 58190)
+ 7 APPPATH/Services/V1/BaseTableService.php(89): CodeIgniter\BaseModel->find(58190)
+ 8 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(153): App\Services\V1\BaseTableService->get(58190)
+ 9 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->get(58190)
+10 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\MunicipioRJ\ResourceTableController))
+11 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 06:26:10 --> [API 500] Table 'codeigniter55100_db.municipio_RJ' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-07-05 06:26:11 --> Table 'codeigniter55100_db.municipio_RJ' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT *
+FROM `municipio_RJ`
+WHERE `municipio_RJ`.`id` = 58190', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `municipio_RJ`
+WHERE `municipio_RJ`.`id` = 58190')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `municipio_RJ`
+WHERE `municipio_RJ`.`id` = 58190')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1647): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `municipio_RJ`
+WHERE `municipio_RJ`.`id` = :municipio_RJ.id:', [...], false)
+ 5 SYSTEMPATH/Model.php(194): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH/BaseModel.php(615): CodeIgniter\Model->doFind(true, 58190)
+ 7 APPPATH/Services/V1/BaseTableService.php(89): CodeIgniter\BaseModel->find(58190)
+ 8 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(153): App\Services\V1\BaseTableService->get(58190)
+ 9 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->get(58190)
+10 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\MunicipioRJ\ResourceTableController))
+11 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 06:26:11 --> [API 500] Table 'codeigniter55100_db.municipio_RJ' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-07-05 06:26:16 --> Table 'codeigniter55100_db.municipio_RJ' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT COUNT(*) AS `numrows`
+FROM `municipio_RJ`
+WHERE `nome_cidade` LIKE \'%Ca%\' ESCAPE \'!\'', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*) AS `numrows`
+FROM `municipio_RJ`
+WHERE `nome_cidade` LIKE \'%Ca%\' ESCAPE \'!\'')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS `numrows`
+FROM `municipio_RJ`
+WHERE `nome_cidade` LIKE \'%Ca%\' ESCAPE \'!\'')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1731): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `municipio_RJ`
+WHERE `nome_cidade` LIKE :nome_cidade: ESCAPE \'!\'', [...], false)
+ 5 APPPATH/Models/V1/BaseTableModel.php(49): CodeIgniter\Database\BaseBuilder->countAllResults(false)
+ 6 APPPATH/Models/V1/BaseTableModel.php(110): App\Models\V1\BaseTableModel->paginateBuilder(Object(CodeIgniter\Database\MySQLi\Builder), 1, 20, 'id', 'desc')
+ 7 APPPATH/Services/V1/BaseTableService.php(36): App\Models\V1\BaseTableModel->findPaginated([...], 1, 20, 'id', 'desc')
+ 8 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(81): App\Services\V1\BaseTableService->find([...], [...])
+ 9 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->find()
+10 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\MunicipioRJ\ResourceTableController))
+11 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 06:26:16 --> [API 500] Table 'codeigniter55100_db.municipio_RJ' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-07-05 06:26:16 --> Table 'codeigniter55100_db.municipio_RJ' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT COUNT(*) AS `numrows`
+FROM `municipio_RJ`
+WHERE `nome_cidade` LIKE \'%Cam%\' ESCAPE \'!\'', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*) AS `numrows`
+FROM `municipio_RJ`
+WHERE `nome_cidade` LIKE \'%Cam%\' ESCAPE \'!\'')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS `numrows`
+FROM `municipio_RJ`
+WHERE `nome_cidade` LIKE \'%Cam%\' ESCAPE \'!\'')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1731): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `municipio_RJ`
+WHERE `nome_cidade` LIKE :nome_cidade: ESCAPE \'!\'', [...], false)
+ 5 APPPATH/Models/V1/BaseTableModel.php(49): CodeIgniter\Database\BaseBuilder->countAllResults(false)
+ 6 APPPATH/Models/V1/BaseTableModel.php(110): App\Models\V1\BaseTableModel->paginateBuilder(Object(CodeIgniter\Database\MySQLi\Builder), 1, 20, 'id', 'desc')
+ 7 APPPATH/Services/V1/BaseTableService.php(36): App\Models\V1\BaseTableModel->findPaginated([...], 1, 20, 'id', 'desc')
+ 8 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(81): App\Services\V1\BaseTableService->find([...], [...])
+ 9 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->find()
+10 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\MunicipioRJ\ResourceTableController))
+11 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 06:26:16 --> [API 500] Table 'codeigniter55100_db.municipio_RJ' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863
+ERROR - 2026-07-05 06:26:16 --> Table 'codeigniter55100_db.municipio_RJ' doesn't exist
+in SYSTEMPATH/Database/MySQLi/Connection.php on line 300.
+ 1 SYSTEMPATH/Database/MySQLi/Connection.php(300): mysqli->query('SELECT COUNT(*) AS `numrows`
+FROM `municipio_RJ`
+WHERE `nome_cidade` LIKE \'%Campos%\' ESCAPE \'!\'', 0)
+ 2 SYSTEMPATH/Database/BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*) AS `numrows`
+FROM `municipio_RJ`
+WHERE `nome_cidade` LIKE \'%Campos%\' ESCAPE \'!\'')
+ 3 SYSTEMPATH/Database/BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS `numrows`
+FROM `municipio_RJ`
+WHERE `nome_cidade` LIKE \'%Campos%\' ESCAPE \'!\'')
+ 4 SYSTEMPATH/Database/BaseBuilder.php(1731): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `municipio_RJ`
+WHERE `nome_cidade` LIKE :nome_cidade: ESCAPE \'!\'', [...], false)
+ 5 APPPATH/Models/V1/BaseTableModel.php(49): CodeIgniter\Database\BaseBuilder->countAllResults(false)
+ 6 APPPATH/Models/V1/BaseTableModel.php(110): App\Models\V1\BaseTableModel->paginateBuilder(Object(CodeIgniter\Database\MySQLi\Builder), 1, 20, 'id', 'desc')
+ 7 APPPATH/Services/V1/BaseTableService.php(36): App\Models\V1\BaseTableModel->findPaginated([...], 1, 20, 'id', 'desc')
+ 8 APPPATH/Controllers/Api/V1/BaseResourceTableController.php(81): App\Services\V1\BaseTableService->find([...], [...])
+ 9 SYSTEMPATH/CodeIgniter.php(974): App\Controllers\Api\V1\BaseResourceTableController->find()
+10 SYSTEMPATH/CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\V1\Eleicao\MunicipioRJ\ResourceTableController))
+11 SYSTEMPATH/CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH/index.php(61): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-07-05 06:26:17 --> [API 500] Table 'codeigniter55100_db.municipio_RJ' doesn't exist em /var/www/html/system/Database/BaseConnection.php:863

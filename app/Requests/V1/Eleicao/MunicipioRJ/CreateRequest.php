@@ -57,6 +57,8 @@ class CreateRequest
             'risco_enchente'               => 'permit_empty|in_list[0,1]',
             'data_emancipacao'             => 'permit_empty|valid_date[Y-m-d]',
             'area_territorial'             => 'permit_empty|decimal',
+            'mandatario_extra'             => 'permit_empty|string|max_length[200]',
+            'observacao_mandato'           => 'permit_empty|string',
         ];
     }
 

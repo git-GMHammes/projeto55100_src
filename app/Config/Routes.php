@@ -51,6 +51,10 @@ $routes->group('api/v1', function ($routes) {
         require __DIR__ . '/Routes/Api/v1/User/UserUserData/EndpointTable.php';
     });
 
+    $routes->group('user-refresh-tokens', function ($routes) {
+        require __DIR__ . '/Routes/Api/v1/User/UserRefreshTokens/EndpointTable.php';
+    });
+
     // =========================================================================
     // /Eleicao — Módulo de dados eleitorais RJ
     // =========================================================================
@@ -73,6 +77,22 @@ $routes->group('api/v1', function ($routes) {
 
     $routes->group('mandatario-rj-view', function ($routes) {
         require __DIR__ . '/Routes/Api/v1/Eleicao/MandatarioRJ/EndPointView.php';
+    });
+
+    $routes->group('candidato-2022-rj', function ($routes) {
+        require __DIR__ . '/Routes/Api/v1/Eleicao/Candidato2022RJ/EndpointTable.php';
+    });
+
+    $routes->group('candidato-2022-rj-view', function ($routes) {
+        require __DIR__ . '/Routes/Api/v1/Eleicao/Candidato2022RJ/EndPointView.php';
+    });
+
+    $routes->group('candidato-2024-rj', function ($routes) {
+        require __DIR__ . '/Routes/Api/v1/Eleicao/Candidato2024RJ/EndpointTable.php';
+    });
+
+    $routes->group('candidato-2024-rj-view', function ($routes) {
+        require __DIR__ . '/Routes/Api/v1/Eleicao/Candidato2024RJ/EndPointView.php';
     });
 
     $routes->group('municipio-ibge-tse', function ($routes) {

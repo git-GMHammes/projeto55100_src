@@ -64,6 +64,8 @@ class SqlTableModel extends BaseTableModel
         'risco_enchente',
         'data_emancipacao',
         'area_territorial',
+        'mandatario_extra',
+        'observacao_mandato',
     ];
 
     protected array $likeFields = [
