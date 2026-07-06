@@ -723,3 +723,5 @@ DEBUG - 2026-07-05 19:38:55 --> [AuthFilter] called. URI=/index.php/api/v1/votos
 DEBUG - 2026-07-05 19:39:42 --> [AuthFilter] called. URI=/index.php/api/v1/votos-municipio-2024-rj-view/get-all | REQUEST_URI=/api/v1/votos-municipio-2024-rj-view/get-all?page=1&limit=50&sort=NM_MUNICIPIO&order=asc
 DEBUG - 2026-07-05 20:05:13 --> [AuthFilter] called. URI=/index.php/api/v1/votos-municipio-2022-rj-view/get-all | REQUEST_URI=/api/v1/votos-municipio-2022-rj-view/get-all?page=1&limit=50&sort=NM_MUNICIPIO&order=asc
 DEBUG - 2026-07-05 20:05:14 --> [AuthFilter] called. URI=/index.php/api/v1/votos-municipio-2024-rj-view/get-all | REQUEST_URI=/api/v1/votos-municipio-2024-rj-view/get-all?page=1&limit=50&sort=NM_MUNICIPIO&order=asc
+DEBUG - 2026-07-05 22:00:30 --> [AuthFilter] called. URI=/index.php/ | REQUEST_URI=/
+DEBUG - 2026-07-05 22:00:48 --> [AuthFilter] called. URI=/index.php/ | REQUEST_URI=/
