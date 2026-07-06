@@ -7,3 +7,6 @@ writable/debugbar/*
 writable/debugbar/debugbar_1781816368.455581.json
 public/maparj/BR_Municipios_2024.shp
 public/frontend/dist_*
+writable/cache/*
+writable/logs/*
+writable/logs/log-2026-07-05.log
