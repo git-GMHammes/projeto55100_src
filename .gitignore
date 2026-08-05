@@ -10,3 +10,4 @@ public/frontend/dist_*
 writable/cache/*
 writable/logs/*
 writable/logs/log-2026-07-05.log
+public/h001.html
