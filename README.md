@@ -1,19 +1,3 @@
-# Índice da Documentação — Projeto55100
-
-> Este é o documento central de navegação da documentação técnica do
-> projeto. Todos os arquivos em `src/markdown/conteudo/` possuem, no início
-> e no fim, um link de retorno para este README — o documento número um.
-
-## Documentação Técnica (`src/markdown/conteudo/`)
-
-1. [Arquitetura do Backend](markdown/conteudo/README_arquitetura_backend.md) — Hierarquia de Controllers/Services/Models do CodeIgniter 4, Requests, Filters, rotas, segurança e fluxo completo de uma requisição.
-2. [Arquitetura do Frontend](markdown/conteudo/README_arquitetura_frontend.md) — Estrutura do SPA React 19 + Vite: roteamento, camada de serviços, páginas, componentes de UI, hooks, contexts, autenticação e padrão de criação de nova feature.
-3. [CORS — CodeIgniter 4 + Nginx](markdown/conteudo/README_cors_codeigniter4_nginx.md) — Diagnóstico e correção de erro de CORS entre a SPA React (Vite) e a API CodeIgniter 4 servida via Nginx.
-4. [Modelo de Tela de Listagem (Frontend)](markdown/conteudo/README_modelo_frontend_lista.md) — Modelo replicável de tela de listagem (busca + tabela + modal de edição), com checklist para criar novos módulos seguindo o mesmo padrão.
-5. [Segurança de Credenciais e Banco de Dados](markdown/conteudo/README_seguranca_banco.md) — Escopo real de credenciais do projeto, ausência de `.env`, riscos técnicos de vazamento de segredos e recomendações de mitigação.
-6. [ROADMAP — Correção do Podman travado em STARTING](markdown/conteudo/ROADMAP_correcao_podman.md) — Diagnóstico e correção de estado inconsistente entre WSL 2 e Podman Desktop.
-7. [ROADMAP — Nova API para Tabela ou View](markdown/conteudo/ROADMAP_novo_plano_api_route.md) — Roteiro para criar um novo módulo REST completo (Table/View/File) do zero, com convenções de nomes e camadas.
-8. [ROADMAP — Podman Compose](markdown/conteudo/ROADMAP_podman_compose.md) — Diagnóstico e solução do `podman compose` usando o provedor externo `docker-compose.exe` em vez do nativo.
 
 ---
 

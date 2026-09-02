@@ -1,4 +1,4 @@
-[← Voltar ao índice principal (README.md)](../../README.md)
+[← Voltar ao índice principal (README.md)](../README.md)
 
 ---
 
@@ -161,4 +161,4 @@ curl -s -D - -o /dev/null "http://localhost:55100/api/v1/MODULO/get-all?page=1&l
 
 ---
 
-[← Voltar ao índice principal (README.md)](../../README.md)
+[← Voltar ao índice principal (README.md)](../README.md)

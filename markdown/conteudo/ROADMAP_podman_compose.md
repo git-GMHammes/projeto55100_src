@@ -1,4 +1,4 @@
-[← Voltar ao índice principal (README.md)](../../README.md)
+[← Voltar ao índice principal (README.md)](../README.md)
 
 ---
 
@@ -599,4 +599,4 @@ passara a encontra-lo como provider preferencial e a delegacao para o
 
 ---
 
-[← Voltar ao índice principal (README.md)](../../README.md)
+[← Voltar ao índice principal (README.md)](../README.md)

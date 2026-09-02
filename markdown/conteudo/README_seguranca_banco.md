@@ -1,4 +1,4 @@
-[← Voltar ao índice principal (README.md)](../../README.md)
+[← Voltar ao índice principal (README.md)](../README.md)
 
 ---
 
@@ -172,4 +172,4 @@ credencial hoje público no serviço de versionamento de repositórios.
 
 ---
 
-[← Voltar ao índice principal (README.md)](../../README.md)
+[← Voltar ao índice principal (README.md)](../README.md)

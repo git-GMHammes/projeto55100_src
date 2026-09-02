@@ -1,4 +1,4 @@
-[← Voltar ao índice principal (README.md)](../../README.md)
+[← Voltar ao índice principal (README.md)](../README.md)
 
 ---
 
@@ -1031,4 +1031,4 @@ classDiagram
 
 ---
 
-[← Voltar ao índice principal (README.md)](../../README.md)
+[← Voltar ao índice principal (README.md)](../README.md)

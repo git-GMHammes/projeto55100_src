@@ -1,4 +1,4 @@
-[← Voltar ao índice principal (README.md)](../../README.md)
+[← Voltar ao índice principal (README.md)](../README.md)
 
 ---
 
@@ -301,4 +301,4 @@ podman machine inspect podman-machine-default
 
 ---
 
-[← Voltar ao índice principal (README.md)](../../README.md)
+[← Voltar ao índice principal (README.md)](../README.md)

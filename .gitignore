@@ -1,5 +1,6 @@
 .env
 _env
+CLAUDE.md
 system/HotReloader/Puipuia.php
 system/ThirdParty/Jugwoko.php
 public/frontend/dist_2026*
