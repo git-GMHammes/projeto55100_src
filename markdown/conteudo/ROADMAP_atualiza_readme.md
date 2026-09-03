@@ -40,6 +40,34 @@ Quando um conjunto de documentos forma um módulo próprio (ex.: `conteudo/field
 - O cabeçalho do sub-índice deve declarar que é um sub-índice e apontar para
   `../../README.md`.
 
+### 1.2 Ordem dos itens no índice
+
+Os itens do índice — e os blocos de resumo, na mesma sequência — são ordenados
+por **prioridade de leitura para planejar e executar o projeto**, do mais
+primário ao mais acessório. **Não** é ordem alfabética nem por data de criação:
+a pergunta é "o que alguém precisa ler antes para não quebrar nada, e o que pode
+ficar para depois".
+
+As seis faixas, nesta ordem:
+
+1. **Entender o sistema e suas restrições** — mapa de portas/serviços,
+   arquitetura (backend e frontend) e regras de segurança/credenciais.
+   Pré-requisito para qualquer alteração.
+2. **Pôr o ambiente para rodar** — guia de desenvolvimento / quick start.
+3. **Construir features (trabalho diário)** — padrões de criação de módulo de
+   API, de tela e de campos de formulário, mais os gargalos de integração
+   (ex.: CORS).
+4. **Publicar** — deploy em produção e pipeline de deploy.
+5. **Manutenção e troubleshooting situacional** — este ROADMAP e os documentos
+   de incidente/infra, que só importam quando o problema aparece.
+6. **Referência de outro projeto ou assunto externo** — o que não é do dia a dia
+   do Projeto55100; ler por último.
+
+Ao inserir um documento novo, **encaixe-o na faixa correspondente** e renumere os
+itens/blocos seguintes — não basta acrescentar ao fim do índice. O bloco
+`## Índice` do `README.md` mantém um resumo dessas faixas com os intervalos de
+números.
+
 ---
 
 ## 2. Gatilho
@@ -65,8 +93,9 @@ Qualquer uma destas ações em `src/markdown/conteudo/`:
    - em `conteudo/<sub>/` → `[← Voltar ao índice principal (README.md)](../../README.md)`
 3. Inserir, como **última linha** do arquivo, a mesma linha de retorno.
 4. Em `src/markdown/README.md`:
-   - adicionar um item ao **Índice**, numerado, com descrição de ~5 palavras e
-     âncora para o novo bloco;
+   - adicionar um item ao **Índice** na posição correspondente à sua **faixa de
+     prioridade de leitura** (ver 1.2), com descrição de ~5 palavras e âncora
+     para o novo bloco; renumerar os itens/blocos seguintes;
    - adicionar o **bloco de resumo** correspondente (título `### N. ...`,
      parágrafo de contexto, pontos-chave e a linha
      `📄 Documento completo: [conteudo/ARQUIVO.md](conteudo/ARQUIVO.md)`,
@@ -99,6 +128,8 @@ Qualquer uma destas ações em `src/markdown/conteudo/`:
 - [ ] Subpasta nova tem `README.md` sub-índice, e o item no `README.md` principal
       aponta para esse sub-índice.
 - [ ] Cada item do Índice tem descrição de ~5 palavras.
+- [ ] O novo item foi posicionado na faixa de prioridade de leitura certa
+      (ver 1.2), não apenas anexado ao fim do Índice.
 - [ ] Cada item do Índice aponta para uma âncora existente no próprio
       `README.md`.
 - [ ] Cada bloco de resumo termina com o link para o `.md` em `conteudo/`.
