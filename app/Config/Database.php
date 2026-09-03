@@ -91,8 +91,8 @@ class Database extends Config
     public array $codeigniter55100_mysql = [
         'DSN' => '',
         'hostname' => 'mysql',
-        'username' => 'root',
-        'password' => 'root_S3cur3P@ss_2024',
+        'username' => 'codeigniter55100_user',
+        'password' => '',
         'database' => 'codeigniter55100_db',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
@@ -265,6 +265,23 @@ class Database extends Config
 
         if (ENVIRONMENT === 'testing') {
             $this->defaultGroup = 'tests';
+        }
+
+        // Docker: sobrescreve as credenciais locais a partir do env do
+        // docker-compose (servico php). Sem env, mantem os defaults acima
+        // e a senha vazia — nenhuma credencial fica versionada neste arquivo.
+        $dockerEnv = [
+            'hostname' => 'DB_HOST',
+            'port'     => 'DB_PORT',
+            'database' => 'DB_DATABASE',
+            'username' => 'DB_USERNAME',
+            'password' => 'DB_PASSWORD',
+        ];
+        foreach ($dockerEnv as $key => $envName) {
+            $value = getenv($envName);
+            if ($value !== false) {
+                $this->codeigniter55100_mysql[$key] = ($key === 'port') ? (int) $value : $value;
+            }
         }
     }
 }
