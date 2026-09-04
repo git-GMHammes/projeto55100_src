@@ -1,0 +1,16 @@
+{
+  "acao": {
+    "id": "20260904145339_corrigir_boot_constants_habilidade_no3",
+    "plano_referencia": "20260904145339_corrigir_boot_constants_habilidade_plano.json",
+    "passo_do_plano": 3,
+    "titulo": "Validar boot e sintaxe apos as correcoes",
+    "executado_em": "2026-09-04T14:53:39-03:00",
+    "tipo": "validacao",
+    "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Config\\Constants.php e Database.php",
+    "comando_ou_input": "php -l em ambos os arquivos; php -r carregando Constants.php isoladamente; instanciacao standalone de Config\\Database (com stub de CodeIgniter\\Database\\Config) para exercitar o construtor completo.",
+    "resultado": "sucesso",
+    "saida_resumo": "php -l sem erros nos dois arquivos. Constants.php carrega sem Fatal Error, DB_GROUP_001 correto. Database() instanciado sem erro: default.hostname=localhost (sem env), habilidade.hostname='' (sem env) -- comportamento esperado.",
+    "arquivos_afetados": [],
+    "observacoes": "Validacao feita via CLI PHP isolado (sem framework completo), suficiente para confirmar ausencia de erro fatal/sintaxe nos dois arquivos alterados."
+  }
+}

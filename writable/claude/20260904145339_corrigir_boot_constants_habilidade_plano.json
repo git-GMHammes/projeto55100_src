@@ -1,0 +1,68 @@
+{
+  "plano": {
+    "id": "20260904145339_corrigir_boot_constants_habilidade",
+    "titulo": "Corrigir erro fatal de boot em Constants.php e tornar $habilidade funcional via env",
+    "descricao": "Investigando o array $habilidade de Database.php (valores sem aspas, invalidos como string PHP), foi identificado um problema muito maior: Config/Constants.php faz require_once incondicional de dois arquivos que nao existem neste workspace (system/ThirdParty/Jugwoko.php e system/HotReloader/Puipuia.php), confirmados ausentes por listagem, e chama uma funcao Beschermd() que ate o momento nao estava definida em lugar nenhum do codigo (o usuario chegou a adicionar um stub 'function Beschermd($var){ return; }' diretamente no arquivo via IDE, o que neutraliza a segunda chamada mas nao corrige a primeira). Confirmado empiricamente via 'php -r' que isso gera Fatal Error em toda requisicao. JwtHelper::getSecret() (linhas 127-139) ja usa exatamente o padrao 'defined(CONST) ? CONST : getenv(ENV)' como fallback seguro para o mesmo esquema de ofuscacao (segredo JWT) -- esse e o padrao replicado aqui.",
+    "criado_em": "2026-09-04T14:53:39-03:00",
+    "diretorio_base": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Config\\",
+    "contexto": "Usuario pediu para corrigir o array $habilidade (apos eu sinalizar valores sem aspas). Ao investigar, descobri que o problema real e mais profundo: Constants.php quebra o boot do app inteiro. Apresentei 4 opcoes via AskUserQuestion (env vars / recriar arquivos ofuscados / so aspas / so investigar); o usuario rejeitou a ferramenta de pergunta formal e respondeu 'continue', tendo ja iniciado no proprio arquivo (via IDE) uma tentativa de neutralizar Beschermd(). Prossegui com a opcao recomendada (env vars), que e a unica compativel com a regra global do usuario 'credenciais somente via .env/variaveis de ambiente' e que nao exige escrever dentro da pasta protegida system/ nem obter credenciais reais de producao.",
+    "criterios_de_sucesso": [
+      "php -r ao carregar Constants.php nao gera mais erro fatal",
+      "$habilidade em Database.php tem apenas valores literais validos (sem credencial real gravada no arquivo)",
+      "Construtor de Database.php ganha um segundo laco de override por getenv() (prefixo HABILIDADE_DB_*) escrevendo em $this->habilidade, espelhando o laco ja existente para $this->default",
+      "JwtHelper::getSecret() continua funcionando sem alteracao (ja tinha fallback seguro para getenv('JWT_SECRET'))",
+      "php -l sem erros em Constants.php e Database.php"
+    ],
+    "rollback": {
+      "estrategia": "reverter_git",
+      "comando": "git checkout -- app/Config/Constants.php app/Config/Database.php (repositorio git aninhado em src/)"
+    },
+    "riscos": [
+      "Se os arquivos Jugwoko.php/Puipuia.php existirem de fato no servidor de producao KingHost e definirem constantes usadas por outro codigo alem de Database.php/JwtHelper.php, removher os require_once pode mudar comportamento em producao; mitigacao: grep confirmou que Beschermd/Jugwoko/Puipuia so sao referenciados dentro de Constants.php, e JwtHelper.php ja tem fallback proprio.",
+      "Grupo de conexao 'habilidade' (producao) fica sem credenciais reais ate que HABILIDADE_DB_* sejam configuradas no ambiente de producao -- nao e regressao, pois hoje o arquivo nem sequer carrega."
+    ]
+  },
+  "passos": [
+    {
+      "passo": 1,
+      "tipo": "editar_arquivo",
+      "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Config\\Constants.php",
+      "motivo": "Remover os dois require_once quebrados (Jugwoko.php, Puipuia.php) e a funcao Beschermd() (fica sem uso), eliminando o erro fatal de boot.",
+      "saida_esperada": "Constants.php carrega sem erro, DB_GROUP_001 continua definido normalmente",
+      "depende_de": []
+    },
+    {
+      "passo": 2,
+      "tipo": "editar_arquivo",
+      "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Config\\Database.php",
+      "motivo": "Trocar os valores sem aspas de $habilidade por literais validos, e adicionar no construtor um laco de override via getenv() com prefixo HABILIDADE_DB_* (mesmo padrao ja usado para $default), para o grupo de producao funcionar sem credencial gravada no arquivo.",
+      "saida_esperada": "Array $habilidade valido, populavel via env HABILIDADE_DB_HOST/PORT/DATABASE/USERNAME/PASSWORD",
+      "depende_de": [1]
+    },
+    {
+      "passo": 3,
+      "tipo": "validacao",
+      "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Config\\Constants.php e Database.php",
+      "motivo": "Confirmar que o boot nao quebra mais e que nao ha erro de sintaxe.",
+      "saida_esperada": "php -r sem fatal error; php -l sem erro de sintaxe em ambos os arquivos",
+      "depende_de": [1, 2]
+    }
+  ],
+  "tipos_suportados": [
+    "leitura_arquivo",
+    "leitura_pasta",
+    "criar_arquivo",
+    "editar_arquivo",
+    "excluir_arquivo",
+    "copiar_arquivo",
+    "mover_arquivo",
+    "renomear_arquivo",
+    "buscar_texto",
+    "executar_bash",
+    "executar_powershell",
+    "consulta_db",
+    "requisicao_http",
+    "validacao",
+    "registrar_log"
+  ]
+}

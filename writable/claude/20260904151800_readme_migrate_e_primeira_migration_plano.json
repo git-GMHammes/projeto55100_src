@@ -1,0 +1,74 @@
+{
+  "plano": {
+    "id": "20260904151800_readme_migrate_e_primeira_migration",
+    "titulo": "Criar README de migrations/spark e rodar a primeira migration",
+    "descricao": "Documentar o uso do CLI spark e do sistema de migrations do CodeIgniter 4 neste projeto (comandos, convencao de nome, tabela de controle, grupo de conexao usado, execucao via Podman), seguindo o processo obrigatorio do ROADMAP_atualiza_readme.md, e rodar 'php spark migrate' pela primeira vez para criar a tabela interna 'migrations'.",
+    "criado_em": "2026-09-04T15:18:00-03:00",
+    "diretorio_base": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\",
+    "contexto": "Usuario pediu para dominar spark/migrate no CodeIgniter 4: (1) gerar README_migrate_database.md e (2) rodar o primeiro migrate que gera a tabela de controle. Confirmado antes de executar que os containers Podman do projeto (codeigniter55100_php, codeigniter55100_mysql, etc.) ja estavam rodando e que a conexao 'default' (corrigida em tarefa anterior) conectava corretamente de dentro do container php.",
+    "criterios_de_sucesso": [
+      "src/markdown/conteudo/README_migrate_database.md criado com back-links, comandos, convencao de nome, grupo de conexao e nota sobre a primeira execucao",
+      "src/markdown/README.md com indice, ranges de faixa e blocos de resumo renumerados corretamente (17 itens -> 18 itens, novo item na posicao 6)",
+      "Tabela 'migrations' existente no banco codeigniter55100_db, criada via 'php spark migrate' dentro do container"
+    ],
+    "rollback": {
+      "estrategia": "reverter_git",
+      "comando": "git checkout -- src/markdown/README.md e remover src/markdown/conteudo/README_migrate_database.md (repositorio git aninhado em src/); tabela migrations pode ser removida com DROP TABLE migrations, se necessario (avisar antes, e destrutivo)"
+    },
+    "riscos": [
+      "Renumeracao de headings/ancoras no README.md e mecanica e sujeita a erro; mitigacao: validacao final via grep confirmando 18 headings numerados 1-18 e ancoras do indice batendo",
+      "Rodar migrate contra o banco errado (fora do container) resultaria em erro de conexao; mitigacao: comando executado explicitamente via 'podman exec codeigniter55100_php', nao no host"
+    ]
+  },
+  "passos": [
+    {
+      "passo": 1,
+      "tipo": "criar_arquivo",
+      "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\markdown\\conteudo\\README_migrate_database.md",
+      "motivo": "Documentar comandos spark/migrate, convencao de nome/timestamp, grupo de conexao e execucao via Podman, seguindo o padrao dos demais documentos de conteudo/.",
+      "saida_esperada": "Arquivo criado com back-links na primeira e ultima linha",
+      "depende_de": []
+    },
+    {
+      "passo": 2,
+      "tipo": "editar_arquivo",
+      "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\markdown\\README.md",
+      "motivo": "Inserir o novo item no indice (posicao 6, faixa 'construir features'), renumerar itens/blocos 6-17 para 7-18 e corrigir a referencia cruzada interna do item Laravel, conforme ROADMAP_atualiza_readme.md.",
+      "saida_esperada": "README.md com 18 itens numerados corretamente, ancoras batendo com os headings",
+      "depende_de": [1]
+    },
+    {
+      "passo": 3,
+      "tipo": "executar_bash",
+      "alvo": "container codeigniter55100_php",
+      "motivo": "Rodar a primeira migration para criar a tabela de controle 'migrations' no banco.",
+      "saida_esperada": "'Migrations complete.' e tabela 'migrations' existente no banco",
+      "depende_de": []
+    },
+    {
+      "passo": 4,
+      "tipo": "consulta_db",
+      "alvo": "codeigniter55100_db.migrations",
+      "motivo": "Confirmar que a tabela foi criada com a estrutura esperada (id, version, class, group, namespace, time, batch).",
+      "saida_esperada": "DESCRIBE migrations retornando as 7 colunas esperadas",
+      "depende_de": [3]
+    }
+  ],
+  "tipos_suportados": [
+    "leitura_arquivo",
+    "leitura_pasta",
+    "criar_arquivo",
+    "editar_arquivo",
+    "excluir_arquivo",
+    "copiar_arquivo",
+    "mover_arquivo",
+    "renomear_arquivo",
+    "buscar_texto",
+    "executar_bash",
+    "executar_powershell",
+    "consulta_db",
+    "requisicao_http",
+    "validacao",
+    "registrar_log"
+  ]
+}

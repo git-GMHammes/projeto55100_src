@@ -1,0 +1,16 @@
+{
+  "acao": {
+    "id": "20260904154703_migrations_grupo_usuario_no2",
+    "plano_referencia": "20260904154703_migrations_grupo_usuario_plano.json",
+    "passo_do_plano": "7-8",
+    "titulo": "Rodar migrate e validar as 4 tabelas no banco",
+    "executado_em": "2026-09-04T15:47:03-03:00",
+    "tipo": "executar_bash",
+    "alvo": "container codeigniter55100_php / codeigniter55100_db",
+    "comando_ou_input": "podman exec codeigniter55100_php php spark migrate; depois podman exec codeigniter55100_mysql mysql ... -e 'SHOW TABLES; DESCRIBE user_manager; DESCRIBE user_credentials; DESCRIBE user_profiles; DESCRIBE user_roles;'",
+    "resultado": "sucesso",
+    "saida_resumo": "'Migrations complete.' com as 4 migrations rodadas na ordem correta. DESCRIBE confirmou estrutura exata: id INT PK auto_increment, created_at/updated_at DATETIME com CURRENT_TIMESTAMP/ON UPDATE CURRENT_TIMESTAMP, deleted_at DATETIME nullable sem default, FKs user_manager_id (chave MUL) em credentials e profiles, unique em username/email/slug.",
+    "arquivos_afetados": [],
+    "observacoes": "Nenhum desvio do especificado pelo usuario."
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "plano": {
+    "id": "20260904143037_migrar_pasta_planos_projeto55100",
+    "titulo": "Migrar pasta de planos do projeto55100 para src/writable/claude",
+    "descricao": "Alterar a regra de fluxo de planejamento em src/CLAUDE.md para que, exclusivamente neste projeto, todos os arquivos de plano (_plano.json, _no_plano.json, sqls, txt e outros artefatos de planejamento) passem a ser gravados em src/writable/claude, em vez da pasta global C:\\laragon\\www\\Claude\\plano.",
+    "criado_em": "2026-09-04T14:30:37-03:00",
+    "diretorio_base": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\",
+    "contexto": "Pedido explícito do usuário: apenas neste projeto, planos/sqls/txt devem ficar em src/writable/claude. Verificado que src/ é um repositório git aninhado próprio; src/.gitignore não ignora writable/claude/* de forma geral (apenas debugbar/cache/logs), então os arquivos poderão ser versionados se desejado. CLAUDE.md em si está no .gitignore do repo aninhado (não versionado).",
+    "criterios_de_sucesso": [
+      "src/writable/claude contém MODELO_plano.json e MODELO_no_plano.json",
+      "src/CLAUDE.md aponta para src/writable/claude em vez de C:\\laragon\\www\\Claude\\plano na seção de fluxo obrigatório"
+    ],
+    "rollback": {
+      "estrategia": "recriar_manualmente",
+      "comando": "Restaurar o texto original da seção FLUXO DE PLANEJAMENTO OBRIGATÓRIO em src/CLAUDE.md (arquivo não versionado neste repo) e remover os MODELOs copiados em src/writable/claude, se necessário."
+    },
+    "riscos": [
+      "src/CLAUDE.md não é versionado pelo git do repo aninhado — não há histórico automático da mudança além deste registro de plano.",
+      "Arquivos de plano dentro do projeto passam a poder ser versionados junto ao código-fonte, diferente da pasta global; mitigação: usuário decide se comita ou não."
+    ]
+  },
+  "passos": [
+    {
+      "passo": 1,
+      "tipo": "copiar_arquivo",
+      "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\writable\\claude\\MODELO_plano.json",
+      "motivo": "Disponibilizar localmente o modelo de _plano.json referenciado pelo novo fluxo do projeto.",
+      "saida_esperada": "Arquivo copiado de C:\\laragon\\www\\Claude\\plano\\MODELO_plano.json",
+      "depende_de": []
+    },
+    {
+      "passo": 2,
+      "tipo": "copiar_arquivo",
+      "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\writable\\claude\\MODELO_no_plano.json",
+      "motivo": "Disponibilizar localmente o modelo de _no_plano.json referenciado pelo novo fluxo do projeto.",
+      "saida_esperada": "Arquivo copiado de C:\\laragon\\www\\Claude\\plano\\MODELO_no_plano.json",
+      "depende_de": []
+    },
+    {
+      "passo": 3,
+      "tipo": "editar_arquivo",
+      "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\CLAUDE.md",
+      "motivo": "Atualizar a seção FLUXO DE PLANEJAMENTO OBRIGATÓRIO para referenciar src/writable/claude em vez da pasta global, deixando explícita a exceção local.",
+      "saida_esperada": "Seção editada com os novos caminhos e nota de exceção à regra global",
+      "depende_de": [1, 2]
+    }
+  ],
+  "tipos_suportados": [
+    "leitura_arquivo",
+    "leitura_pasta",
+    "criar_arquivo",
+    "editar_arquivo",
+    "excluir_arquivo",
+    "copiar_arquivo",
+    "mover_arquivo",
+    "renomear_arquivo",
+    "buscar_texto",
+    "executar_bash",
+    "executar_powershell",
+    "consulta_db",
+    "requisicao_http",
+    "validacao",
+    "registrar_log"
+  ]
+}

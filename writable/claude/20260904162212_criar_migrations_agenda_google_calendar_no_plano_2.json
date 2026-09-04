@@ -1,0 +1,18 @@
+{
+  "acao": {
+    "id": "20260904162212_criar_migrations_agenda_google_calendar_no2",
+    "plano_referencia": "20260904162212_criar_migrations_agenda_google_calendar_plano.json",
+    "passo_do_plano": 2,
+    "titulo": "Criar migration da tabela calendar_events",
+    "executado_em": "2026-09-04T16:22:15-03:00",
+    "tipo": "criar_arquivo",
+    "alvo": "app/Database/Migrations/2026-09-04-162215_CreateCalendarEventsTableMigration.php",
+    "comando_ou_input": "Write do arquivo; php -l para validar sintaxe",
+    "resultado": "sucesso",
+    "saida_resumo": "Tabela 'calendar_events' criada espelhando o recurso Event: calendar_id (FK -> calendars.id, CASCADE), google_event_id (unique), ical_uid, status, summary, description, location, start/end (date, datetime e time_zone separados para suportar evento de dia inteiro vs. com hora), recurrence (RRULE serializado), recurring_event_id (self-FK, SET NULL on delete), sequence, transparency, visibility, color_id, event_type, flags guests_can_*/anyone_can_add_self, html_link, google_created_at/google_updated_at, timestamps locais. php -l sem erros.",
+    "arquivos_afetados": [
+      "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Database\\Migrations\\2026-09-04-162215_CreateCalendarEventsTableMigration.php"
+    ],
+    "observacoes": "FK self-referenciada (recurring_event_id -> calendar_events.id) definida na mesma CREATE TABLE; suportado pelo InnoDB pois a coluna ja e conhecida no momento da criacao."
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "plano": {
+    "id": "20260904144828_default_recebe_env_docker",
+    "titulo": "Fazer public array $default de Database.php receber env do Docker",
+    "descricao": "O grupo de conexao 'default' (defaultGroup='default', o realmente usado pela aplicacao) nao recebia o override de variaveis de ambiente do container php (DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD). O override no construtor de Database.php aplicava essas variaveis apenas em $this->codeigniter55100_mysql, grupo que nunca e selecionado por padrao. Corrigir o laco do construtor para escrever em $this->default.",
+    "criado_em": "2026-09-04T14:48:28-03:00",
+    "diretorio_base": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Config\\",
+    "contexto": "Usuario testou as credenciais em docker-compose.yml e confirmou que o isolamento de environments esta correto e nunca vai para producao. Pediu para o array $default passar a receber os environments do Docker. Decisao tomada (usuario respondeu 'Sim' sem detalhar a sub-pergunta): manter o array $codeigniter55100_mysql como esta, sem remove-lo, apenas parando de sobrescreve-lo -- opcao mais conservadora, alinhada ao principio de nao alterar mais do que o necessario.",
+    "criterios_de_sucesso": [
+      "O laco de override no construtor de Database.php escreve em $this->default em vez de $this->codeigniter55100_mysql",
+      "Sem as env vars do Docker (execucao local fora do container), $default mantem os valores locais (localhost, usuario/senha vazios)",
+      "Nenhuma credencial em texto puro é adicionada ao arquivo",
+      "Array $codeigniter55100_mysql permanece no arquivo, apenas sem receber mais o override"
+    ],
+    "rollback": {
+      "estrategia": "reverter_git",
+      "comando": "git checkout -- src/app/Config/Database.php (dentro do repositorio git aninhado em src/), caso o arquivo esteja versionado"
+    },
+    "riscos": [
+      "Se algum outro codigo do projeto selecionar explicitamente o grupo 'codeigniter55100_mysql' esperando receber as credenciais do Docker, essa selecao para de funcionar; mitigacao: nao foi encontrada referencia a esse grupo fora de Database.php"
+    ]
+  },
+  "passos": [
+    {
+      "passo": 1,
+      "tipo": "editar_arquivo",
+      "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Config\\Database.php",
+      "motivo": "Retargetar o laco de override de env do Docker no construtor de $this->codeigniter55100_mysql para $this->default, para que o grupo de conexao efetivamente usado pela aplicacao (defaultGroup='default') receba as credenciais do container php.",
+      "saida_esperada": "Bloco 'Docker: sobrescreve as credenciais locais...' do construtor passa a escrever em $this->default[$key]",
+      "depende_de": []
+    }
+  ],
+  "tipos_suportados": [
+    "leitura_arquivo",
+    "leitura_pasta",
+    "criar_arquivo",
+    "editar_arquivo",
+    "excluir_arquivo",
+    "copiar_arquivo",
+    "mover_arquivo",
+    "renomear_arquivo",
+    "buscar_texto",
+    "executar_bash",
+    "executar_powershell",
+    "consulta_db",
+    "requisicao_http",
+    "validacao",
+    "registrar_log"
+  ]
+}

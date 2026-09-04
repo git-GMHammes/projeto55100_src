@@ -1,0 +1,18 @@
+{
+  "acao": {
+    "id": "20260904143037_migrar_pasta_planos_projeto55100_no2",
+    "plano_referencia": "20260904143037_migrar_pasta_planos_projeto55100_plano.json",
+    "passo_do_plano": 2,
+    "titulo": "Copiar MODELO_no_plano.json para src/writable/claude",
+    "executado_em": "2026-09-04T14:30:37-03:00",
+    "tipo": "copiar_arquivo",
+    "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\writable\\claude\\MODELO_no_plano.json",
+    "comando_ou_input": "cp \"C:\\laragon\\www\\Claude\\plano\\MODELO_no_plano.json\" \"C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\writable\\claude\\MODELO_no_plano.json\"",
+    "resultado": "sucesso",
+    "saida_resumo": "Modelo de ação executada disponível localmente no novo diretório do projeto.",
+    "arquivos_afetados": [
+      "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\writable\\claude\\MODELO_no_plano.json"
+    ],
+    "observacoes": "Nenhum desvio."
+  }
+}

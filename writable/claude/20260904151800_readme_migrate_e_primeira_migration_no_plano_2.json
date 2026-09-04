@@ -1,0 +1,18 @@
+{
+  "acao": {
+    "id": "20260904151800_readme_migrate_e_primeira_migration_no2",
+    "plano_referencia": "20260904151800_readme_migrate_e_primeira_migration_plano.json",
+    "passo_do_plano": 2,
+    "titulo": "Inserir item 6 no indice e renumerar README.md (17 -> 18 itens)",
+    "executado_em": "2026-09-04T15:18:00-03:00",
+    "tipo": "editar_arquivo",
+    "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\markdown\\README.md",
+    "comando_ou_input": "Atualizados os ranges de faixa em 'Ordem de leitura'; lista numerada do Indice reescrita com 18 itens; inserido novo bloco de resumo '### 6. Migrations e CLI Spark (CodeIgniter 4)' apos o item 5; headings ### 6-17 antigos renomeados para ### 7-18; corrigida a referencia cruzada interna do item Laravel (antigo #16 -> novo #17).",
+    "resultado": "sucesso",
+    "saida_resumo": "README.md com 18 headings numerados 1-18 e ancoras do indice batendo, confirmado via grep (18 '### ' headings, 18 itens na lista numerada).",
+    "arquivos_afetados": [
+      "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\markdown\\README.md"
+    ],
+    "observacoes": "Nenhum desvio."
+  }
+}

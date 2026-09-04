@@ -1,0 +1,49 @@
+{
+  "plano": {
+    "id": "AAAAMMDDHHMMSS_titulo",
+    "titulo": "Título legível da tarefa",
+    "descricao": "Descrição detalhada do que será feito e por quê.",
+    "criado_em": "AAAA-MM-DDTHH:MM:SS-03:00",
+    "diretorio_base": "C:\\caminho\\base\\",
+    "contexto": "Contexto relevante: motivação, restrições, observações.",
+    "criterios_de_sucesso": [
+      "Critério objetivo 1",
+      "Critério objetivo 2"
+    ],
+    "rollback": {
+      "estrategia": "restaurar_backup | reverter_git | recriar_manualmente | nao_aplicavel",
+      "comando": "comando específico para reverter, se aplicável"
+    },
+    "riscos": [
+      "Risco 1 e mitigação",
+      "Risco 2 e mitigação"
+    ]
+  },
+  "passos": [
+    {
+      "passo": 1,
+      "tipo": "criar_arquivo",
+      "alvo": "C:\\caminho\\absoluto\\do\\alvo",
+      "motivo": "Por que este passo é necessário.",
+      "saida_esperada": "descrição do resultado esperado",
+      "depende_de": []
+    }
+  ],
+  "tipos_suportados": [
+    "leitura_arquivo",
+    "leitura_pasta",
+    "criar_arquivo",
+    "editar_arquivo",
+    "excluir_arquivo",
+    "copiar_arquivo",
+    "mover_arquivo",
+    "renomear_arquivo",
+    "buscar_texto",
+    "executar_bash",
+    "executar_powershell",
+    "consulta_db",
+    "requisicao_http",
+    "validacao",
+    "registrar_log"
+  ]
+}

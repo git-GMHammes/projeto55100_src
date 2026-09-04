@@ -1,0 +1,18 @@
+{
+  "acao": {
+    "id": "20260904144828_default_recebe_env_docker_no1",
+    "plano_referencia": "20260904144828_default_recebe_env_docker_plano.json",
+    "passo_do_plano": 1,
+    "titulo": "Retargetar override de env do Docker para $this->default",
+    "executado_em": "2026-09-04T14:48:28-03:00",
+    "tipo": "editar_arquivo",
+    "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Config\\Database.php",
+    "comando_ou_input": "No foreach do construtor, trocado '$this->codeigniter55100_mysql[$key] = ...' por '$this->default[$key] = ...'",
+    "resultado": "sucesso",
+    "saida_resumo": "O grupo 'default' (defaultGroup='default', o que a aplicacao efetivamente usa) agora recebe hostname/port/database/username/password das variaveis DB_HOST/DB_PORT/DB_DATABASE/DB_USERNAME/DB_PASSWORD do container php quando presentes. 'php -l' confirmou ausencia de erro de sintaxe apos a edicao. Array $codeigniter55100_mysql mantido no arquivo, apenas sem receber mais o override (decisao conservadora diante da resposta 'Sim' sem detalhamento da sub-pergunta).",
+    "arquivos_afetados": [
+      "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Config\\Database.php"
+    ],
+    "observacoes": "Achado fora do escopo, nao corrigido: o array public array $habilidade (linhas 59-84) tem valores sem aspas (ex.: D7E6F5A4B3C2D1E0F9G8H7I6J5K4L3M2), invalidos como string em PHP -- geram erro fatal 'Undefined constant' se esse grupo de conexao for usado. Sinalizado ao usuario, aguardando decisao."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "acao": {
+    "id": "20260904160047_corrigir_id_bigint_no2",
+    "plano_referencia": "20260904160047_corrigir_id_bigint_plano.json",
+    "passo_do_plano": 5,
+    "titulo": "Corrigir documentacao da convencao padrao para BIGINT",
+    "executado_em": "2026-09-04T16:00:47-03:00",
+    "tipo": "editar_arquivo",
+    "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\markdown\\conteudo\\README_migrate_database.md",
+    "comando_ou_input": "Secao 6 (Convencao de colunas padrao): exemplo de codigo trocado de INT para BIGINT, e adicionada nota de que colunas de FK que referenciam id devem ser BIGINT tambem.",
+    "resultado": "sucesso",
+    "saida_resumo": "Documentacao corrigida para refletir o requisito real (BIGINT), evitando repetir o erro em futuras migrations.",
+    "arquivos_afetados": [
+      "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\markdown\\conteudo\\README_migrate_database.md"
+    ],
+    "observacoes": "Nenhum desvio."
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "acao": {
+    "id": "20260904155605_corrigir_grupo_usuario_fusao_manager_no1",
+    "plano_referencia": "20260904155605_corrigir_grupo_usuario_fusao_manager_plano.json",
+    "passo_do_plano": "1-4",
+    "titulo": "Gerar e implementar as 3 migrations corrigidas",
+    "executado_em": "2026-09-04T15:56:05-03:00",
+    "tipo": "editar_arquivo",
+    "alvo": "app/Database/Migrations/2026-09-04-185437_CreateUserManagerTableMigration.php, 2026-09-04-185440_CreateUserProfilesTableMigration.php, 2026-09-04-185442_CreateUserRolesTableMigration.php",
+    "comando_ou_input": "spark make:migration para as 3, depois Edit implementando up()/down(). user_manager agora com username/password_hash/token/status/last_login_at (fusao do antigo user_manager+user_credentials). user_profiles ganhou o campo uuid (varchar 50 nullable) que antes estava em user_manager. user_roles reimplementada identica a versao anterior.",
+    "resultado": "sucesso",
+    "saida_resumo": "php -l sem erro nos 3 arquivos.",
+    "arquivos_afetados": [
+      "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Database\\Migrations\\2026-09-04-185437_CreateUserManagerTableMigration.php",
+      "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Database\\Migrations\\2026-09-04-185440_CreateUserProfilesTableMigration.php",
+      "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Database\\Migrations\\2026-09-04-185442_CreateUserRolesTableMigration.php"
+    ],
+    "observacoes": "Usuario ja havia dropado as 4 tabelas antigas e apagado os 4 arquivos de migration anteriores antes desta execucao (confirmado via SHOW TABLES retornando so 'migrations', e pasta Migrations/ vazia)."
+  }
+}

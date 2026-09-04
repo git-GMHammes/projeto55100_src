@@ -1,0 +1,16 @@
+{
+  "acao": {
+    "id": "20260904151800_readme_migrate_e_primeira_migration_no3",
+    "plano_referencia": "20260904151800_readme_migrate_e_primeira_migration_plano.json",
+    "passo_do_plano": 3,
+    "titulo": "Rodar php spark migrate dentro do container",
+    "executado_em": "2026-09-04T15:18:00-03:00",
+    "tipo": "executar_bash",
+    "alvo": "container codeigniter55100_php",
+    "comando_ou_input": "podman exec codeigniter55100_php php spark migrate",
+    "resultado": "sucesso",
+    "saida_resumo": "'Running all new migrations...' / 'Migrations complete.' Sem migrations de negocio para rodar (pasta vazia), mas o MigrationRunner criou a tabela de controle.",
+    "arquivos_afetados": [],
+    "observacoes": "Aviso 'PCNTL extension not available. Signal handling disabled.' e apenas informativo, nao afeta o resultado."
+  }
+}

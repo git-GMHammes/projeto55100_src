@@ -1,0 +1,18 @@
+{
+  "acao": {
+    "id": "20260904154703_migrations_grupo_usuario_no3",
+    "plano_referencia": "20260904154703_migrations_grupo_usuario_plano.json",
+    "passo_do_plano": 9,
+    "titulo": "Documentar convencao de colunas e o grupo de tabelas no README",
+    "executado_em": "2026-09-04T15:47:03-03:00",
+    "tipo": "editar_arquivo",
+    "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\markdown\\conteudo\\README_migrate_database.md",
+    "comando_ou_input": "Adicionadas as secoes '6. Convencao de colunas padrao' (id/created_at/updated_at/deleted_at, com trecho de codigo Forge/RawSql) e '7. Exemplo real: grupo de tabelas de usuario' (as 4 tabelas, ordem de dependencia, nomes de arquivo, observacao em aberto sobre vinculo user_roles<->usuario).",
+    "resultado": "sucesso",
+    "saida_resumo": "Documento atualizado conforme pedido explicito do usuario ('Isso deve ser explicito no README_migrate_database.md').",
+    "arquivos_afetados": [
+      "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\markdown\\conteudo\\README_migrate_database.md"
+    ],
+    "observacoes": "Nao foi necessario atualizar o indice do README.md principal, pois o item 6 (Migrations e CLI Spark) ja existia e aponta para este mesmo arquivo -- so o conteudo interno do .md mudou."
+  }
+}

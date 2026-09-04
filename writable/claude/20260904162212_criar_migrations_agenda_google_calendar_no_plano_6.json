@@ -1,0 +1,18 @@
+{
+  "acao": {
+    "id": "20260904162212_criar_migrations_agenda_google_calendar_no6",
+    "plano_referencia": "20260904162212_criar_migrations_agenda_google_calendar_plano.json",
+    "passo_do_plano": 6,
+    "titulo": "Criar migration da tabela calendar_event_extended_properties",
+    "executado_em": "2026-09-04T16:22:27-03:00",
+    "tipo": "criar_arquivo",
+    "alvo": "app/Database/Migrations/2026-09-04-162227_CreateCalendarEventExtendedPropertiesTableMigration.php",
+    "comando_ou_input": "Write do arquivo; php -l para validar sintaxe",
+    "resultado": "sucesso",
+    "saida_resumo": "Tabela 'calendar_event_extended_properties' criada espelhando Event.extendedProperties.private/shared: calendar_event_id (FK CASCADE), scope (enum private/shared), property_key, property_value, timestamps. php -l sem erros. Plano concluido: 6/6 migrations criadas, nenhuma aplicada ao banco.",
+    "arquivos_afetados": [
+      "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Database\\Migrations\\2026-09-04-162227_CreateCalendarEventExtendedPropertiesTableMigration.php"
+    ],
+    "observacoes": "Modelado como pares chave/valor (EAV) em vez de colunas fixas, pois extendedProperties na API do Google e um mapa arbitrario string->string, sem schema fixo."
+  }
+}

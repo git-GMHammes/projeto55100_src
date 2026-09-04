@@ -1,0 +1,92 @@
+{
+  "plano": {
+    "id": "20260904162212_criar_migrations_agenda_google_calendar",
+    "titulo": "Criar migrations de agenda offline compativel com Google Calendar API",
+    "descricao": "Usuario esta criando um grupo de tabelas offline que no futuro precisa ser compativel com o Google Agenda (Google Calendar API v3). Criar 6 migrations que espelham os recursos 'Calendar' e 'Event' (e sub-entidades attendees, reminders, attachments, extendedProperties) da API oficial, com nomes de tabela e coluna em ingles identicos aos termos da API, para que a sincronizacao futura seja um mapeamento direto de campos sem redesenho de schema. Escopo aprovado pelo usuario apos confirmacao verbal do plano com as 6 tabelas listadas.",
+    "criado_em": "2026-09-04T16:22:12-03:00",
+    "diretorio_base": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Database\\Migrations\\",
+    "contexto": "Projeto55100 (Registro e Calculo de Diarias), backend CodeIgniter 4. Nenhuma tabela de agenda/evento existia antes. Convencao do projeto: migrations via Forge (nao SQL puro), PK/FK sempre BIGINT sem unsigned, utf8mb4, timestamps created_at/updated_at (RawSql CURRENT_TIMESTAMP) e deleted_at nullable para soft delete via Model. Escopo explicitamente fora desta tarefa: conferenceData (Meet/Zoom), ACL e Settings da API do Google -- ficam para uma etapa futura se necessario.",
+    "criterios_de_sucesso": [
+      "6 arquivos de migration criados em src/app/Database/Migrations/, um por tabela, seguindo o estilo de CreateUserManagerTableMigration.php",
+      "Nomes de tabela e coluna em ingles, espelhando os campos oficiais da Google Calendar API (Calendar e Event resources)",
+      "id BIGINT auto_increment em todas as tabelas; toda FK BIGINT sem unsigned batendo o tipo da coluna referenciada",
+      "Ordem de criacao respeita dependencia de FK (calendars antes de calendar_events; calendar_events antes das 4 tabelas filhas)",
+      "Nenhum arquivo existente alterado; nenhuma migration executada contra o banco nesta tarefa"
+    ],
+    "rollback": {
+      "estrategia": "reverter_git",
+      "comando": "Remover os 6 arquivos novos em src/app/Database/Migrations/ (nao rastreados no git, git clean -n para conferir antes) -- nenhuma migration foi aplicada ao banco, entao nao ha necessidade de spark migrate:rollback"
+    },
+    "riscos": [
+      "Nomenclatura de ENUM (ex.: eventType, status) pode nao cobrir 100% dos valores que a Google API aceitar no futuro -- mitigado mantendo ENUMs com os valores documentados oficialmente hoje, ajustavel via migration futura se a API mudar",
+      "Tabelas de agenda ainda nao se relacionam com nenhuma tabela de dominio existente (diarias) -- essa integracao fica para uma tarefa futura, fora deste escopo"
+    ]
+  },
+  "passos": [
+    {
+      "passo": 1,
+      "tipo": "criar_arquivo",
+      "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Database\\Migrations\\2026-09-04-162212_CreateCalendarsTableMigration.php",
+      "motivo": "Espelhar o recurso 'Calendar' da Google Calendar API. Precisa existir antes de calendar_events por causa da FK calendar_id.",
+      "saida_esperada": "Classe CreateCalendarsTableMigration valida, tabela 'calendars' com id BIGINT PK e colunas do recurso Calendar",
+      "depende_de": []
+    },
+    {
+      "passo": 2,
+      "tipo": "criar_arquivo",
+      "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Database\\Migrations\\2026-09-04-162215_CreateCalendarEventsTableMigration.php",
+      "motivo": "Espelhar o recurso 'Event' da Google Calendar API, com FK para calendars e self-reference para recurring_event_id.",
+      "saida_esperada": "Classe CreateCalendarEventsTableMigration valida, tabela 'calendar_events' com FK calendar_id -> calendars.id",
+      "depende_de": [1]
+    },
+    {
+      "passo": 3,
+      "tipo": "criar_arquivo",
+      "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Database\\Migrations\\2026-09-04-162218_CreateCalendarEventAttendeesTableMigration.php",
+      "motivo": "Espelhar Event.attendees[].",
+      "saida_esperada": "Tabela 'calendar_event_attendees' com FK calendar_event_id -> calendar_events.id",
+      "depende_de": [2]
+    },
+    {
+      "passo": 4,
+      "tipo": "criar_arquivo",
+      "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Database\\Migrations\\2026-09-04-162221_CreateCalendarEventRemindersTableMigration.php",
+      "motivo": "Espelhar Event.reminders.overrides[].",
+      "saida_esperada": "Tabela 'calendar_event_reminders' com FK calendar_event_id -> calendar_events.id",
+      "depende_de": [2]
+    },
+    {
+      "passo": 5,
+      "tipo": "criar_arquivo",
+      "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Database\\Migrations\\2026-09-04-162224_CreateCalendarEventAttachmentsTableMigration.php",
+      "motivo": "Espelhar Event.attachments[].",
+      "saida_esperada": "Tabela 'calendar_event_attachments' com FK calendar_event_id -> calendar_events.id",
+      "depende_de": [2]
+    },
+    {
+      "passo": 6,
+      "tipo": "criar_arquivo",
+      "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Database\\Migrations\\2026-09-04-162227_CreateCalendarEventExtendedPropertiesTableMigration.php",
+      "motivo": "Espelhar Event.extendedProperties.private/shared.",
+      "saida_esperada": "Tabela 'calendar_event_extended_properties' com FK calendar_event_id -> calendar_events.id",
+      "depende_de": [2]
+    }
+  ],
+  "tipos_suportados": [
+    "leitura_arquivo",
+    "leitura_pasta",
+    "criar_arquivo",
+    "editar_arquivo",
+    "excluir_arquivo",
+    "copiar_arquivo",
+    "mover_arquivo",
+    "renomear_arquivo",
+    "buscar_texto",
+    "executar_bash",
+    "executar_powershell",
+    "consulta_db",
+    "requisicao_http",
+    "validacao",
+    "registrar_log"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "acao": {
+    "id": "20260904145339_corrigir_boot_constants_habilidade_no1",
+    "plano_referencia": "20260904145339_corrigir_boot_constants_habilidade_plano.json",
+    "passo_do_plano": 1,
+    "titulo": "Remover require_once quebrados e funcao Beschermd de Constants.php",
+    "executado_em": "2026-09-04T14:53:39-03:00",
+    "tipo": "editar_arquivo",
+    "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Config\\Constants.php",
+    "comando_ou_input": "Removidas as linhas require_once dirname(__DIR__, 2) . base64_decode('...Jugwoko.php') e require_once dirname(__DIR__, 2) . Beschermd('...Puipuia.php'), e a funcao Beschermd() (o usuario havia tentado neutraliza-la manualmente pelo IDE, chegando a um estado com 'public function' fora de classe, invalido em PHP -- corrigido junto).",
+    "resultado": "sucesso",
+    "saida_resumo": "Constants.php nao gera mais Fatal Error ao ser carregado. Teste direto via 'php -r' confirmou DB_GROUP_001 definido corretamente (codeigniter55100_mysql fora de habilidade.com).",
+    "arquivos_afetados": [
+      "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Config\\Constants.php"
+    ],
+    "observacoes": "Arquivo estava sendo editado ao vivo pelo usuario no IDE durante a execucao; foi necessario reler antes de aplicar o Edit por conflito de versao."
+  }
+}

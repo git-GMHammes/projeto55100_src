@@ -1,0 +1,16 @@
+{
+  "acao": {
+    "id": "20260904151800_readme_migrate_e_primeira_migration_no4",
+    "plano_referencia": "20260904151800_readme_migrate_e_primeira_migration_plano.json",
+    "passo_do_plano": 4,
+    "titulo": "Validar tabela migrations no banco",
+    "executado_em": "2026-09-04T15:18:00-03:00",
+    "tipo": "consulta_db",
+    "alvo": "codeigniter55100_db.migrations",
+    "comando_ou_input": "podman exec codeigniter55100_mysql mysql -ucodeigniter55100_user -p*** codeigniter55100_db -e \"SHOW TABLES LIKE 'migrations'; DESCRIBE migrations;\"",
+    "resultado": "sucesso",
+    "saida_resumo": "Tabela 'migrations' existe com as 7 colunas esperadas (id, version, class, group, namespace, time, batch).",
+    "arquivos_afetados": [],
+    "observacoes": "Consulta somente leitura (SHOW/DESCRIBE), nenhuma alteracao de dados."
+  }
+}

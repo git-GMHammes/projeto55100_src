@@ -1,0 +1,18 @@
+{
+  "acao": {
+    "id": "20260904143037_migrar_pasta_planos_projeto55100_no3",
+    "plano_referencia": "20260904143037_migrar_pasta_planos_projeto55100_plano.json",
+    "passo_do_plano": 3,
+    "titulo": "Atualizar seção FLUXO DE PLANEJAMENTO OBRIGATÓRIO em src/CLAUDE.md",
+    "executado_em": "2026-09-04T14:30:37-03:00",
+    "tipo": "editar_arquivo",
+    "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\CLAUDE.md",
+    "comando_ou_input": "Substituição dos caminhos C:\\laragon\\www\\Claude\\plano\\... por C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\writable\\claude\\... na seção de fluxo obrigatório, com nota explícita de exceção local à regra global.",
+    "resultado": "sucesso",
+    "saida_resumo": "A partir de agora, planos, sqls, txt e demais artefatos de planejamento deste projeto são criados em src/writable/claude, não mais na pasta global.",
+    "arquivos_afetados": [
+      "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\CLAUDE.md"
+    ],
+    "observacoes": "src/CLAUDE.md está listado no .gitignore do repositório git aninhado em src/, portanto esta edição não gera commit automático."
+  }
+}

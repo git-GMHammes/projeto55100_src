@@ -1,0 +1,65 @@
+{
+  "plano": {
+    "id": "20260904162807_corrigir_indice_google_event_id",
+    "titulo": "Corrigir tamanho da chave unica google_event_id e aplicar migrations pendentes da agenda",
+    "descricao": "Ao rodar 'spark migrate', apenas CreateCalendarsTableMigration foi aplicada (batch 2); as outras 5 migrations da agenda Google Calendar nao rodaram porque CreateCalendarEventsTableMigration falhou com 'Specified key was too long; max key length is 3072 bytes'. Causa raiz: addUniqueKey('google_event_id') sobre VARCHAR(1024) com utf8mb4 gera indice de 4096 bytes, acima do limite de 3072 bytes do InnoDB. Corrigir reduzindo a coluna para VARCHAR(512) (2048 bytes, dentro do limite) e reaplicar as migrations pendentes.",
+    "criado_em": "2026-09-04T16:28:07-03:00",
+    "diretorio_base": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Database\\Migrations\\",
+    "contexto": "Erro descoberto pelo usuario ao conferir no HeidiSQL que so a tabela 'calendars' existia. Confirmado via 'spark migrate:status' (so calendars com batch 2) e 'spark migrate' repetido (capturou o erro mysqli_sql_exception). Nenhum dado real em nenhuma tabela nova, sem risco de perda.",
+    "criterios_de_sucesso": [
+      "google_event_id em calendar_events como VARCHAR(512)",
+      "spark migrate:status mostra as 6 migrations da agenda com batch e data preenchidos, sem '---'",
+      "As 6 tabelas visiveis no banco: calendars, calendar_events, calendar_event_attendees, calendar_event_reminders, calendar_event_attachments, calendar_event_extended_properties"
+    ],
+    "rollback": {
+      "estrategia": "reverter_git",
+      "comando": "podman exec codeigniter55100_php php spark migrate:rollback -f (remove o batch aplicado nesta correcao); reverter o arquivo da migration via git checkout se necessario"
+    },
+    "riscos": [
+      "Nenhum dado real existe nas tabelas novas, rollback sem perda"
+    ]
+  },
+  "passos": [
+    {
+      "passo": 1,
+      "tipo": "editar_arquivo",
+      "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Database\\Migrations\\2026-09-04-162215_CreateCalendarEventsTableMigration.php",
+      "motivo": "Reduzir constraint de google_event_id de 1024 para 512 para o indice unico caber no limite de 3072 bytes do InnoDB com utf8mb4.",
+      "saida_esperada": "Coluna google_event_id com constraint 512",
+      "depende_de": []
+    },
+    {
+      "passo": 2,
+      "tipo": "executar_bash",
+      "alvo": "container codeigniter55100_php",
+      "motivo": "Aplicar as 5 migrations pendentes (calendars ja esta migrada).",
+      "saida_esperada": "'Migrations complete.' sem erro",
+      "depende_de": [1]
+    },
+    {
+      "passo": 3,
+      "tipo": "executar_bash",
+      "alvo": "container codeigniter55100_php",
+      "motivo": "Confirmar via migrate:status que as 6 migrations estao aplicadas.",
+      "saida_esperada": "6 linhas da agenda com batch/data preenchidos",
+      "depende_de": [2]
+    }
+  ],
+  "tipos_suportados": [
+    "leitura_arquivo",
+    "leitura_pasta",
+    "criar_arquivo",
+    "editar_arquivo",
+    "excluir_arquivo",
+    "copiar_arquivo",
+    "mover_arquivo",
+    "renomear_arquivo",
+    "buscar_texto",
+    "executar_bash",
+    "executar_powershell",
+    "consulta_db",
+    "requisicao_http",
+    "validacao",
+    "registrar_log"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "acao": {
+    "id": "20260904160047_corrigir_id_bigint_no1",
+    "plano_referencia": "20260904160047_corrigir_id_bigint_plano.json",
+    "passo_do_plano": "1-4",
+    "titulo": "Rollback, corrigir para BIGINT, re-rodar e validar",
+    "executado_em": "2026-09-04T16:00:47-03:00",
+    "tipo": "editar_arquivo",
+    "alvo": "app/Database/Migrations/2026-09-04-185437/40/42_*.php",
+    "comando_ou_input": "podman exec codeigniter55100_php php spark migrate:rollback -f; Edit trocando 'type' => 'INT' por 'BIGINT' em id (3 arquivos) e em user_manager_id (user_profiles); podman exec codeigniter55100_php php spark migrate; DESCRIBE nas 3 tabelas.",
+    "resultado": "sucesso",
+    "saida_resumo": "Rollback removeu as 3 tabelas. Migrations reaplicadas com sucesso. DESCRIBE confirmou 'id' e 'user_manager_id' como bigint nas 3 tabelas.",
+    "arquivos_afetados": [
+      "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Database\\Migrations\\2026-09-04-185437_CreateUserManagerTableMigration.php",
+      "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Database\\Migrations\\2026-09-04-185440_CreateUserProfilesTableMigration.php",
+      "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Database\\Migrations\\2026-09-04-185442_CreateUserRolesTableMigration.php"
+    ],
+    "observacoes": "Rollback exigiu a flag -f (forcar) pois o prompt de confirmacao interativo do spark falha em execucao nao interativa via podman exec."
+  }
+}

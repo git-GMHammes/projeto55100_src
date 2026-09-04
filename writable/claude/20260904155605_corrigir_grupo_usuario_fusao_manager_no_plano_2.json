@@ -1,0 +1,16 @@
+{
+  "acao": {
+    "id": "20260904155605_corrigir_grupo_usuario_fusao_manager_no2",
+    "plano_referencia": "20260904155605_corrigir_grupo_usuario_fusao_manager_plano.json",
+    "passo_do_plano": "5-6",
+    "titulo": "Rodar migrate e validar as 3 tabelas corrigidas",
+    "executado_em": "2026-09-04T15:56:05-03:00",
+    "tipo": "executar_bash",
+    "alvo": "container codeigniter55100_php / codeigniter55100_db",
+    "comando_ou_input": "podman exec codeigniter55100_php php spark migrate; DESCRIBE user_manager/user_profiles/user_roles",
+    "resultado": "sucesso",
+    "saida_resumo": "'Migrations complete.' com as 3 migrations rodadas. DESCRIBE confirmou: user_manager sem uuid (username/password_hash/token/status/last_login_at presentes), user_profiles com uuid varchar(50) nullable presente, user_roles identica a versao anterior.",
+    "arquivos_afetados": [],
+    "observacoes": "Nenhum desvio."
+  }
+}

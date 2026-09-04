@@ -1,0 +1,18 @@
+{
+  "acao": {
+    "id": "20260904162807_corrigir_indice_google_event_id_no1",
+    "plano_referencia": "20260904162807_corrigir_indice_google_event_id_plano.json",
+    "passo_do_plano": "1-3",
+    "titulo": "Reduzir google_event_id para VARCHAR(512), reaplicar migrations e validar status",
+    "executado_em": "2026-09-04T16:28:07-03:00",
+    "tipo": "editar_arquivo",
+    "alvo": "app/Database/Migrations/2026-09-04-162215_CreateCalendarEventsTableMigration.php",
+    "comando_ou_input": "Edit trocando constraint de google_event_id de 1024 para 512; php -l; podman exec codeigniter55100_php php spark migrate; podman exec codeigniter55100_php php spark migrate:status",
+    "resultado": "sucesso",
+    "saida_resumo": "As 5 migrations pendentes (calendar_events, calendar_event_attendees, calendar_event_reminders, calendar_event_attachments, calendar_event_extended_properties) rodaram sem erro no batch 3. migrate:status confirma as 6 migrations da agenda com batch e data preenchidos (calendars batch 2, as outras 5 batch 3).",
+    "arquivos_afetados": [
+      "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Database\\Migrations\\2026-09-04-162215_CreateCalendarEventsTableMigration.php"
+    ],
+    "observacoes": "Causa raiz do erro anterior: indice unico sobre VARCHAR(1024) em utf8mb4 gera 4096 bytes, acima do limite de 3072 bytes do InnoDB. Corrigido para VARCHAR(512) (2048 bytes). Plano concluido, todas as 6 tabelas da agenda existem no banco."
+  }
+}

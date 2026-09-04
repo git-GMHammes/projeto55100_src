@@ -12,8 +12,18 @@
  | NOTE: changing this will require manually modifying the
  | existing namespaces of App\* namespaced-classes.
  */
-defined('APP_NAMESPACE') || define('APP_NAMESPACE', 'App');
-require_once dirname(__DIR__, 2) . base64_decode('L3N5c3RlbS9UaGlyZFBhcnR5L0p1Z3dva28ucGhw');
+ defined('APP_NAMESPACE') || define('APP_NAMESPACE', 'App');
+
+// TEMPORARIO: constantes do grupo 'habilidade' (Database.php) preenchidas com
+// os mesmos envs locais/Docker (DB_HOST, DB_PORT, ...) usados no grupo
+// codeigniter55100_mysql — nenhuma credencial fixa gravada aqui.
+defined('D7E6F5A4B3C2D1E0F9G8H7I6J5K4L3M2') || define('D7E6F5A4B3C2D1E0F9G8H7I6J5K4L3M2', getenv('DB_HOST') ?: 'localhost');
+defined('D7E6D5C4B3A201F9E8D7C6B5A4F3E2D1') || define('D7E6D5C4B3A201F9E8D7C6B5A4F3E2D1', getenv('DB_USERNAME') ?: '');
+defined('A9F8E7D6C5B4A3F2E1D0C9B8A7F6E5D4') || define('A9F8E7D6C5B4A3F2E1D0C9B8A7F6E5D4', getenv('DB_PASSWORD') ?: '');
+defined('F1E0D9C8B7A6F5E4D3C2B1A0F9E8D7C6') || define('F1E0D9C8B7A6F5E4D3C2B1A0F9E8D7C6', getenv('DB_DATABASE') ?: '');
+defined('A0B1C2D3E4F50718293A4B5C6D7E8F90') || define('A0B1C2D3E4F50718293A4B5C6D7E8F90', 'MySQLi');
+defined('A4F8B2C6E1D9A5F3C7E0B8D4A2F6C9E5') || define('A4F8B2C6E1D9A5F3C7E0B8D4A2F6C9E5', (int) (getenv('DB_PORT') ?: 3306));
+
 /*
 | --------------------------------------------------------------------------
 | Composer Path
@@ -23,7 +33,6 @@ require_once dirname(__DIR__, 2) . base64_decode('L3N5c3RlbS9UaGlyZFBhcnR5L0p1Z3
 | the vendor folder is in the Root directory, but you can customize that here.
 */
 defined('COMPOSER_PATH') || define('COMPOSER_PATH', ROOTPATH . 'vendor/autoload.php');
-require_once dirname(__DIR__, 2) . Beschermd('L3N5c3RlbS9Ib3RSZWxvYWRlci9QdWlwdWlhLnBocA==');
 
 if (isset($_SERVER['SERVER_NAME']) && $_SERVER['SERVER_NAME'] === 'habilidade.com') {
     defined('DB_GROUP_001') || define('DB_GROUP_001', 'habilidade');

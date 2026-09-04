@@ -1,0 +1,18 @@
+{
+  "acao": {
+    "id": "20260904162212_criar_migrations_agenda_google_calendar_no1",
+    "plano_referencia": "20260904162212_criar_migrations_agenda_google_calendar_plano.json",
+    "passo_do_plano": 1,
+    "titulo": "Criar migration da tabela calendars",
+    "executado_em": "2026-09-04T16:22:12-03:00",
+    "tipo": "criar_arquivo",
+    "alvo": "app/Database/Migrations/2026-09-04-162212_CreateCalendarsTableMigration.php",
+    "comando_ou_input": "Write do arquivo; php -l para validar sintaxe",
+    "resultado": "sucesso",
+    "saida_resumo": "Tabela 'calendars' criada espelhando o recurso Calendar da Google Calendar API: google_calendar_id (unique, nullable), summary, description, time_zone, location, background_color/foreground_color, access_role (enum), is_primary, status, timestamps padrao do projeto. php -l sem erros.",
+    "arquivos_afetados": [
+      "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Database\\Migrations\\2026-09-04-162212_CreateCalendarsTableMigration.php"
+    ],
+    "observacoes": "Nenhuma."
+  }
+}

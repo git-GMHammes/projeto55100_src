@@ -1,0 +1,18 @@
+{
+  "acao": {
+    "id": "20260904162212_criar_migrations_agenda_google_calendar_no4",
+    "plano_referencia": "20260904162212_criar_migrations_agenda_google_calendar_plano.json",
+    "passo_do_plano": 4,
+    "titulo": "Criar migration da tabela calendar_event_reminders",
+    "executado_em": "2026-09-04T16:22:21-03:00",
+    "tipo": "criar_arquivo",
+    "alvo": "app/Database/Migrations/2026-09-04-162221_CreateCalendarEventRemindersTableMigration.php",
+    "comando_ou_input": "Write do arquivo; php -l para validar sintaxe",
+    "resultado": "sucesso",
+    "saida_resumo": "Tabela 'calendar_event_reminders' criada espelhando Event.reminders.overrides[]: calendar_event_id (FK CASCADE), method (enum email/popup), minutes, timestamps. php -l sem erros.",
+    "arquivos_afetados": [
+      "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Database\\Migrations\\2026-09-04-162221_CreateCalendarEventRemindersTableMigration.php"
+    ],
+    "observacoes": "Campo Reminders.useDefault (nivel calendario) nao foi modelado nesta tabela por ser um flag do proprio evento, nao um registro em lista; se necessario no futuro, adicionar coluna use_default em calendar_events."
+  }
+}

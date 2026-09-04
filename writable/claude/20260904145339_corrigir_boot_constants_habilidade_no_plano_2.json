@@ -1,0 +1,18 @@
+{
+  "acao": {
+    "id": "20260904145339_corrigir_boot_constants_habilidade_no2",
+    "plano_referencia": "20260904145339_corrigir_boot_constants_habilidade_plano.json",
+    "passo_do_plano": 2,
+    "titulo": "Tornar $habilidade valido e populavel via env HABILIDADE_DB_*",
+    "executado_em": "2026-09-04T14:53:39-03:00",
+    "tipo": "editar_arquivo",
+    "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Config\\Database.php",
+    "comando_ou_input": "Valores sem aspas de $habilidade (hostname/username/password/database/DBDriver/port) trocados por literais validos (vazios, exceto DBDriver='MySQLi' e port=3306). Adicionado no construtor um segundo laco getenv() -- HABILIDADE_DB_HOST/PORT/DATABASE/USERNAME/PASSWORD -- escrevendo em $this->habilidade, espelhando o laco ja existente para $this->default.",
+    "resultado": "sucesso",
+    "saida_resumo": "Grupo 'habilidade' (producao) passa a ser configuravel apenas via variaveis de ambiente do servidor, sem nenhuma credencial gravada no arquivo versionado.",
+    "arquivos_afetados": [
+      "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Config\\Database.php"
+    ],
+    "observacoes": "Grupo 'habilidade' so tera credenciais reais quando HABILIDADE_DB_* forem configuradas no ambiente de producao (KingHost); ate la fica com defaults vazios, sem quebrar o boot."
+  }
+}

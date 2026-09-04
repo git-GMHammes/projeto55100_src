@@ -1,0 +1,116 @@
+{
+  "plano": {
+    "id": "20260904154703_migrations_grupo_usuario",
+    "titulo": "Criar e rodar migrations do primeiro grupo de tabelas de usuario",
+    "descricao": "Criar 4 migrations CI4 (user_manager, user_credentials, user_profiles, user_roles) com a convencao padrao de colunas (id INT auto_increment PK nao-unsigned; created_at/updated_at DATETIME DEFAULT CURRENT_TIMESTAMP, updated_at tambem ON UPDATE CURRENT_TIMESTAMP via RawSql; deleted_at DATETIME nullable sem default), rodar as migrations e documentar tudo em README_migrate_database.md.",
+    "criado_em": "2026-09-04T15:47:03-03:00",
+    "diretorio_base": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Database\\Migrations\\",
+    "contexto": "Usuario pediu o primeiro grupo real de migrations (usuario/senha/token/perfil). Antes de escrever, uma investigacao (subagent) encontrou que ja existiam Models em app/Models/V1/User/ esperando tabelas com nomes diferentes (user_users, user_user_data, user_profiles-como-perfil-de-acesso), incluindo uma colisao real de nome (user_profiles ja significava algo diferente). Perguntado ao usuario via AskUserQuestion, decidiu seguir os nomes novos e deixar os Models antigos orfaos por enquanto. Tambem foi esclarecido, por segunda pergunta, que user_manager e a tabela raiz de identidade (id/uuid/token) e user_credentials tem o FK para ela com username/senha -- nao ha duplicacao.",
+    "criterios_de_sucesso": [
+      "4 migrations criadas via 'php spark make:migration' (nomes e timestamps corretos, gerados pelo proprio spark)",
+      "Cada tabela com id/created_at/updated_at/deleted_at no padrao especificado pelo usuario",
+      "user_credentials e user_profiles com FK user_manager_id -> user_manager.id",
+      "'php spark migrate' aplicado com sucesso, tabelas confirmadas via DESCRIBE",
+      "README_migrate_database.md atualizado com a convencao padrao de colunas e o exemplo real deste grupo"
+    ],
+    "rollback": {
+      "estrategia": "reverter_git",
+      "comando": "podman exec codeigniter55100_php php spark migrate:rollback (desfaz o ultimo batch, dropando as 4 tabelas via down()); depois git checkout/rm dos arquivos de migration e do README, se necessario"
+    },
+    "riscos": [
+      "user_roles ainda nao tem vinculo (role_id) com user_credentials/user_manager -- documentado como observacao em aberto no README, nao inventado sem confirmacao",
+      "Nomes de tabela colidem semanticamente com Models antigos ja existentes (UserUsers, UserUserData, UserProfiles-como-perfil) que ficam orfaos -- decisao explicita do usuario, registrada"
+    ]
+  },
+  "passos": [
+    {
+      "passo": 1,
+      "tipo": "executar_bash",
+      "alvo": "container codeigniter55100_php",
+      "motivo": "Gerar os 4 arquivos de migration via spark make:migration, garantindo nome/timestamp no formato configurado (Y-m-d-His_) e ordem de dependencia correta.",
+      "saida_esperada": "4 arquivos criados em app/Database/Migrations/ com timestamps crescentes",
+      "depende_de": []
+    },
+    {
+      "passo": 2,
+      "tipo": "editar_arquivo",
+      "alvo": "app/Database/Migrations/2026-09-04-184511_CreateUserManagerTableMigration.php",
+      "motivo": "Implementar up()/down() da tabela raiz user_manager (id, uuid, token, timestamps padrao).",
+      "saida_esperada": "Migration valida, tabela user_manager criada ao rodar",
+      "depende_de": [1]
+    },
+    {
+      "passo": 3,
+      "tipo": "editar_arquivo",
+      "alvo": "app/Database/Migrations/2026-09-04-184514_CreateUserCredentialsTableMigration.php",
+      "motivo": "Implementar up()/down() de user_credentials (FK user_manager_id, username unico, password_hash, status, last_login_at, timestamps padrao).",
+      "saida_esperada": "Migration valida, tabela user_credentials criada com FK para user_manager",
+      "depende_de": [2]
+    },
+    {
+      "passo": 4,
+      "tipo": "editar_arquivo",
+      "alvo": "app/Database/Migrations/2026-09-04-184516_CreateUserProfilesTableMigration.php",
+      "motivo": "Implementar up()/down() de user_profiles (FK user_manager_id, name, phone, whatsapp, email unico, cpf, cep, address, timestamps padrao).",
+      "saida_esperada": "Migration valida, tabela user_profiles criada com FK para user_manager",
+      "depende_de": [2]
+    },
+    {
+      "passo": 5,
+      "tipo": "editar_arquivo",
+      "alvo": "app/Database/Migrations/2026-09-04-184519_CreateUserRolesTableMigration.php",
+      "motivo": "Implementar up()/down() de user_roles (name, slug unico, description, permissions JSON, status, timestamps padrao).",
+      "saida_esperada": "Migration valida, tabela user_roles criada",
+      "depende_de": []
+    },
+    {
+      "passo": 6,
+      "tipo": "validacao",
+      "alvo": "app/Database/Migrations/2026-09-04-*.php",
+      "motivo": "Confirmar ausencia de erro de sintaxe antes de rodar contra o banco.",
+      "saida_esperada": "php -l sem erro nos 4 arquivos",
+      "depende_de": [2, 3, 4, 5]
+    },
+    {
+      "passo": 7,
+      "tipo": "executar_bash",
+      "alvo": "container codeigniter55100_php",
+      "motivo": "Rodar 'php spark migrate' para aplicar as 4 migrations contra o banco codeigniter55100_db.",
+      "saida_esperada": "'Migrations complete.' com as 4 migrations listadas como Running",
+      "depende_de": [6]
+    },
+    {
+      "passo": 8,
+      "tipo": "consulta_db",
+      "alvo": "codeigniter55100_db",
+      "motivo": "Confirmar estrutura final das 4 tabelas (colunas, tipos, defaults, chaves).",
+      "saida_esperada": "DESCRIBE de cada tabela batendo com o especificado (id PK auto_increment, timestamps com CURRENT_TIMESTAMP/ON UPDATE, FKs corretas)",
+      "depende_de": [7]
+    },
+    {
+      "passo": 9,
+      "tipo": "editar_arquivo",
+      "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\markdown\\conteudo\\README_migrate_database.md",
+      "motivo": "Documentar explicitamente a convencao padrao de colunas (id/created_at/updated_at/deleted_at) como regra para toda tabela nova, e registrar este grupo de 4 tabelas como exemplo real.",
+      "saida_esperada": "Novas secoes 6 e 7 adicionadas ao documento",
+      "depende_de": [8]
+    }
+  ],
+  "tipos_suportados": [
+    "leitura_arquivo",
+    "leitura_pasta",
+    "criar_arquivo",
+    "editar_arquivo",
+    "excluir_arquivo",
+    "copiar_arquivo",
+    "mover_arquivo",
+    "renomear_arquivo",
+    "buscar_texto",
+    "executar_bash",
+    "executar_powershell",
+    "consulta_db",
+    "requisicao_http",
+    "validacao",
+    "registrar_log"
+  ]
+}

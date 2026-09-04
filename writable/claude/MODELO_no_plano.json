@@ -1,0 +1,18 @@
+{
+  "acao": {
+    "id": "AAAAMMDDHHMMSS_titulo",
+    "plano_referencia": "AAAAMMDDHHMMSS_titulo_plano.json",
+    "passo_do_plano": 1,
+    "titulo": "Título legível da ação executada",
+    "executado_em": "AAAA-MM-DDTHH:MM:SS-03:00",
+    "tipo": "criar_arquivo",
+    "alvo": "C:\\caminho\\absoluto\\do\\alvo",
+    "comando_ou_input": "comando exato executado, se aplicável",
+    "resultado": "sucesso | falha | parcial",
+    "saida_resumo": "Resumo do que foi obtido/produzido",
+    "arquivos_afetados": [
+      "C:\\caminho\\arquivo1"
+    ],
+    "observacoes": "Notas adicionais, desvios do esperado, etc."
+  }
+}

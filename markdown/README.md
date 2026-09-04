@@ -23,27 +23,29 @@ planejamento e execução do projeto:
 
 - **1–4** — entender o sistema e suas restrições (ler primeiro).
 - **5** — pôr o ambiente para rodar.
-- **6–9** — construir features (o trabalho diário).
-- **10–11** — publicar.
-- **12–14** — manutenção e troubleshooting situacional.
-- **15–16** — referência de outro projeto (56400); ler por último.
+- **6–10** — construir features (o trabalho diário).
+- **11–12** — publicar.
+- **13–16** — manutenção e troubleshooting situacional.
+- **17–18** — referência de outro projeto (56400); ler por último.
 
 1. [Referência de Portas e Serviços](#1-referência-de-portas-e-serviços) — Portas 551XX, dois ambientes, dependências.
 2. [Arquitetura do Backend](#2-arquitetura-do-backend) — Camadas Controller, Service, Model, Request.
 3. [Arquitetura do Frontend](#3-arquitetura-do-frontend) — SPA React 19, Vite, TypeScript.
 4. [Segurança de Credenciais e Banco](#4-segurança-de-credenciais-e-banco-de-dados) — Segredos e vetores de vazamento.
 5. [Guia de Desenvolvimento (Frontend)](#5-guia-de-desenvolvimento-frontend) — Quick start React, scripts, pré-requisitos.
-6. [ROADMAP de Nova API (Tabela/View)](#6-roadmap-de-nova-api-para-tabela-ou-view) — Criar módulo REST completo.
-7. [Modelo de Tela de Listagem](#7-modelo-de-tela-de-listagem-frontend) — Busca, tabela e modal.
-8. [Campos de Formulário (`field/`)](#8-campos-de-formulário-field) — Field factories com validação brasileira.
-9. [CORS no CodeIgniter 4 com Nginx](#9-cors-no-codeigniter-4-com-nginx) — Correção de CORS SPA↔API.
-10. [Deploy em Produção](#10-deploy-em-produção) — Apache, FTP, build manual local.
-11. [Deploy via Git de GitHub para KingHost](#11-deploy-via-git-de-github-para-kinghost) — Webhook, causa raiz, sequência de correção.
-12. [ROADMAP de Atualização deste README](#12-roadmap-de-atualização-deste-readme) — Processo obrigatório ao mudar `conteudo/`.
-13. [ROADMAP de Correção do Podman](#13-roadmap-de-correção-do-podman-em-starting) — Podman Desktop travado em STARTING.
-14. [ROADMAP de podman compose](#14-roadmap-de-podman-compose-com-provider-externo) — Provider externo em vez do nativo.
-15. [ROADMAP de Migração para CodeIgniter 4](#15-roadmap-de-migração-para-codeigniter-4) — Chat projeto56400, fases e checklist.
-16. [ROADMAP de Migração para Laravel 11](#16-roadmap-de-migração-para-laravel-11) — Chat projeto56400, fases e checklist.
+6. [Migrations e CLI Spark (CodeIgniter 4)](#6-migrations-e-cli-spark-codeigniter-4) — `spark migrate`, tabela `migrations`, convenções.
+7. [ROADMAP de Nova API (Tabela/View)](#7-roadmap-de-nova-api-para-tabela-ou-view) — Criar módulo REST completo.
+8. [Modelo de Tela de Listagem](#8-modelo-de-tela-de-listagem-frontend) — Busca, tabela e modal.
+9. [Campos de Formulário (`field/`)](#9-campos-de-formulário-field) — Field factories com validação brasileira.
+10. [CORS no CodeIgniter 4 com Nginx](#10-cors-no-codeigniter-4-com-nginx) — Correção de CORS SPA↔API.
+11. [Deploy em Produção](#11-deploy-em-produção) — Apache, FTP, build manual local.
+12. [Deploy via Git de GitHub para KingHost](#12-deploy-via-git-de-github-para-kinghost) — Webhook, causa raiz, sequência de correção.
+13. [ROADMAP de Atualização deste README](#13-roadmap-de-atualização-deste-readme) — Processo obrigatório ao mudar `conteudo/`.
+14. [ROADMAP de Correção do Podman](#14-roadmap-de-correção-do-podman-em-starting) — Podman Desktop travado em STARTING.
+15. [ROADMAP de podman compose](#15-roadmap-de-podman-compose-com-provider-externo) — Provider externo em vez do nativo.
+16. [Proxy de Rede no Build Docker/Podman](#16-proxy-de-rede-no-build-dockerpodman) — ENV proxy DETRAN nos Dockerfiles.
+17. [ROADMAP de Migração para CodeIgniter 4](#17-roadmap-de-migração-para-codeigniter-4) — Chat projeto56400, fases e checklist.
+18. [ROADMAP de Migração para Laravel 11](#18-roadmap-de-migração-para-laravel-11) — Chat projeto56400, fases e checklist.
 
 ---
 
@@ -161,7 +163,32 @@ Pontos-chave:
 
 ---
 
-### 6. ROADMAP de Nova API para Tabela ou View
+### 6. Migrations e CLI Spark (CodeIgniter 4)
+
+Guia de uso do CLI `spark` e do sistema de **migrations** do CodeIgniter 4
+neste projeto: como criar, rodar e reverter migrations, e qual grupo de
+conexão elas usam.
+
+Pontos-chave:
+
+- Comandos principais: `make:migration`, `migrate`, `migrate:status`,
+  `migrate:rollback`, `migrate:refresh`.
+- Convenção de nome/timestamp (`Y-m-d-His_`) e tabela de controle
+  `migrations`, configurados em `app/Config/Migrations.php`.
+- Grupo de conexão usado (`$defaultGroup = 'default'` em `Database.php`,
+  preenchido pelas env vars do Podman) e execução dentro do container
+  (`podman exec codeigniter55100_php php spark migrate`).
+- Primeira execução cria a tabela `migrations` mesmo sem nenhuma migration
+  de negócio ainda escrita.
+
+📄 Documento completo:
+[conteudo/README_migrate_database.md](conteudo/README_migrate_database.md)
+
+[↑ Índice](#índice)
+
+---
+
+### 7. ROADMAP de Nova API para Tabela ou View
 
 Roteiro para criar **um módulo REST completo do zero** (modelo de referência:
 `UserCustomer` / `user_002_customer`).
@@ -184,7 +211,7 @@ Pontos-chave:
 
 ---
 
-### 7. Modelo de Tela de Listagem (Frontend)
+### 8. Modelo de Tela de Listagem (Frontend)
 
 Modelo **replicável** de tela de listagem, usando "Municípios do RJ"
 (`/#/v1/municipio-rj`) como referência: busca textual, tabela e modal de edição
@@ -209,7 +236,7 @@ Pontos-chave:
 
 ---
 
-### 8. Campos de Formulário (field/)
+### 9. Campos de Formulário (field/)
 
 **Field Factory System** — sistema modular de *field factories* para construir
 formulários HTML declarativos com validação em tempo real e formatação
@@ -229,7 +256,7 @@ auto-execução (IIFE).
 
 ---
 
-### 9. CORS no CodeIgniter 4 com Nginx
+### 10. CORS no CodeIgniter 4 com Nginx
 
 Diagnóstico e correção do erro `CORS Missing Allow Origin` entre a SPA React
 (Vite, porta 5173) e a API CI4 servida via Nginx, quando a URL era chamada sem
@@ -255,7 +282,7 @@ Pontos-chave:
 
 ---
 
-### 10. Deploy em Produção
+### 11. Deploy em Produção
 
 Passo a passo do deploy do Projeto55100 no ambiente de produção: **Apache** com
 `AllowOverride All`, **PHP 8.2+**, **sem Docker, sem Composer e sem Node.js no
@@ -275,7 +302,7 @@ Pontos-chave:
 
 ---
 
-### 11. Deploy via Git de GitHub para KingHost
+### 12. Deploy via Git de GitHub para KingHost
 
 Fluxo de publicação automática via **Git** entre GitHub e a hospedagem KingHost
 (`habilidade.com`), com diagnóstico, causa raiz e a sequência exata que resolveu
@@ -296,7 +323,7 @@ Pontos-chave:
 
 ---
 
-### 12. ROADMAP de Atualização deste README
+### 13. ROADMAP de Atualização deste README
 
 Processo **obrigatório** de manutenção: como manter este `README.md` sincronizado
 sempre que o conteúdo de `src/markdown/conteudo/` mudar.
@@ -319,7 +346,7 @@ Pontos-chave:
 
 ---
 
-### 13. ROADMAP de Correção do Podman em STARTING
+### 14. ROADMAP de Correção do Podman em STARTING
 
 Diagnóstico e solução do **Podman Desktop preso em `STARTING`** indefinidamente
 após reinicializações (Windows 11 · WSL 2 · Podman Desktop v1.27.2 · Podman
@@ -342,7 +369,7 @@ Pontos-chave:
 
 ---
 
-### 14. ROADMAP de podman compose com Provider Externo
+### 15. ROADMAP de podman compose com Provider Externo
 
 Diagnóstico e solução para `podman compose up -d --build` falhando ao delegar
 para o `docker-compose.exe` do Docker Desktop em vez do provider nativo.
@@ -364,7 +391,31 @@ Pontos-chave:
 
 ---
 
-### 15. ROADMAP de Migração para CodeIgniter 4
+### 16. Proxy de Rede no Build Docker/Podman
+
+Documenta a configuração de **proxy da rede DETRAN** exigida nos Dockerfiles
+que fazem build local (`docker/php/Dockerfile` e `docker/node/Dockerfile`),
+sem a qual `apt-get`/`npm install` falham com `ETIMEDOUT` por falta de
+resolução de DNS interno na VM.
+
+Pontos-chave:
+
+- Sintoma: `npm error ETIMEDOUT` ao acessar `registry.npmjs.org` durante
+  `RUN npm install --production` no build do serviço `node`.
+- Correção: bloco `ENV http_proxy` / `ENV https_proxy` / `ENV no_proxy`
+  (`10.200.188.17:80`) logo após o `FROM`, em ambos os Dockerfiles.
+- Checklist para qualquer novo serviço com `build:` no `docker-compose.yml`:
+  replicar o mesmo bloco se a etapa de build precisar de internet; serviços
+  que só usam `image:` pronta não precisam.
+
+📄 Documento completo:
+[conteudo/README_proxy_podman.md](conteudo/README_proxy_podman.md)
+
+[↑ Índice](#índice)
+
+---
+
+### 17. ROADMAP de Migração para CodeIgniter 4
 
 > **Escopo: projeto56400** (Chat em Tempo Real) — documento de referência de
 > migração mantido junto da documentação do Projeto55100.
@@ -387,7 +438,7 @@ Pontos-chave:
 
 ---
 
-### 16. ROADMAP de Migração para Laravel 11
+### 18. ROADMAP de Migração para Laravel 11
 
 > **Escopo: projeto56400** (Chat em Tempo Real) — documento de referência de
 > migração mantido junto da documentação do Projeto55100.
@@ -402,7 +453,7 @@ Pontos-chave:
   `messages`, model Eloquent `Message`, `SendMessageRequest`,
   `MessageController`, rotas de API, CORS, ajustes de Nginx/Dockerfile PHP,
   front-end (`chat.js`) e testes.
-- Comparável ao [ROADMAP de Migração para CodeIgniter 4](#15-roadmap-de-migração-para-codeigniter-4).
+- Comparável ao [ROADMAP de Migração para CodeIgniter 4](#17-roadmap-de-migração-para-codeigniter-4).
 
 📄 Documento completo:
 [conteudo/ROADMAP_laravel.md](conteudo/ROADMAP_laravel.md)

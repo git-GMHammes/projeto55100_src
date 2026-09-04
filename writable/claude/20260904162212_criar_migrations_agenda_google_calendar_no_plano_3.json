@@ -1,0 +1,18 @@
+{
+  "acao": {
+    "id": "20260904162212_criar_migrations_agenda_google_calendar_no3",
+    "plano_referencia": "20260904162212_criar_migrations_agenda_google_calendar_plano.json",
+    "passo_do_plano": 3,
+    "titulo": "Criar migration da tabela calendar_event_attendees",
+    "executado_em": "2026-09-04T16:22:18-03:00",
+    "tipo": "criar_arquivo",
+    "alvo": "app/Database/Migrations/2026-09-04-162218_CreateCalendarEventAttendeesTableMigration.php",
+    "comando_ou_input": "Write do arquivo; php -l para validar sintaxe",
+    "resultado": "sucesso",
+    "saida_resumo": "Tabela 'calendar_event_attendees' criada espelhando Event.attendees[]: calendar_event_id (FK CASCADE), email, display_name, is_organizer, is_self, is_resource, is_optional, response_status (enum), comment, timestamps. php -l sem erros.",
+    "arquivos_afetados": [
+      "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Database\\Migrations\\2026-09-04-162218_CreateCalendarEventAttendeesTableMigration.php"
+    ],
+    "observacoes": "Nenhuma."
+  }
+}

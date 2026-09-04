@@ -1,0 +1,99 @@
+{
+  "plano": {
+    "id": "20260904155605_corrigir_grupo_usuario_fusao_manager",
+    "titulo": "Refazer migrations do grupo de usuario: fundir user_manager+user_credentials, mover uuid para user_profiles",
+    "descricao": "Usuario apontou 2 erros no primeiro desenho: user_manager e user_credentials eram redundantes (deveriam ser uma tabela so) e uuid deveria estar em user_profiles, nao em user_manager. user_roles foi confirmado correto e mantido identico. Usuario ja tinha dropado as 4 tabelas antigas e apagado os arquivos de migration antes de pedir para refazer.",
+    "criado_em": "2026-09-04T15:56:05-03:00",
+    "diretorio_base": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Database\\Migrations\\",
+    "contexto": "Pergunta de confirmacao via AskUserQuestion definiu o desenho final: user_manager unico (id, username, password_hash, token, status, last_login_at, timestamps) e uuid exclusivo de user_profiles.",
+    "criterios_de_sucesso": [
+      "Apenas 3 tabelas de negocio (user_manager, user_profiles, user_roles), sem user_credentials separada",
+      "user_manager com username/password_hash/token/status/last_login_at",
+      "user_profiles com uuid (varchar 50 nullable) alem dos demais campos ja definidos",
+      "user_roles identica a versao anterior (ja confirmada correta)",
+      "README_migrate_database.md secao 7 atualizada refletindo a fusao"
+    ],
+    "rollback": {
+      "estrategia": "reverter_git",
+      "comando": "podman exec codeigniter55100_php php spark migrate:rollback; remover os 3 arquivos de migration"
+    },
+    "riscos": [
+      "Nenhum -- banco e pasta de migrations ja estavam limpos pelo usuario antes desta execucao"
+    ]
+  },
+  "passos": [
+    {
+      "passo": 1,
+      "tipo": "executar_bash",
+      "alvo": "container codeigniter55100_php",
+      "motivo": "Gerar os 3 novos arquivos de migration via spark make:migration.",
+      "saida_esperada": "3 arquivos criados com timestamps 185437/185440/185442",
+      "depende_de": []
+    },
+    {
+      "passo": 2,
+      "tipo": "editar_arquivo",
+      "alvo": "app/Database/Migrations/2026-09-04-185437_CreateUserManagerTableMigration.php",
+      "motivo": "Implementar user_manager fundido (id, username unico, password_hash, token, status, last_login_at, timestamps).",
+      "saida_esperada": "Migration valida",
+      "depende_de": [1]
+    },
+    {
+      "passo": 3,
+      "tipo": "editar_arquivo",
+      "alvo": "app/Database/Migrations/2026-09-04-185440_CreateUserProfilesTableMigration.php",
+      "motivo": "Implementar user_profiles com uuid adicionado, FK user_manager_id, demais campos ja definidos.",
+      "saida_esperada": "Migration valida",
+      "depende_de": [2]
+    },
+    {
+      "passo": 4,
+      "tipo": "editar_arquivo",
+      "alvo": "app/Database/Migrations/2026-09-04-185442_CreateUserRolesTableMigration.php",
+      "motivo": "Reimplementar user_roles identica a versao anterior ja confirmada correta.",
+      "saida_esperada": "Migration valida",
+      "depende_de": []
+    },
+    {
+      "passo": 5,
+      "tipo": "executar_bash",
+      "alvo": "container codeigniter55100_php",
+      "motivo": "Rodar as 3 migrations.",
+      "saida_esperada": "'Migrations complete.'",
+      "depende_de": [2, 3, 4]
+    },
+    {
+      "passo": 6,
+      "tipo": "consulta_db",
+      "alvo": "codeigniter55100_db",
+      "motivo": "Confirmar estrutura final das 3 tabelas.",
+      "saida_esperada": "DESCRIBE batendo com o desenho corrigido",
+      "depende_de": [5]
+    },
+    {
+      "passo": 7,
+      "tipo": "editar_arquivo",
+      "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\markdown\\conteudo\\README_migrate_database.md",
+      "motivo": "Atualizar secao 7 para refletir a fusao (3 tabelas em vez de 4) e o uuid movido para user_profiles.",
+      "saida_esperada": "Secao 7 e observacao em aberto atualizadas",
+      "depende_de": [6]
+    }
+  ],
+  "tipos_suportados": [
+    "leitura_arquivo",
+    "leitura_pasta",
+    "criar_arquivo",
+    "editar_arquivo",
+    "excluir_arquivo",
+    "copiar_arquivo",
+    "mover_arquivo",
+    "renomear_arquivo",
+    "buscar_texto",
+    "executar_bash",
+    "executar_powershell",
+    "consulta_db",
+    "requisicao_http",
+    "validacao",
+    "registrar_log"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "plano": {
+    "id": "20260904160047_corrigir_id_bigint",
+    "titulo": "Corrigir tipo de chave primaria de INT para BIGINT nas 3 migrations",
+    "descricao": "Usuario apontou que as chaves primarias deveriam ser BIGINT, nao INT -- requisito que ja deveria ter sido aplicado e documentado desde a especificacao original das chaves (DataType=5 no formato Navicat) e que passou despercebido. Corrigir 'id' para BIGINT nas 3 tabelas (user_manager, user_profiles, user_roles) e a FK 'user_manager_id' em user_profiles, alem de corrigir a documentacao da convencao padrao no README_migrate_database.md que tambem estava com INT.",
+    "criado_em": "2026-09-04T16:00:47-03:00",
+    "diretorio_base": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\app\\Database\\Migrations\\",
+    "contexto": "Erro reincidente: a interpretacao original do campo DataType=5 (formato Navicat) para a chave primaria foi feita como INT sem confirmar com o usuario o mapeamento correto, resultando em tipo errado gravado tanto no banco quanto na documentacao.",
+    "criterios_de_sucesso": [
+      "id BIGINT em user_manager, user_profiles e user_roles",
+      "user_manager_id (FK em user_profiles) tambem BIGINT, batendo com a coluna referenciada",
+      "README_migrate_database.md secao 6 documentando BIGINT como convencao padrao, nao INT"
+    ],
+    "rollback": {
+      "estrategia": "reverter_git",
+      "comando": "podman exec codeigniter55100_php php spark migrate:rollback -f; reverter os 3 arquivos de migration e o README via git checkout"
+    },
+    "riscos": [
+      "Nenhum dado real existia nas tabelas (recem-criadas), rollback + recriacao sem perda"
+    ]
+  },
+  "passos": [
+    {
+      "passo": 1,
+      "tipo": "executar_bash",
+      "alvo": "container codeigniter55100_php",
+      "motivo": "Reverter o ultimo batch de migrations (drop das 3 tabelas) antes de editar o tipo da chave primaria.",
+      "saida_esperada": "'Done rolling back migrations.'",
+      "depende_de": []
+    },
+    {
+      "passo": 2,
+      "tipo": "editar_arquivo",
+      "alvo": "app/Database/Migrations/2026-09-04-185437_CreateUserManagerTableMigration.php, 2026-09-04-185440_CreateUserProfilesTableMigration.php, 2026-09-04-185442_CreateUserRolesTableMigration.php",
+      "motivo": "Trocar 'id' de INT para BIGINT nas 3 migrations, e 'user_manager_id' (FK) de INT para BIGINT em user_profiles.",
+      "saida_esperada": "Migrations validas com BIGINT",
+      "depende_de": [1]
+    },
+    {
+      "passo": 3,
+      "tipo": "executar_bash",
+      "alvo": "container codeigniter55100_php",
+      "motivo": "Rodar novamente as 3 migrations corrigidas.",
+      "saida_esperada": "'Migrations complete.'",
+      "depende_de": [2]
+    },
+    {
+      "passo": 4,
+      "tipo": "consulta_db",
+      "alvo": "codeigniter55100_db",
+      "motivo": "Confirmar via DESCRIBE que id e user_manager_id sao bigint nas 3 tabelas.",
+      "saida_esperada": "Coluna 'Type' = bigint para id (as 3 tabelas) e user_manager_id (user_profiles)",
+      "depende_de": [3]
+    },
+    {
+      "passo": 5,
+      "tipo": "editar_arquivo",
+      "alvo": "C:\\xampp\\htdocs\\php\\habilidade\\projeto55100\\src\\markdown\\conteudo\\README_migrate_database.md",
+      "motivo": "Corrigir a secao 6 (convencao de colunas padrao) para documentar BIGINT em vez de INT, e a nota sobre FKs precisarem bater o tipo.",
+      "saida_esperada": "Secao 6 atualizada",
+      "depende_de": [4]
+    }
+  ],
+  "tipos_suportados": [
+    "leitura_arquivo",
+    "leitura_pasta",
+    "criar_arquivo",
+    "editar_arquivo",
+    "excluir_arquivo",
+    "copiar_arquivo",
+    "mover_arquivo",
+    "renomear_arquivo",
+    "buscar_texto",
+    "executar_bash",
+    "executar_powershell",
+    "consulta_db",
+    "requisicao_http",
+    "validacao",
+    "registrar_log"
+  ]
+}
